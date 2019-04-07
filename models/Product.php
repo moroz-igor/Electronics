@@ -5,7 +5,7 @@
 class Product
 {
     // Количество отображаемых товаров по умолчанию
-    const SHOW_BY_DEFAULT = 10;
+    const SHOW_BY_DEFAULT = 3;
 
     public static function getLatestProducts($count = self::SHOW_BY_DEFAULT)
     {
@@ -13,11 +13,7 @@ class Product
         $db = Db::getConnection();
 
         // Текст запроса к БД
-        $sql = 'SELECT id, name,
-                        imgbig_1, imgbig_2, imgbig_3, imgbig_4, imgbig_5,
-                        imgmin_1, imgmin_2, imgmin_3, imgmin_4, imgmin_5,
-                        code_prev, code, brand, category_id, category_name, description_1, description_2, price
-                        FROM product '
+        $sql = 'SELECT * FROM product '
                 . 'WHERE status = "1" ORDER BY id  '
                 . 'LIMIT :count';
 
@@ -62,6 +58,8 @@ class Product
 
     public static function getProductsListByCategory($categoryId, $page = 1)
     {
+        $page = intval($page);
+
         $limit = Product::SHOW_BY_DEFAULT;
         // Смещение (для запроса)
         $offset = ($page - 1) * self::SHOW_BY_DEFAULT;
@@ -70,19 +68,16 @@ class Product
         $db = Db::getConnection();
 
         // Текст запроса к БД
-        $sql = 'SELECT id, name,
-                            imgbig_1, imgbig_2, imgbig_3, imgbig_4, imgbig_5,
-                            imgmin_1, imgmin_2, imgmin_3, imgmin_4, imgmin_5,
-                            code_prev, code, brand, category_name, description_1, description_2, price
-                             FROM product '
-                . 'WHERE status = 1 AND category_id = :category_id '
-                . 'ORDER BY id ASC LIMIT :limit OFFSET :offset';
+        $sql = 'SELECT * FROM product '
+                        . 'WHERE status = 1 AND category_id = :category_id '
+                        . 'ORDER BY id ASC LIMIT :limit OFFSET :offset';
 
-        // Используется подготовленный запрос
-        $result = $db->prepare($sql);
-        $result->bindParam(':category_id', $categoryId, PDO::PARAM_INT);
-        $result->bindParam(':limit', $limit, PDO::PARAM_INT);
-        $result->bindParam(':offset', $offset, PDO::PARAM_INT);
+
+                            // Используется подготовленный запрос
+                            $result = $db->prepare($sql);
+                            $result->bindParam(':category_id', $categoryId, PDO::PARAM_INT);
+                            $result->bindParam(':limit', $limit, PDO::PARAM_INT);
+                            $result->bindParam(':offset', $offset, PDO::PARAM_INT);
 
         // Выполнение коменды
         $result->execute();
@@ -153,6 +148,29 @@ class Product
                   return $result->fetch();
               }
           }
+          /**
+          * Возвращаем количество товаров в указанной категории
+          */
+          public static function getTotalProductsInCategory($categoryId)
+          {
+              // Соединение с БД
+              $db = Db::getConnection();
+
+              // Текст запроса к БД
+              $sql = 'SELECT count(id) AS count FROM product WHERE status="1" AND category_id = :category_id';
+
+              // Используется подготовленный запрос
+              $result = $db->prepare($sql);
+              $result->bindParam(':category_id', $categoryId, PDO::PARAM_INT);
+
+              // Выполнение коменды
+              $result->execute();
+
+              // Возвращаем значение count - количество
+              $row = $result->fetch();
+              return $row['count'];
+          }
+
 
         /* Описание выода деталей продукта категории Section*/
         public static function getSectionProductById($id)

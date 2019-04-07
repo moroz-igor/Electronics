@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/template/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="/template/svg/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="/template/css/main.css" type="text/css"/>
+    <link rel="stylesheet" href="/template/css/temp.css" type="text/css"/>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries-->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   </head>
@@ -19,8 +20,6 @@
         <div class="main-header">
             <h1 class="_header" id="h1-proba">Компьютеры и комлектующие</h1>
             <h1 class="_header" id="h2-proba">ЭЛЛЕКТРОНИКА</h1>
-            <h3>Бытовая эллектроника   </h3>
-            <h3>Радиокомпонетны  </h3>
             <div class="header_enter">
                 <div>Вход не выполнен</div>
             </div>
@@ -35,7 +34,7 @@
                         <a class="btn btn-primary" href="/section2/">Section-3</a>
                         <a class="btn btn-primary" href="#">Section-4</a>
                         <a class="btn btn-primary" href="#">Контакты</a>
-                        <a class="btn btn-success" href="#">Регистрация</a>
+                        <a class="btn btn-success" href="/user/register/">Регистрация</a>
                         <a class="btn btn-success" href="#">Вход</a>
                         <a class="btn btn-primary" href="#">Карта сайта</a>
                     </div>

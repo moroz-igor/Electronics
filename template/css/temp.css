@@ -1,0 +1,14 @@
+._registration-success{
+    text-align: center;
+    font-size: 20px;
+    color: green;
+}
+._registration-false{
+    text-align: center;
+    font-size: 2em;
+    color: red;
+
+}
+._registration-form ul li{
+    color: red;
+}

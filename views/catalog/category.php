@@ -97,5 +97,6 @@
                 </div>
             </div>
         <?php endforeach; ?>
+        <!-- Pagination--><?php echo $pagination->get(); ?>
 <?php include ROOT.'/views/layouts/right_sitebar.php'; ?>
 <?php include ROOT.'/views/layouts/footer.php'; ?>
