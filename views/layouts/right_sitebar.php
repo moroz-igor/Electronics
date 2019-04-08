@@ -1,18 +1,22 @@
 </div>
 <div class="col-lg-2 col-md-3 hidden-sm hidden-xs">
+<!--    
   <div class="authorization">
     <div class="row">
       <form class="navbar-form" action="#">
         <div class="form-group">
-          <input class="form-control" type="text" placeholder="E-mail" value=""/>
+          <input class="form-control" type="email"  value="<?php echo $name; ?>"/>
         </div>
         <div class="form-group">
-          <input class="form-control" type="password" placeholder="Password" value=""/>
+          <input class="form-control" type="password"  value="<?php echo $password; ?>"/>
         </div>
-        <button class="btn btn-success" type="submit"> <i class="fa fa-sign-in"> </i><span>Войти</span></button>
+        <div class="form-group">
+            <input class="btn btn-success" type="submit" value="Войти"/>
+        </div>
       </form>
     </div>
   </div>
+-->
   <div class="basket authorization">
     <p>В корзине</p>
     <p> <span class="basket-col">0 </span><span>наименований        </span></p>

@@ -21,7 +21,22 @@
             <h1 class="_header" id="h1-proba">Компьютеры и комлектующие</h1>
             <h1 class="_header" id="h2-proba">ЭЛЛЕКТРОНИКА</h1>
             <div class="header_enter">
-                <div>Вход не выполнен</div>
+                <div>
+                    <?php
+                    function checkUserName($id)
+                    {
+                        $db = Db::getConnection();
+                        $userName = $id;
+                        $query = 'SELECT name FROM `user` WHERE id = '.$userName ;
+                        $result = $db->query($query);
+                        $row = $result->fetch(PDO::FETCH_ASSOC);
+                        echo $row['name'];
+                    }
+                    ?>
+                    <?php if(User::isGuest()) echo 'Вход не выполен';
+                          else {echo 'Здравствуйте, ';checkUserName($_SESSION['user']);echo ' !';}
+                     ?>
+                </div>
             </div>
         </div>
         <nav class="main-menu">
@@ -34,8 +49,12 @@
                         <a class="btn btn-primary" href="/section2/">Section-3</a>
                         <a class="btn btn-primary" href="#">Section-4</a>
                         <a class="btn btn-primary" href="#">Контакты</a>
+                    <?php if(User::isGuest()): ?>
                         <a class="btn btn-success" href="/user/register/">Регистрация</a>
-                        <a class="btn btn-success" href="#">Вход</a>
+                        <a class="btn btn-success" href="/user/login/"><i class="fa fa-sign-in"></i> Вход</a>
+                    <?php else: ?>
+                        <a class="btn btn-success" href="/user/logout/">Выход <i class="fa fa-sign-in"></i></a>
+                    <?php endif; ?>
                         <a class="btn btn-primary" href="#">Карта сайта</a>
                     </div>
                 </div>

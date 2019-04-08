@@ -20,6 +20,8 @@ echo preg_replace($pattern, $replacement_solution, $string); */
 
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
+// Начинаем сессию
+session_start();
 
 // 2. Подключение файлов системы
 

@@ -12,6 +12,8 @@ return array(
 		'cabinet' => 'cabinet/index',                 					// actionIndex в CabinetController
 
 		'user/register' => 'user/register',
+		'user/login' => 'user/login',
+		'user/logout' => 'user/logout',
 
 		'' => 'site/index',                           					// если после localhost пусто вызывать 'site/index
 	);
