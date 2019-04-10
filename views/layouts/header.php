@@ -47,7 +47,7 @@
                         <a class="btn btn-primary" href="/section1/">Комплектующие к пк</a>
                         <a class="btn btn-primary" href="/section2/">Section-3</a>
                         <a class="btn btn-primary" href="#">Section-4</a>
-                        <a class="btn btn-primary" href="#">Контакты</a>
+                        <a class="btn btn-primary" href="/contacts/">Контакты</a>
                     <?php if(User::isGuest()): ?>
                         <a class="btn btn-success" href="/user/register/">Регистрация</a>
                         <a class="btn btn-success" href="/user/login/"><i class="fa fa-sign-in"></i> Вход</a>
