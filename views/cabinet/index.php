@@ -1,72 +1,19 @@
 <?php include ROOT.'/views/layouts/header.php'; ?>
 <?php include ROOT.'/views/layouts/left_sitebar.php'; ?>
 <h3>Кабинет пользователя</h3>
-<h4>Здравствуйте, <?php  echo $user['name'];?>!</h4>
-    <!--
-          <div class="private_edit">
-            <h4>Редактирование данных</h4>
-                <form name="date_edit" action="#" method="post">
-                    <div class="date_edit">
-                        <p>Ваше имя</p>
-                        <input class="form-control" type="text" name="name" >
-                    </div>
-                    <div class="date_edit">
-                        <p>Ваша фамилия</p>
-                        <input class="form-control" type="text" name="name" >
-                    </div>
-                    <div class="date_edit">
-                        <p>Ваш e-mail</p>
-                        <input class="form-control" type="text" name="name" placeholder=""/>
-                    </div>
-                    <div class="date_edit">
-                        <p>Ваш телефон</p>
-                        <input class="form-control" type="text" name="name" placeholder=""/>
-                    </div>
-                    <div class="date_edit">
-                        <p>Ваш регион(область)</p>
-                        <input class="form-control" type="text" name="name" placeholder=""/>
-                    </div>
-                    <div class="date_edit">
-                        <p>Ваш район</p>
-                        <input class="form-control" type="text" name="name" placeholder=""/>
-                    </div>
-                    <div class="date_edit">
-                        <p>Ваш населенный пункт(село)</p>
-                        <input class="form-control" type="text" name="name" placeholder=""/>
-                    </div>
-                    <div class="date_edit">
-                        <p>Способ доставки
-                            <input class="form-control" type="text" name="name" placeholder=""/>
-                        </p>
-                    </div>
-                    <div class="date_edit">
-                        <p>Номер почтового отделения</p>
-                        <input class="form-control" type="text" name="name" placeholder=""/>
-                    </div>
-                    <div class="date_edit">
-                        <p>Адрес почтового отделения</p>
-                        <input class="form-control" type="text" name="name" placeholder=""/>
-                    </div>
-                    <div class="date_edit">
-                        <div>
-                            <input type="submit" name="registration" value="Отправить данные"/>
-                        </div>
-                    </div>
-                </form>
-          </div>
-      -->
+<h4>Привет, <?php  echo $user['name'];?>!</h4>
+
           <div class="private">
-            <h4>Здесь вы можете смотреть и редактировать ваши личные данные</h4>
-            <p>
-              <button>Редактировать</button>
-            </p>
+            <h4>Ваши личные данные</h4>
+            <a href="/edit/"><button>Редактировать данные</button>
+            </a>
             <div class="row">
               <div class="col-lg-5 private_segment col-md-5 col-sm-5 col-xs-5">Ваше имя</div>
               <div class="col-lg-5 private_segment col-md-5 col-sm-5 col-xs-5"><?php  echo $user['name'];?></div>
             </div>
             <div class="row">
               <div class="col-lg-5 private_segment col-md-5 col-sm-5 col-xs-5">Фамилия</div>
-              <div class="col-lg-5 private_segment col-md-5 col-sm-5 col-xs-5"></div>
+              <div class="col-lg-5 private_segment col-md-5 col-sm-5 col-xs-5"><?php  echo $user['last_name'];?></div>
             </div>
             <div class="row">
               <div class="col-lg-5 private_segment col-md-5 col-sm-5 col-xs-5">e-mail</div>
@@ -74,35 +21,36 @@
             </div>
             <div class="row">
               <div class="col-lg-5 private_segment col-md-5 col-sm-5 col-xs-5">Телефон</div>
-              <div class="col-lg-5 private_segment col-md-5 col-sm-5 col-xs-5"></div>
+              <div class="col-lg-5 private_segment col-md-5 col-sm-5 col-xs-5"><?php  echo $user['phone'];?></div>
             </div>
             <div class="row">
-              <div class="col-lg-5 private_segment col-md-5 col-sm-5 col-xs-5">Регион</div>
-              <div class="col-lg-5 private_segment col-md-5 col-sm-5 col-xs-5"> </div>
+              <div class="col-lg-5 private_segment col-md-5 col-sm-5 col-xs-5">Область</div>
+              <div class="col-lg-5 private_segment col-md-5 col-sm-5 col-xs-5"><?php  echo $user['region'];?></div>
             </div>
             <div class="row">
-              <div class="col-lg-5 private_segment col-md-5 col-sm-5 col-xs-5">Город</div>
-              <div class="col-lg-5 private_segment col-md-5 col-sm-5 col-xs-5"> </div>
+              <div class="col-lg-5 private_segment col-md-5 col-sm-5 col-xs-5">Район</div>
+              <div class="col-lg-5 private_segment col-md-5 col-sm-5 col-xs-5"> <?php  echo $user['area'];?></div>
             </div>
             <div class="row">
-              <div class="col-lg-5 private_segment col-md-5 col-sm-5 col-xs-5">Село</div>
-              <div class="col-lg-5 private_segment col-md-5 col-sm-5 col-xs-5"> </div>
+              <div class="col-lg-5 private_segment col-md-5 col-sm-5 col-xs-5">Город, село</div>
+              <div class="col-lg-5 private_segment col-md-5 col-sm-5 col-xs-5"><?php  echo $user['town'];?> </div>
             </div>
             <div class="row">
               <div class="col-lg-5 private_segment col-md-5 col-sm-5 col-xs-5">Способ доставки</div>
-              <div class="col-lg-5 private_segment col-md-5 col-sm-5 col-xs-5"></div>
+              <div class="col-lg-5 private_segment col-md-5 col-sm-5 col-xs-5"><?php  echo $user['delivery'];?></div>
             </div>
             <div class="row">
               <div class="col-lg-5 private_segment col-md-5 col-sm-5 col-xs-5">Номер почтового отделения</div>
-              <div class="col-lg-5 private_segment col-md-5 col-sm-5 col-xs-5"> </div>
+              <div class="col-lg-5 private_segment col-md-5 col-sm-5 col-xs-5"><?php  echo $user['post_number'];?> </div>
             </div>
             <div class="row">
               <div class="col-lg-5 private_segment col-md-5 col-sm-5 col-xs-5">Адрес почтового отделения</div>
-              <div class="col-lg-5 private_segment col-md-5 col-sm-5 col-xs-5"></div>
+              <div class="col-lg-5 private_segment col-md-5 col-sm-5 col-xs-5"><?php  echo $user['post_adress'];?></div>
             </div>
             <p>
-              <button>Редактировать</button>
+              <a href="/edit/"><button>Редактировать данные</button></a>
             </p>
+
           </div>
 <?php include ROOT.'/views/layouts/right_sitebar.php'; ?>
 <?php include ROOT.'/views/layouts/footer.php'; ?>

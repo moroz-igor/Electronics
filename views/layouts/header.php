@@ -23,11 +23,10 @@
             <div class="header_enter">
                 <div>
                     <?php
-                    function checkUserName($id)
+                    function checkUserName($idUser)
                     {
                         $db = Db::getConnection();
-                        $userName = $id;
-                        $query = 'SELECT name FROM `user` WHERE id = '.$userName ;
+                        $query = 'SELECT name FROM `user` WHERE id = '.$idUser ;
                         $result = $db->query($query);
                         $row = $result->fetch(PDO::FETCH_ASSOC);
                         echo $row['name'];

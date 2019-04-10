@@ -9,7 +9,9 @@ return array(
 		'category/([0-9]+)/page-([0-9]+)' => 'catalog/category/$1/$2',  // actionCategory в CatalogController
 		'section/([0-9]+)' => 'section/category/$1',  					// actionCategory in SectionController
 		'cart' => 'cart/index', 					  					// actionIndex в CartController
+
 		'cabinet' => 'cabinet/index',                 					// actionIndex в CabinetController
+		'edit' => 'cabinet/edit',
 
 		'user/register' => 'user/register',
 		'user/login' => 'user/login',

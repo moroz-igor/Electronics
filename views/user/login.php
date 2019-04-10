@@ -18,22 +18,10 @@
         <p>Ваш e-mail</p>
         <input class="form-control"  type="email" name="email"  value="<?php echo $email; ?>"/>
         </div>
-    <!--
         <div class="form-group">
-          <p>Номер вашего мобильного телефона</p>
-          <input class="form-control" type="text" name="phone" placeholder="+38 067 25 25 250" value=""/>
-        </div>
-    -->
-        <div class="form-group">
-          <p>Придумайте пароль</p>
+          <p>Ваш пароль</p>
           <input class="form-control"  type="password" name="password" value="<?php echo $password; ?>">
         </div>
-    <!--
-        <div class="form-group">
-          <p>Введите пароль повторно</p>
-          <input class="form-control"  type="password" name="password" placeholder=""/>
-        </div>
-    -->
     <div class="modal-footer">
         <input class="btn btn-success" type="submit" name="submit" value="Вперед"/>
     </div>

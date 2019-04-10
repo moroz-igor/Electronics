@@ -17,14 +17,56 @@ class User
         $result->bindParam(':password', $password, PDO::PARAM_STR);
         return $result->execute();
     }
+    /**
+    * Редактирование данных пользователя
+    * @param integer $id <p>id пользователя</p>
+    * @param string $name <p>Имя</p>
+    * @param string $password <p>Пароль</p>
+    * @return boolean <p>Результат выполнения метода</p>
+    */
+    public static function edit($id, $name, $password, $last_name, $phone, $region, $area, $town, $delivery,
+    $post_number, $post_adress)
+    {
+        // Соединение с БД
+        $db = Db::getConnection();
+
+        // Текст запроса к БД
+        $sql = "UPDATE user
+            SET name = :name,
+                password = :password,
+                last_name = :last_name,
+                phone = :phone,
+                region = :region,
+                area = :area,
+                town = :town,
+                delivery = :delivery,
+                post_number = :post_number,
+                post_adress = :post_adress
+            WHERE id = :id";
+
+            // Получение и возврат результатов. Используется подготовленный запрос
+            $result = $db->prepare($sql);
+            $result->bindParam(':id', $id, PDO::PARAM_INT);
+            $result->bindParam(':name', $name, PDO::PARAM_STR);
+            $result->bindParam(':last_name', $last_name, PDO::PARAM_STR);
+            $result->bindParam(':phone', $phone, PDO::PARAM_STR);
+            $result->bindParam(':region', $region, PDO::PARAM_STR);
+            $result->bindParam(':area', $area, PDO::PARAM_STR);
+            $result->bindParam(':town', $town, PDO::PARAM_STR);
+            $result->bindParam(':delivery', $delivery, PDO::PARAM_STR);
+            $result->bindParam(':post_number', $post_number, PDO::PARAM_STR);
+            $result->bindParam(':post_adress', $post_adress, PDO::PARAM_STR);
+            $result->bindParam(':password', $password, PDO::PARAM_STR);
+            return $result->execute();
+    }
 
     public static function checkName($name)
-{
+    {
     if (strlen($name) >= 2) {
         return true;
     }
     return false;
-}
+    }
 
 /**
  * Проверяет телефон: не меньше, чем 10 символов
