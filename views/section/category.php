@@ -85,10 +85,10 @@
                           </div>
                       <?php endif; ?>
                       <div class="exemple-basket_buttons">
-                          <div>
-                              <a class="btn btn-success" href="basket.php">
-                                  <span>Купить</span>
-                              </a>
+                        <div>
+                        <a class="btn btn-success add-to-cart" href="#" data-id="<?php echo $product['s1_id']; ?>">
+                            <span>Купить</span>
+                        </a>
                               <a class="btn btn-success" href="/cart/">
                                   <span>Корзина</span>
                               </a>

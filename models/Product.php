@@ -213,6 +213,42 @@ class Product
                   }
               }
 
+     /**
+       * Возвращает список товаров с указанными индентификторами
+       * @param array $idsArray <p>Массив с идентификаторами</p>
+       * @return array <p>Массив со списком товаров</p>
+       */
+      public static function getProdustsByIds($idsArray)
+      {
+          // Соединение с БД
+          $db = Db::getConnection();
+
+          // Превращаем массив в строку для формирования условия в запросе
+          $idsString = implode(',', $idsArray);
+
+          // Текст запроса к БД
+          $sql = "SELECT * FROM product WHERE status='1' AND id IN ($idsString)";
+
+          $result = $db->query($sql);
+
+          // Указываем, что хотим получить данные в виде массива
+          $result->setFetchMode(PDO::FETCH_ASSOC);
+
+          // Получение и возврат результатов
+          $i = 0;
+          $products = array();
+          while ($row = $result->fetch()) {
+              $products[$i]['imgmin_1'] = $row['imgmin_1'];
+              $products[$i]['id'] = $row['id'];
+              $products[$i]['code'] = $row['code'];
+              $products[$i]['code_prev'] = $row['code_prev'];
+              $products[$i]['name'] = $row['name'];
+              $products[$i]['price'] = $row['price'];
+              $i++;
+          }
+          return $products;
+
+      }
 
 
 }

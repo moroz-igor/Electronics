@@ -13,7 +13,7 @@ class SiteController
         require_once(ROOT . '/views/site/index.php');
         return true;
     }
-
+    
 /* Action для страницы "Контакты" */
 public function actionContact()
 {

@@ -234,7 +234,9 @@ body h1 {
   background-color: whitesmoke;
   border: 1px solid gainsboro;
   margin-top: 2%;
-  margin-bottom: 2%; }
+  margin-bottom: 2%;
+  padding-left: 2%;
+  height: auto;;}
   @media only screen and (max-width: 550px) {
     .basket {
       padding-top: 2%;
@@ -250,7 +252,7 @@ body h1 {
   margin: 2px;
   background-color: white;
   text-align: center;
-  width: 15%; }
+  width: 18%;}
   @media only screen and (max-width: 550px) {
     .basket_exemple {
       font-size: 12px;
@@ -262,12 +264,14 @@ body h1 {
   .basket_exemple a {
     margin: 2% 0 2%; }
   .basket_exemple p {
-    padding: 2%; }
+    padding: 2%;
+   font-size: 12px;
+   text-align:left;}
     .basket_exemple p input {
       max-width: 50%; }
   .basket_exemple img {
-    width: 100%;
-    height: auto; }
+    max-width: 100%;
+height: auto;}
     @media only screen and (max-width: 550px) {
       .basket_exemple img {
         max-width: 50%; } }

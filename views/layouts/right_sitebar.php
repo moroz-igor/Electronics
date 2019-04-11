@@ -1,25 +1,8 @@
 </div>
 <div class="col-lg-2 col-md-3 hidden-sm hidden-xs">
-<!--    
-  <div class="authorization">
-    <div class="row">
-      <form class="navbar-form" action="#">
-        <div class="form-group">
-          <input class="form-control" type="email"  value="<?php echo $name; ?>"/>
-        </div>
-        <div class="form-group">
-          <input class="form-control" type="password"  value="<?php echo $password; ?>"/>
-        </div>
-        <div class="form-group">
-            <input class="btn btn-success" type="submit" value="Войти"/>
-        </div>
-      </form>
-    </div>
-  </div>
--->
   <div class="basket authorization">
-    <p>В корзине</p>
-    <p> <span class="basket-col">0 </span><span>наименований        </span></p>
+    <p>В Вашей корзине</p>
+    <p> <span id="cart-count" class="basket-col"> <?php echo Cart::countItems(); ?></span><span> наименований        </span></p>
     <p>товаров</p>
     <a class="btn btn-success" href="/cart/">
          <i class="fa fa-sign-in"> </i>

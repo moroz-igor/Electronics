@@ -1,8 +1,8 @@
 <?php include ROOT.'/views/layouts/header.php'; ?>
 <?php include ROOT.'/views/layouts/left_sitebar.php'; ?>
-          <h2>Компьютеры и комплектующие </h2>
-        <div class="btn-group btn-breadcrumb _categoty_nav">
-            <?php foreach ($categories as $categoryItem):  ?>
+    <h2>Компьютеры и комплектующие </h2>
+    <div class="btn-group btn-breadcrumb _categoty_nav">
+    <?php foreach ($categories as $categoryItem):  ?>
             <a class="btn btn-default <?php if($categoryId == $categoryItem['id']) echo 'active' ?>"
                                                 href="/category/<?php echo $categoryItem['id']; ?>">
                         <?php echo $categoryItem['name']; ?>
@@ -85,9 +85,9 @@
                     <?php endif; ?>
                     <div class="exemple-basket_buttons">
                         <div>
-                            <a class="btn btn-success" href="basket.php">
+                        <a class="btn btn-success add-to-cart" href="#" data-id="<?php echo $product['id']; ?>">
                                 <span>Купить</span>
-                            </a>
+                        </a>
                             <a class="btn btn-success" href="/cart/">
                                 <span>Корзина</span>
                             </a>
@@ -96,7 +96,7 @@
                     <p><a class="btn btn-default" href="basket.html">Перейти к оформлению </a></p>
                 </div>
             </div>
-        <?php endforeach; ?>
+    <?php endforeach; ?>
         <!-- Pagination--><?php echo $pagination->get(); ?>
 <?php include ROOT.'/views/layouts/right_sitebar.php'; ?>
 <?php include ROOT.'/views/layouts/footer.php'; ?>

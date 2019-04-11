@@ -18,7 +18,7 @@
             <?php endif; ?>
       <form action="#" method="post">
         <div class="form-group">
-        <p>Как Вас зовут</p>
+        <p>Ваше Имя</p>
         <input class="form-control" type="text" name="name"  value="<?php echo $name; ?>"/>
         </div>
 
