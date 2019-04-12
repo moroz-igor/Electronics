@@ -230,58 +230,6 @@ body h1 {
     font-style: italic;
     color: chocolate; }
 
-.basket {
-  background-color: whitesmoke;
-  border: 1px solid gainsboro;
-  margin-top: 2%;
-  margin-bottom: 2%;
-  padding-left: 2%;
-  height: auto;;}
-  @media only screen and (max-width: 550px) {
-    .basket {
-      padding-top: 2%;
-      max-width: 60%;
-      margin: 2% auto; } }
-
-@media only screen and (max-width: 550px) {
-  .basket_title {
-    display: none; } }
-
-.basket_exemple {
-  display: inline-block;
-  margin: 2px;
-  background-color: white;
-  text-align: center;
-  width: 18%;}
-  @media only screen and (max-width: 550px) {
-    .basket_exemple {
-      font-size: 12px;
-      display: block;
-      width: 50%;
-      margin: 0 auto; } }
-  .basket_exemple button {
-    margin: 2% 0 2%; }
-  .basket_exemple a {
-    margin: 2% 0 2%; }
-  .basket_exemple p {
-    padding: 2%;
-   font-size: 12px;
-   text-align:left;}
-    .basket_exemple p input {
-      max-width: 50%; }
-  .basket_exemple img {
-    max-width: 100%;
-height: auto;}
-    @media only screen and (max-width: 550px) {
-      .basket_exemple img {
-        max-width: 50%; } }
-
-.basket_result {
-  text-align: right; }
-  .basket_result .basket_exemple {
-    width: 22%;
-    background-color: whitesmoke; }
-
 .private {
   background-color: whitesmoke;
   border: 1px solid gainsboro;

@@ -36,7 +36,7 @@
                           <p class="product-status"> В наличии</p>
                           <p>Код:
                            <span class="code"><?php echo $product['s1_code_prev'];
-                                                      echo $product['s1_code'];  ?>
+                                                      echo $product['s1_id'];  ?>
                                 <a href="#"><?php echo $product['s1_brand'];  ?> </a>
                                 <span>
                                     <?php echo $product['s1_category_name'];  ?>

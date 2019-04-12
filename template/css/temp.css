@@ -12,3 +12,93 @@
 ._registration-form ul li{
     color: red;
 }
+
+.basket {
+  background-color: whitesmoke;
+  border: 1px solid gainsboro;
+  margin-bottom: 1%;
+  padding-bottom: 2%;
+
+}
+._basket_conteiner{
+    width: 100%;
+    margin: 0 auto;
+    height: 120px;
+}
+ @media only screen and (max-width: 550px){
+     ._basket_conteiner{
+         height: 80px;
+     }
+ }
+ @media only screen and (max-width: 320px){
+     ._basket_conteiner{
+         height: 60px;
+     }
+ }
+
+._basket_title{
+    padding: 2%;
+}
+._exemple_container{
+    background-color: white;
+    width: 18%;
+    float: left;
+    height: 100%;
+    margin-left: 1%;
+}
+._exemple_container div{
+    padding-top: 30%;
+    padding-bottom: : 30%;
+    text-align: center;
+}
+
+
+  @media only screen and (max-width: 550px) {
+    .basket {
+      padding-top: 2%;
+      margin: 2% auto; } }
+
+@media only screen and (max-width: 550px) {
+  .basket_title {
+    display: none; } }
+.basket_exemple {
+  background-color: white;
+
+  }
+  @media only screen and (max-width: 550px) {
+    .basket_exemple {
+      font-size: 12px;
+      display: block;
+      width: 50%;
+      margin: 0 auto; } }
+  .basket_exemple p {
+    padding: 2%;
+    font-size: 12px;
+    text-align:left;}
+    .basket_exemple p input {
+      max-width: 60%;
+      margin-left: 5%;}
+  ._exemple_container img {
+      max-width: 100%;
+      height: auto;
+  }
+    @media only screen and (max-width: 550px) {
+      ._exemple_container img {
+        display: block;
+        margin: 0 auto;} }
+
+.basket_result {
+  text-align: right;
+ }
+ .basket_result div{
+     padding-top: 2%;
+     display: inline-block;
+     margin-right: 5%;
+ }
+ .basket_result div p{
+     color: green;
+     font-size: 2em;
+ }
+  .basket_result .basket_exemple {
+    width: 22%;
+    background-color: whitesmoke; }

@@ -238,7 +238,7 @@ class Product
           $i = 0;
           $products = array();
           while ($row = $result->fetch()) {
-              $products[$i]['imgmin_1'] = $row['imgmin_1'];
+              $products[$i]['imgbig_1'] = $row['imgbig_1'];
               $products[$i]['id'] = $row['id'];
               $products[$i]['code'] = $row['code'];
               $products[$i]['code_prev'] = $row['code_prev'];
