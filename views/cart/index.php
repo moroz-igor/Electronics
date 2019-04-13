@@ -1,40 +1,67 @@
 <?php include ROOT.'/views/layouts/header.php'; ?>
 <?php include ROOT.'/views/layouts/left_sitebar.php'; ?>
           <h3>КОРЗИНА    </h3>
-          <h4>Вы выбраи товары в колл-ве <?php echo Cart::countItems(); ?> шт! </h4>
+          <h4>Вы выбраи товары в кол - ве <?php echo Cart::countItems(); ?> шт! </h4>
     <?php if ($productsInCart): ?>
-    <?php foreach ($products as $product): ?>
-    <div class="basket">
-            <div class="_basket_title">
-                  <p><?php echo $product['name'];?></p>
-            </div>
-        <div class="_basket_conteiner">
-            <div class="_exemple_container">
+        <?php foreach ($products as $product): ?>
 
-            <img src="<?php echo $product['imgbig_1'];?>" alt="basket_exemple"/>
+            <div class="basket">
+                <div class="_basket_title">
+                    <p><?php echo $product['name'];?></p>
+                </div>
+                <div class="_basket_conteiner">
+                    <div class="_exemple_container">
+
+                        <img src="<?php echo $product['imgbig_1'];?>" alt="basket_exemple"/>
+                    </div>
+                    <div class="_exemple_container">
+                        <div ><p>Код: <?php echo $product['code_prev'];?><?php echo $product['code'];?></p></div>
+                    </div>
+                    <div class="_exemple_container">
+                        <div class="basket_exemple"><p><input type="text" name="amount" value="<?php echo   $productsInCart[$product['id']];?>"/> шт.</p></div>
+                    </div>
+                    <div class="_exemple_container">
+                        <div ><p class="price"><?php echo $product['price'];?></p></div>
+                    </div>
+                    <div class="_exemple_container">
+                        <div ><p><button>Rec</button> </p></div>
+                    </div>
+                </div>
+            </div>
+         <?php endforeach; ?>
+        <?php foreach ($s1_products as $product): ?>
+            <div class="basket">
+                <div class="_basket_title">
+                    <p><?php echo $product['s1_name'];?></p>
+                </div>
+                <div class="_basket_conteiner">
+                    <div class="_exemple_container">
+
+                        <img src="<?php echo $product['s1_imgbig_1'];?>" alt="basket_exemple"/>
+                    </div>
+
+                    <div class="_exemple_container">
+                        <div ><p>Код: <?php echo $product['s1_code_prev'];?><?php echo $product['s1_code'];?></p></div>
+                    </div>
+                    <div class="_exemple_container">
+                        <div class="basket_exemple"><p><input type="text" name="amount" value="<?php echo   $productsInCart[$product['s1_id']];?>"/> шт.</p></div>
+                    </div>
+                    <div class="_exemple_container">
+                        <div ><p class="price"><?php echo $product['s1_price'];?></p></div>
+                    </div>
+                    <div class="_exemple_container">
+                        <div ><p><button>Rec</button> </p></div>
+                    </div>
+                </div>
             </div>
 
-            <div class="_exemple_container">
-            <div ><p>Код: <?php echo $product['code_prev'];?><?php echo $product['code'];?></p></div>
-            </div>
-            <div class="_exemple_container">
-            <div class="basket_exemple"><p><input type="text" name="amount" value="<?php echo $productsInCart[$product['id']];?>"/> шт.</p></div>
-            </div>
-            <div class="_exemple_container">
-            <div ><p class="price"><?php echo $product['price'];?></p></div>
-            </div>
-            <div class="_exemple_container">
-            <div ><p><button>Rec</button> </p></div>
-            </div>
-        </div>
-    </div>
     <?php endforeach; ?>
           <div class="basket basket_result">
             <div>
               <p>Итого</p>
             </div>
             <div >
-              <p><?php echo $totalPrice;?></p>
+              <p>$<?php echo $totalPrice; ?></p>
             </div>
           </div>
           <div class="basket basket_result">

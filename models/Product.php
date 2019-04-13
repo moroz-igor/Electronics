@@ -213,11 +213,12 @@ class Product
                   }
               }
 
-     /**
+       /**
        * Возвращает список товаров с указанными индентификторами
        * @param array $idsArray <p>Массив с идентификаторами</p>
        * @return array <p>Массив со списком товаров</p>
        */
+       /* Метод получения товаров Секции Базы Данных "Section0(Catalog)" */
       public static function getProdustsByIds($idsArray)
       {
           // Соединение с БД
@@ -227,7 +228,7 @@ class Product
           $idsString = implode(',', $idsArray);
 
           // Текст запроса к БД
-          $sql = "SELECT * FROM product WHERE status='1' AND id IN ($idsString)";
+          $sql = "SELECT * FROM product WHERE status = '1'AND id IN ($idsString) ";
 
           $result = $db->query($sql);
 
@@ -247,8 +248,40 @@ class Product
               $i++;
           }
           return $products;
+      }
+      /*  Метод получения товаров Секции Базы Данных "Section(Section1) префикс[s1_]" */
+      public static function getProdustsByIdsSectionOne($idsArray)
+      {
+          // Соединение с БД
+          $db = Db::getConnection();
+
+          // Превращаем массив в строку для формирования условия в запросе
+          $idsString = implode(',', $idsArray);
+
+          // Текст запроса к БД
+          $sql = "SELECT * FROM s1_product WHERE s1_status = '1'AND s1_id IN ($idsString) ";
+
+          $result = $db->query($sql);
+
+          // Указываем, что хотим получить данные в виде массива
+          $result->setFetchMode(PDO::FETCH_ASSOC);
+
+          // Получение и возврат результатов
+          $i = 0;
+          $s1_products = array();
+          while ($row = $result->fetch()) {
+              $s1_products[$i]['s1_imgbig_1'] = $row['s1_imgbig_1'];
+              $s1_products[$i]['s1_id'] = $row['s1_id'];
+              $s1_products[$i]['s1_code'] = $row['s1_code'];
+              $s1_products[$i]['s1_code_prev'] = $row['s1_code_prev'];
+              $s1_products[$i]['s1_name'] = $row['s1_name'];
+              $s1_products[$i]['s1_price'] = $row['s1_price'];
+              $i++;
+          }
+          return $s1_products;
 
       }
+
 
 
 }

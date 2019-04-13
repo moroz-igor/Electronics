@@ -42,9 +42,10 @@ class CartController
 
                 // Получаем массив с полной информацией о необходимых товарах
                 $products = Product::getProdustsByIds($productsIds);
+                $s1_products = Product::getProdustsByIdsSectionOne($productsIds);
 
                 // Получаем общую стоимость товаров
-                $totalPrice = Cart::getTotalPrice($products);
+                $totalPrice = Cart::getTotalPrice($products, $s1_products);
             }
             // Подключаем вид
             require_once(ROOT . '/views/cart/index.php');
