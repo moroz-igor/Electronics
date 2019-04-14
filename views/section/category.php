@@ -14,13 +14,12 @@
                     <div class="form-group">
                         <input class="form-control" type="text" placeholder="" value=""/>
                     </div>
-                    <button class="btn btn-default" type="submit"> <i class="fa fa-sign-in"> </i>
+                    <button class="btn btn-default _search_link" type="submit"> <i class="fa fa-sign-in"> </i>
                         <span>Поиск в дирректории</span>
                     </button>
                 </form>
             </div>
           <h3>Товары в дирректории</h3>
-
           <?php foreach ($categoryProducts as $product): ?>
               <div class="product_exemple" id="<?php echo $product['s1_code'];  ?>">
                   <a href="/sectionproduct1/<?php echo $product['s1_id']; ?>">

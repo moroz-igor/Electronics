@@ -8,14 +8,15 @@
                   </a>
               <?php endforeach; ?>
           </div>
-
           <div class="_search_dir">
-            <form class="navbar-form _search_form" action="#">
-              <div class="form-group">
-                <input class="form-control" type="text" placeholder="" value=""/>
-              </div>
-              <button class="btn btn-default" type="submit"> <i class="fa fa-sign-in"> </i><span>Поиск в дирректории</span></button>
-            </form>
+              <form class="navbar-form _search_form" action="#">
+                  <div class="form-group">
+                      <input class="form-control" type="text" placeholder="" value=""/>
+                  </div>
+                  <button class="btn btn-default _search_link" type="submit"> <i class="fa fa-sign-in"> </i>
+                      <span>Поиск в дирректории</span>
+                  </button>
+              </form>
           </div>
           <h3>Товары в дирректории</h3>
 

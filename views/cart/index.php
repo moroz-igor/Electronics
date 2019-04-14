@@ -1,7 +1,7 @@
 <?php include ROOT.'/views/layouts/header.php'; ?>
 <?php include ROOT.'/views/layouts/left_sitebar.php'; ?>
           <h3>КОРЗИНА    </h3>
-          <h4>Вы выбраи товары в кол - ве <?php echo Cart::countItems(); ?> шт! </h4>
+          <h4>Вы выбрали товары в кол - ве <?php echo Cart::countItems(); ?> шт! </h4>
     <?php if ($productsInCart): ?>
         <?php foreach ($products as $product): ?>
 
@@ -24,7 +24,12 @@
                         <div ><p class="price"><?php echo $product['price'];?></p></div>
                     </div>
                     <div class="_exemple_container">
-                        <div ><p><button>Rec</button> </p></div>
+                        <div >
+                            <a class="btn btn-default btn-xs" href="#">
+                                <i class="fa fa-cog"></i></a>
+                            <a class="btn btn-danger btn-xs" href="/cart/delete/<?php echo $product['id'];?>">
+                                <i class="fa fa-trash-o "></i></a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -50,7 +55,12 @@
                         <div ><p class="price"><?php echo $product['s1_price'];?></p></div>
                     </div>
                     <div class="_exemple_container">
-                        <div ><p><button>Rec</button> </p></div>
+                        <div >
+                            <a class="btn btn-default btn-xs" href="#">
+                                <i class="fa fa-cog"></i></a>
+                            <a class="btn btn-danger btn-xs" href="/cart/delete/<?php echo $product['s1_id'];?>">
+                                <i class="fa fa-trash-o "></i></a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -71,7 +81,7 @@
             <div >
               <button>Очистить</button>
             </div>
-            <div><a class="btn btn-danger">ОФОРМИТЬ</a></div>
+            <div><a class="btn btn-danger" href="/cart/checkout">ОФОРМИТЬ</a></div>
           </div>
       <?php else: ?>
                    <p>Корзина пуста</p>

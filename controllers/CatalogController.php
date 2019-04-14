@@ -8,7 +8,7 @@ class CatalogController
     /**
      * Action для страницы "Каталог товаров"
      */
-    public function actionComputers()
+    public function actionIndex()
     {
         // вывод динамического меню в целой секции
         $categories = array();
@@ -18,7 +18,7 @@ class CatalogController
         $latestProducts = Product::getLatestProducts();
 
         // Подключаем вид
-        require_once(ROOT . '/views/catalog/computers.php');
+        require_once(ROOT . '/views/catalog/index.php');
         return true;
     }
 
@@ -34,7 +34,7 @@ class CatalogController
 
         $total = Product::getTotalProductsInCategory($categoryId);
         // Создаем объект Pagination  - постраничная навигация
-        $pagination = new Pagination($total, $page, Product::SHOW_BY_DEFAULT, 'page-');
+        $pagination = new Pagination($total, $page, Product::SHOW_BY_DEFAULT,'');
 
         require_once(ROOT.'/views/catalog/category.php');
         return true;
