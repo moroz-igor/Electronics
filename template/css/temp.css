@@ -1,5 +1,27 @@
+.ordered{
+    color: green;
+    font-size: 2em;
+    border: solid 1px green;
+    text-align: center;
+    max-width: 180px;
+    -webkit-transform: rotate(-10deg);
+        transform: rotate(-10deg);
+        margin-left: 30%;
+        text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+.product_cart_message{
+    text-align: right;
+    font-style: italic;
+    display: inline-block;
+    margin-right: 2%;
+    color: darkgreen;
+}
+@media only screen and (max-width: 420px){
+    .product_cart_message{
+        display: block;
+    }
+}
 ._search_link{
-    width: 40%;
     margin-left: 1%;
 }
 ._registration-success{

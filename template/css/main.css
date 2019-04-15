@@ -368,6 +368,10 @@ footer {
 
 .exemple_description {
   font-size: 12px; }
+  @media only screen and (max-width: 420px){
+      .exemple_description {
+        display: none; }
+  }
 
 .exemple_main_img {
   background-color: white;

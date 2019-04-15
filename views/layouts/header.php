@@ -49,7 +49,7 @@
                         <a class="btn btn-primary" href="#">Section-4</a>
                         <a class="btn btn-primary" href="/contacts/">Контакты</a>
                     <?php if(User::isGuest()): ?>
-                        <a class="btn btn-success" href="/user/register/">Регистрация</a>
+                        <a class="btn btn-success" href="/user/register/">Регистрация </a>
                         <a class="btn btn-success" href="/user/login/"><i class="fa fa-sign-in"></i> Вход</a>
                     <?php else: ?>
                         <a class="btn btn-success" href="/user/logout/">Выход <i class="fa fa-sign-in"></i></a>

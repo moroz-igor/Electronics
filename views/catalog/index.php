@@ -13,18 +13,22 @@
                     <div class="form-group">
                         <input class="form-control" type="text" placeholder="" value=""/>
                     </div>
-                    <button class="btn btn-default _search_link" type="submit"> <i class="fa fa-sign-in"> </i>
+                    <button class="btn btn-default _search_link" type="submit"><i class="fa fa-sign-in"></i>
                         <span>Поиск в дирректории</span>
                     </button>
                 </form>
             </div>
             <h3>Товары в директории</h3>
+
+
+
         <?php foreach ($latestProducts as $product): ?>
 
             <div class="product_exemple" id="<?php echo $product['code'];  ?>">
                 <a href="/product/<?php echo $product['id']; ?>">
                     <h5> <?php echo $product['name']; ?></h5>
                 </a>
+
                 <div class="row product_exemple-block">
                     <div class="col-lg-6 exemple_main_img">
                         <div class="exemple-main_img" id="exp_<?php echo $product['code']; ?>">
@@ -45,7 +49,14 @@
                         <p class="exemple_description"><?php echo $product['description_1'];?> </p>
                         <p class="exemple_description"><?php echo $product['description_2'];?> </p>
                         <span class="exemple_price">$<?php echo $product['price'];?> </span>
+                        <div>
+                            <?php
+                                if (isset($_SESSION['products']) && array_key_exists($product['id'], $_SESSION['products']))
+                                    echo '<div class="ordered"> ЗАКАЗАНО</div>';
+                             ?>
+                        </div>
                     </div>
+
                 </div>
                 <div class="minor_img-block">
                     <?php if($product['imgbig_1'] && $product['imgmin_1']): ?>
@@ -83,8 +94,15 @@
                             </a>
                         </div>
                     <?php endif; ?>
+
+
                     <div class="exemple-basket_buttons">
                         <div>
+                            <div class="product_cart_message ">КОРЗИНА
+                                 ( <span class="order_message">
+                                      <?php echo Cart::countItems(); ?>
+                                 </span> )
+                            </div>
                             <a class="btn btn-success add-to-cart" href="#" data-id="<?php echo $product['id'];?>">
                                 <span>Купить</span>
                             </a>
@@ -93,7 +111,8 @@
                             </a>
                         </div>
                     </div>
-                    <p><a class="btn btn-default" href="basket.html">Перейти к оформлению </a></p>
+                    <p><a class="btn btn-default" href="/cart/checkout/">Перейти к оформлению </a>
+                    </p>
                 </div>
             </div>
         <?php endforeach; ?>

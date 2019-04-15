@@ -42,6 +42,7 @@
             var id = $(this).attr("data-id");
             $.post("/cart/addAjax/"+id, {}, function (data) {
                 $("#cart-count").html(data);
+                $(".order_message").html(data);
             });
             return false;
         });

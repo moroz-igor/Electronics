@@ -44,6 +44,12 @@
                         <p class="exemple_description"><?php echo $product['description_1'];?> </p>
                         <p class="exemple_description"><?php echo $product['description_2'];?> </p>
                         <span class="exemple_price">$<?php echo $product['price'];?> </span>
+                        <div>
+                            <?php
+                                if (isset($_SESSION['products']) && array_key_exists($product['id'], $_SESSION['products']))
+                                    echo '<div class="ordered"> ЗАКАЗАНО</div>';
+                             ?>
+                        </div>
                     </div>
                 </div>
                 <div class="minor_img-block">
@@ -84,6 +90,11 @@
                     <?php endif; ?>
                     <div class="exemple-basket_buttons">
                         <div>
+                            <div class="product_cart_message ">КОРЗИНА
+                                ( <span class="order_message">
+                                     <?php echo Cart::countItems(); ?>
+                                 </span> )
+                            </div>
                         <a class="btn btn-success add-to-cart" href="#" data-id="<?php echo $product['id']; ?>"     name="1">
                                 <span>Купить</span>
                         </a>
@@ -92,7 +103,7 @@
                             </a>
                         </div>
                     </div>
-                    <p><a class="btn btn-default" href="basket.html">Перейти к оформлению </a></p>
+                    <p><a class="btn btn-default" href="/cart/checkout/">Перейти к оформлению </a></p>
                 </div>
             </div>
     <?php endforeach; ?>
