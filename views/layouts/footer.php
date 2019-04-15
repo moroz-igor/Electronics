@@ -40,11 +40,14 @@
     $(document).ready(function(){
         $(".add-to-cart").click(function () {
             var id = $(this).attr("data-id");
+                var status = '#status_'+id;
+                    var message = '.order_message';
             $.post("/cart/addAjax/"+id, {}, function (data) {
                 $("#cart-count").html(data);
-                $(".order_message").html(data);
+                    $(message).html(data);
+                        $(status).css('display', 'block');
             });
-            return false;
+        return false;
         });
     });
 </script>

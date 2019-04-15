@@ -45,13 +45,15 @@
                           <p class="exemple_description"><?php echo $product['s1_description_1'];?> </p>
                           <p class="exemple_description"><?php echo $product['s1_description_2'];?> </p>
                           <span class="exemple_price">$<?php echo $product['s1_price'];?> </span>
-                          <div>
-                              <?php
-                                  if (isset($_SESSION['products']) && array_key_exists($product['s1_id'], $_SESSION['products']))
-                                      echo '<div class="ordered"> ЗАКАЗАНО</div>';
-                               ?>
-                          </div>
+                          <div class="order_container">
+                              <?php if (isset($_SESSION['products']) && array_key_exists($product['s1_id'], $_SESSION['products'])): ?>
+                                      <?php echo '<div class="ordered"> ЗАКАЗАНО</div>'; ?>
 
+                                  <?php endif; ?>
+                              <div id="status_<?php echo $product['s1_id']; ?>" class="order_status">
+                                              <div class="ordered ordered_incart">ДОБАВЛЕН В КОРЗИНУ</div>
+                              </div>
+                          </div>
                       </div>
                   </div>
                   <div class="minor_img-block">
