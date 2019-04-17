@@ -30,7 +30,7 @@ class CartController
             echo Cart::addProduct($id);
             return true;
         }
-        
+
         public function actionDelete($id)
         {
         // Удаляем заданный товар из корзины
@@ -39,6 +39,15 @@ class CartController
          // Возвращаем пользователя в корзину
          header("Location: /cart");
         }
+        public function actionClearAll()
+        {
+        // Удаляем заданный товар из корзины
+         Cart::clear();
+
+         // Возвращаем пользователя в корзину
+         header("Location: /cart");
+        }
+
 
 
 

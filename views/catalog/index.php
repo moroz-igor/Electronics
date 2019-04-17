@@ -19,16 +19,11 @@
                 </form>
             </div>
             <h3>Товары в директории</h3>
-
-
-
         <?php foreach ($latestProducts as $product): ?>
-
             <div class="product_exemple" id="<?php echo $product['code'];  ?>">
                 <a href="/product/<?php echo $product['id']; ?>">
                     <h5> <?php echo $product['name']; ?></h5>
                 </a>
-
                 <div class="row product_exemple-block">
                     <div class="col-lg-6 exemple_main_img">
                         <div class="exemple-main_img" id="exp_<?php echo $product['code']; ?>">
@@ -59,7 +54,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <div class="minor_img-block">
                     <?php if($product['imgbig_1'] && $product['imgmin_1']): ?>
@@ -97,8 +91,6 @@
                             </a>
                         </div>
                     <?php endif; ?>
-
-
                     <div class="exemple-basket_buttons">
                         <div>
                             <div class="product_cart_message ">КОРЗИНА

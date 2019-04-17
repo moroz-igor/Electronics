@@ -72,7 +72,7 @@
  }
 
 ._basket_title{
-    padding: 2%;
+    padding-left: 2%;
 }
 ._exemple_container{
     background-color: white;
@@ -87,6 +87,13 @@
     text-align: center;
 }
 
+@media only screen and (max-width: 420px){
+    .price{
+        font-size: 10px;
+    }
+}
+
+
 
   @media only screen and (max-width: 550px) {
     .basket {
@@ -96,6 +103,18 @@
 @media only screen and (max-width: 550px) {
   .basket_title {
     display: none; } }
+._cart_title div{
+    padding-top: 1%;
+    font-size: 12px;
+}
+@media only screen and (max-width: 550px){
+    ._cart_title div{
+        font-size: 0.6em;
+    }
+}
+._title_container{
+    height: 3em;
+}
 .basket_exemple {
   background-color: white;
 

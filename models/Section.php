@@ -13,11 +13,7 @@ class Section
         $db = Db::getConnection();
 
         // Текст запроса к БД
-        $sql = 'SELECT s1_id, s1_name,
-                        s1_imgbig_1, s1_imgbig_2, s1_imgbig_3, s1_imgbig_4, s1_imgbig_5,
-                        s1_imgmin_1, s1_imgmin_2, s1_imgmin_3, s1_imgmin_4, s1_imgmin_5,
-                        s1_code_prev, s1_code, s1_brand, s1_category_id, s1_category_name, s1_description_1, s1_description_2, s1_price
-                        FROM s1_product '
+        $sql = 'SELECT * FROM s1_product '
                 . 'WHERE s1_status = "1" ORDER BY s1_id  '
                 . 'LIMIT :count';
 
@@ -70,11 +66,7 @@ class Section
         $db = Db::getConnection();
 
         // Текст запроса к БД
-        $sql = 'SELECT s1_id, s1_name,
-                            s1_imgbig_1, s1_imgbig_2, s1_imgbig_3, s1_imgbig_4, s1_imgbig_5,
-                            s1_imgmin_1, s1_imgmin_2, s1_imgmin_3, s1_imgmin_4, s1_imgmin_5,
-                            s1_code_prev, s1_code, s1_brand, s1_category_name, s1_description_1, s1_description_2, s1_price
-                             FROM s1_product '
+        $sql = 'SELECT * FROM s1_product '
                 . 'WHERE s1_status = 1 AND s1_category_id = :category_id '
                 . 'ORDER BY s1_id ASC LIMIT :limit OFFSET :offset';
 
