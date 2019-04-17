@@ -30,12 +30,23 @@ class CartController
             echo Cart::addProduct($id);
             return true;
         }
+           // Ajax изменение колличества товаров в корзине
+        public function actionChangeCart($id)
+        {
+            echo Cart::changeCartSum($id);
+            return true;
+        }
 
         public function actionDelete($id)
         {
         // Удаляем заданный товар из корзины
          Cart::deleteProduct($id);
 
+         // Возвращаем пользователя в корзину
+         header("Location: /cart");
+        }
+        public function actionRecount()
+        {
          // Возвращаем пользователя в корзину
          header("Location: /cart");
         }

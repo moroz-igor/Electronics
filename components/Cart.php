@@ -122,6 +122,38 @@
             // Записываем массив товаров с удаленным элементом в сессию
             $_SESSION['products'] = $productsInCart;
         }
+        // Корректировка колличества товаров из корзины
+        public static function changeCartSum($id){
+            //  getting the id of change product
+            $id_product = $_POST['id_cart'];
+            // getting the sum which change
+            $new_sum = $_POST['sum'];
+            $price = $_POST['price'];
+                $elmentNewSum = true;
+            // Проверяем являются ли все элементы пользовательской строки числами
+                    for ($i=0; $i < strlen($new_sum); $i++) {
+                        $elmentNewSum = is_numeric($new_sum[$i]);
+                                if(!$elmentNewSum){
+                                    echo '<p style="color:red;">Ошибка ввода!</p>';
+                                    break;
+                                }
+                        }
+            // changing the old value to new
+                if($new_sum > 0 && $elmentNewSum){
+                        $_SESSION['products'][$id_product] = $new_sum;
+                            settype($price, "double");
+                                $total_number = $new_sum*$price;
+                                    echo $total_number;
+                }
+                if($new_sum==0)
+                      Cart::deleteProduct($id_product);
+        }
+
+
+
+
+
+
 
 
     }

@@ -6,7 +6,7 @@ return array(
 		'section1' => 'section/section',              					// actionSection in Section1Controller
 		'section2' => 'section2/section',             					// actionSection in Section2Controller
 		'category/([0-9]+)' => 'catalog/category/$1', 					// actionCategory in CatalogController
-		'category/([0-9]+)/page-([0-9]+)' => 'catalog/category/$1/$2',       // actionCategory в CatalogController
+		'category/([0-9]+)/page-([0-9]+)' => 'catalog/category/$1/$2',  // actionCategory в CatalogController
 		'section/([0-9]+)' => 'section/category/$1',  					// actionCategory in SectionController
 
 		'cart/checkout' => 'cart/checkout',                             // actionAdd в CartController
@@ -14,7 +14,9 @@ return array(
 		'cart/clearAll' => 'cart/clearAll',                             // actionClearAll в CartController
 		'cart/add/([0-9]+)' => 'cart/add/$1',                           // actionAdd в CartController
 		'cart/addAjax/([0-9]+)' => 'cart/addAjax/$1',                   // actionAddAjax в CartController
+		'cart/changeCart/([0-9]+)' => 'cart/changeCart/$1',             // actionChangeCart в CartController
 		'cart' => 'cart/index', 					  					// actionIndex в CartController
+		'/cart/recount' => '/cart/recount',                              // actionRecount в CartController
 
 		'cabinet' => 'cabinet/index',                 					// actionIndex в CabinetController
 		'edit' => 'cabinet/edit',

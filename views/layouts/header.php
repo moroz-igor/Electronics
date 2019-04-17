@@ -38,8 +38,8 @@
                 </div>
             </div>
         </div>
-        <nav class="main-menu">
-            <div class="container main-menu">
+        <nav class="main-menu" style="padding-right: 10px;">
+            <div class="container main-menu" >
                 <div class="row">
                     <div class="btn-group btn-breadcrumb">
                         <a class="btn btn-primary" href="/"><i class="fa fa-home"></i></a>

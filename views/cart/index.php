@@ -24,10 +24,7 @@
                 </div>
             </div>
         </div>
-
         <?php foreach ($products as $product): ?>
-
-
             <div class="basket">
                 <div class="_basket_title">
                     <p><?php echo $product['name'];?></p>
@@ -41,20 +38,28 @@
                         <div ><p>Код: <?php echo $product['code_prev'];?><?php echo $product['code'];?></p></div>
                     </div>
                     <div class="_exemple_container">
-                        <div class="basket_exemple"><p><input type="text" name="amount" value="<?php echo   $productsInCart[$product['id']];?>"/> шт.</p></div>
+                        <div class="basket_exemple">
+                            <p>
+
+                    <input id="sum_<?php echo $product['id']; ?>" type="text" name="amount" value="<?php echo   $productsInCart[$product['id']];?>"/>
+
+                             шт.</p></div>
                     </div>
                     <div class="_exemple_container">
                         <div >
-                            <p class="price"><?php echo $product['price'];?></p>
-                            <p class="price">
+                            <p class="price" id="price_<?php echo $product['id'];?>">
+                                <?php echo $product['price'];?>
+                            </p>
+                            <p class="price" id="prev_number_<?php echo $product['id'];?>">
                                 <?php settype($product['price'], "double");
                                       echo ( $product['price'] * $productsInCart[$product['id']] ); ?>
-                                </p>
+                            </p>
+                            <p class="price" id="new_number_<?php echo $product['id'];?>"></p>
                         </div>
                     </div>
                     <div class="_exemple_container">
                         <div >
-                            <a class="btn btn-default btn-xs" href="#">
+                            <a class="btn btn-default btn-xs change_cart" href="#" data-id="<?php echo $product['id']; ?>">
                                 <i class="fa fa-cog"></i></a>
                             <a class="btn btn-danger btn-xs" href="/cart/delete/<?php echo $product['id'];?>">
                                 <i class="fa fa-trash-o "></i></a>
@@ -96,7 +101,6 @@
                     </div>
                 </div>
             </div>
-
     <?php endforeach; ?>
           <div class="basket basket_result">
             <div>
@@ -108,23 +112,15 @@
           </div>
           <div class="basket basket_result">
             <div >
-                <a href="#"> <button>Пересчитать</button></a>
+                    <a href="/cart/recount"><button>Пересчитать всё</button></a>
             </div>
             <div >
                 <a href="/cart/clearAll"><button>Очистить</button></a>
             </div>
             <div><a class="btn btn-danger" href="/cart/checkout">ОФОРМИТЬ</a></div>
           </div>
-      <?php else: ?>
+    <?php else: ?>
                    <p>Корзина пуста</p>
-      <?php endif; ?>
-     <?php
-            //echo '<pre>';
-            //print_r($_SESSION['products']);
-            //print_r($_SESSION['products'][].'<br>');
-            //print_r($_SESSION['products'][].'<br>');
-            //print_r($_SESSION['products'][].'<br>');
-
-      ?>
+    <?php endif; ?>
 <?php include ROOT.'/views/layouts/right_sitebar.php'; ?>
 <?php include ROOT.'/views/layouts/footer.php'; ?>

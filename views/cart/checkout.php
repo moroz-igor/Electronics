@@ -27,7 +27,7 @@
                     </div>
 
                     <div class="form-group">
-                        <p>Номер вашего мобильного телефона</p>
+                        <p>Номер Вашего мобильного телефона</p>
                         <input class="form-control" type="text" name="userPhone"  value="<?php echo $userPhone; ?>"/>
                     </div>
 
