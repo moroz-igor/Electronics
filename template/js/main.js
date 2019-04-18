@@ -1,5 +1,3 @@
-console.log("from basket!");
-
 'use strict';
 $(function() {
     /*

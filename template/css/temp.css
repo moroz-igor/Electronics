@@ -72,7 +72,10 @@
  }
 
 ._basket_title{
-    padding-left: 2%;
+    padding: 1%;
+}
+._basket_title a{
+    font-style: italic;
 }
 ._exemple_container{
     background-color: white;
@@ -136,6 +139,9 @@
       max-width: 100%;
       height: auto;
   }
+  input[name="amount"]{
+    text-align: center;
+  }
     @media only screen and (max-width: 550px) {
       ._exemple_container img {
         display: block;
@@ -143,6 +149,13 @@
 
 .basket_result {
   text-align: right;
+ }
+ .basket_result article{
+    padding-right: 5%;
+    padding-top: 1%;
+    color: green;
+    font-style: italic;
+    font-size: 1.2em;
  }
  .basket_result div{
      padding-top: 2%;
@@ -156,3 +169,10 @@
   .basket_result .basket_exemple {
     width: 22%;
     background-color: whitesmoke; }
+
+.detail_price{
+    font-size: 2em;
+    color: green;
+    text-align: right;
+    padding-right: 5%;
+}

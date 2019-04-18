@@ -10,7 +10,8 @@
     </div>
           <h2><?php echo $product['name']; ?></h2>
           <section class="detail_main">
-            <h3>A description of the product example</h3>
+            <h3>Подробное описание</h3>
+            <div class="detail_price">$<?php echo $detailPrice['price']; ?></div>
             <?php if($detailContent['main_des']): ?>
                 <p class="detail-main-description"><?php echo $detailContent['main_des']; ?></p>
             <?php endif; ?>
@@ -149,17 +150,25 @@
               </div>
               <?php endif; ?>
             </div>
-            <div class="detail_segment">
-              <div class="exemple-minor_img">
+            <div class="detail_price">$<?php echo $detailPrice['price']; ?></div>
+
+            <div class="exemple-basket_buttons">
                 <div>
-                  <button class="btn btn-success" type="submit"> <span>Купить</span></button>
-                  <button class="btn btn-success" type="submit"> <span>Корзина</span></button>
+                    <div class="product_cart_message ">КОРЗИНА
+                         ( <span class="order_message">
+                              <?php echo Cart::countItems(); ?>
+                         </span> )
+                    </div>
+                    <a class="btn btn-success add-to-cart" href="#" data-id="<?php echo $product['id'];?>">
+                        <span>Купить</span>
+                    </a>
+                    <a class="btn btn-success" href="/cart/">
+                        <span>Корзина</span>
+                    </a>
                 </div>
-                <p>
-                  <button>Перейти к оформлению </button>
-                </p>
-              </div>
             </div>
+            <p><a class="btn btn-default" href="/cart/checkout/">Перейти к оформлению </a>
+            </p>
           </section>
 <?php include ROOT.'/views/layouts/right_sitebar.php'; ?>
 <?php include ROOT.'/views/layouts/footer.php'; ?>

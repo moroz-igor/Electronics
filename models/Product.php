@@ -148,6 +148,35 @@ class Product
                   return $result->fetch();
               }
           }
+
+
+
+       public static function getPriceOfProduct($id)
+          {
+              $id = intval($id);
+              // Соединение с БД
+              $db = Db::getConnection();
+              // Текст запроса к БД
+              if($id < 2000) // запрос к нулевой секции(catalog)
+              $sql = 'SELECT  price FROM product WHERE  id = :id';
+              if($id >= 2000 && $id < 4000) // запрос к первой секции(section)
+              $sql = 'SELECT  s1_price FROM s1_product WHERE  s1_id = :s1_id';
+
+              // Используется подготовленный запрос
+              $result = $db->prepare($sql);
+              if($id < 2000) // нулевая секция(catalog)
+              $result->bindParam(':id', $id, PDO::PARAM_INT);
+              if($id >= 2000 && $id < 4000)  // первая секция(section)
+              $result->bindParam(':s1_id', $id, PDO::PARAM_INT);
+
+              // Выполнение коменды
+              $result->execute();
+
+              // Возвращаем price
+              $row = $result->fetch();
+              return $row;
+          }
+
           /**
           * Возвращаем количество товаров в указанной категории
           */

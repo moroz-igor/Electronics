@@ -4,6 +4,21 @@
           <h4>Вы выбрали товары в кол - ве <?php echo Cart::countItems(); ?> шт! </h4>
 
     <?php if ($productsInCart): ?>
+        <div class="basket basket_result">
+            <article>
+              Итого:
+              $<?php echo $totalPrice; ?>
+          </article>
+
+          <div >
+                  <a href="/cart/recount"><button>Пересчитать всё</button></a>
+          </div>
+          <div >
+              <a href="/cart/clearAll"><button>Очистить</button></a>
+          </div>
+          <div><a class="btn btn-danger" href="/cart/checkout">ОФОРМИТЬ</a></div>
+        </div>
+
         <div class="basket">
             <div class="_basket_title"><p>НАЗВАНИЕ ТОВАРА</p></div>
             <div class="_title_container">
@@ -27,7 +42,9 @@
         <?php foreach ($products as $product): ?>
             <div class="basket">
                 <div class="_basket_title">
-                    <p><?php echo $product['name'];?></p>
+                    <a href="/product/<?php echo $product['id']; ?>">
+                        <?php echo $product['name'];?>
+                    </a>
                 </div>
                 <div class="_basket_conteiner">
                     <div class="_exemple_container">
@@ -40,9 +57,7 @@
                     <div class="_exemple_container">
                         <div class="basket_exemple">
                             <p>
-
                     <input id="sum_<?php echo $product['id']; ?>" type="text" name="amount" value="<?php echo   $productsInCart[$product['id']];?>"/>
-
                              шт.</p></div>
                     </div>
                     <div class="_exemple_container">
@@ -71,7 +86,10 @@
         <?php foreach ($s1_products as $product): ?>
             <div class="basket">
                 <div class="_basket_title">
-                    <p><?php echo $product['s1_name'];?></p>
+                    <a href="/product/<?php echo $product['s1_id']; ?>">
+                        <?php echo $product['s1_name'];?>
+                    </a>
+
                 </div>
                 <div class="_basket_conteiner">
                     <div class="_exemple_container">
@@ -81,19 +99,27 @@
                         <div ><p>Код: <?php echo $product['s1_code_prev'];?><?php echo $product['s1_code'];?></p></div>
                     </div>
                     <div class="_exemple_container">
-                        <div class="basket_exemple"><p><input type="text" name="amount" value="<?php echo   $productsInCart[$product['s1_id']];?>"/> шт.</p></div>
+                        <div class="basket_exemple">
+                        <p>
+                            <input id="sum_<?php echo $product['s1_id']; ?>" type="text" name="amount"value="<?php echo   $productsInCart[$product['s1_id']];?>"/>
+                        </p>
+                        </div>
                     </div>
                     <div class="_exemple_container">
-                        <div >
-                            <p class="price"><?php echo $product['s1_price'];?></p>
-                            <p class="price">
-                            <?php settype($product['s1_price'], "double");
-                                   echo ( $product['s1_price'] * $productsInCart[$product['s1_id']] ); ?></p>
+                        <div>
+                            <p class="price" id="price_<?php echo $product['s1_id'];?>">
+                                <?php echo $product['s1_price'];?>
+                            </p>
+                            <p class="price" id="prev_number_<?php echo $product['s1_id'];?>">
+                                <?php settype($product['s1_price'], "double");
+                                      echo ( $product['s1_price'] * $productsInCart[$product['s1_id']] ); ?>
+                            </p>
+                            <p class="price" id="new_number_<?php echo $product['s1_id'];?>"></p>
                         </div>
                     </div>
                     <div class="_exemple_container">
                         <div >
-                            <a class="btn btn-default btn-xs" href="#">
+                            <a class="btn btn-default btn-xs change_cart" href="#" data-id="<?php echo $product['s1_id']; ?>">
                                 <i class="fa fa-cog"></i></a>
                             <a class="btn btn-danger btn-xs" href="/cart/delete/<?php echo $product['s1_id'];?>">
                                 <i class="fa fa-trash-o "></i></a>
