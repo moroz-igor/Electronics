@@ -21,7 +21,7 @@ $(function() {
         });
     }
     ex_exchance();
-        /* Hints for the basket buttons of edditing */
+        /* Hints for the basket buttons of editing */
         $('.change_cart').mouseover(function(eventObject) {
             eventObject.preventDefault();
                 var id = $($(this)).attr('data-id');
