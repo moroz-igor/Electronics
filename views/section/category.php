@@ -36,7 +36,10 @@
                           <p>Код:
                            <span class="code"><?php echo $product['s1_code_prev'];
                                                       echo $product['s1_id'];  ?>
-                                <a href="#"><?php echo $product['s1_brand'];  ?> </a>
+
+            <a href="/brand_s1/1/<?php echo $product['s1_category_id']; ?>/<?php echo $product['s1_brand']; ?>">
+                                    <?php echo $product['s1_brand'];  ?>
+                                </a>
                                 <span>
                                     <?php echo $product['s1_category_name'];  ?>
                                 </span>

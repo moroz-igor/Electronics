@@ -24,7 +24,7 @@ class ProductController
 
         $detailContent = array();
         $detailContent = Product::getDetailsContentById($productId);
-
+        // the price of the product
         $detailPrice = Product::getPriceOfProduct($productId);
         // Подключаем вид
         require_once(ROOT . '/views/product/view.php');

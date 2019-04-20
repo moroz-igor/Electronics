@@ -19,6 +19,7 @@
                 </form>
             </div>
             <h3>Товары в директории</h3>
+
         <?php foreach ($latestProducts as $product): ?>
             <div class="product_exemple" id="<?php echo $product['code'];  ?>">
                 <a href="/product/<?php echo $product['id']; ?>">
@@ -35,8 +36,10 @@
                         <p>Код:
                          <span class="code"><?php echo $product['code_prev'];
                                                     echo $product['code'];  ?>
-                            <a href="#"><?php echo $product['brand'];  ?> </a>
-                            <a href="/category/<?php echo $product['category_id'];  ?>">
+                            <a href="/brand/0/0/<?php echo $product['brand']; ?>">
+                                <?php echo $product['brand']; ?>
+                             </a>
+                            <a href="/category/<?php echo $product['category_id']; ?>">
                                 <?php echo $product['category_name'];  ?>
                             </a>
                         </span>

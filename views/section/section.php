@@ -21,6 +21,7 @@
           <h3>Товары в дирректории</h3>
 
           <?php foreach ($latestProducts as $product): ?>
+              
               <div class="product_exemple" id="<?php echo $product['s1_code'];  ?>">
                   <a href="/sectionproduct1/<?php echo $product['s1_id']; ?>">
                       <h5> <?php echo $product['s1_name']; ?></h5>
@@ -36,7 +37,11 @@
                           <p>Код:
                            <span class="code"><?php echo $product['s1_code_prev'];
                                                       echo $product['s1_id'];  ?>
-                              <a href="#"><?php echo $product['s1_brand'];  ?> </a>
+
+                            <a href="/brand_s1/1/0/<?php echo $product['s1_brand']; ?>">
+                                <?php echo $product['s1_brand']; ?>
+                            </a>
+
                               <a href="/section/<?php echo $product['s1_category_id'];  ?>">
                                   <?php echo $product['s1_category_name'];  ?>
                               </a>

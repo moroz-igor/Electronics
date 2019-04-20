@@ -1,26 +1,25 @@
 <?php include ROOT.'/views/layouts/header.php'; ?>
 <?php include ROOT.'/views/layouts/left_sitebar.php'; ?>
-    <h2>Компьютеры и комплектующие </h2>
+    <h2>Компьютеры </h2>
     <div class="btn-group btn-breadcrumb _categoty_nav">
-    <?php foreach ($categories as $categoryItem):  ?>
-            <a class="btn btn-default <?php if($categoryId == $categoryItem['id']) echo 'active' ?>"
-                                                href="/category/<?php echo $categoryItem['id']; ?>">
-                        <?php echo $categoryItem['name']; ?>
-                    </a>
-                <?php endforeach; ?>
+        <?php foreach ($categories as $categoryItem):  ?>
+            <a class="btn btn-default" href="/category/<?php echo $categoryItem['id']; ?>">
+                <?php echo $categoryItem['name']; ?>
+            </a>
+        <?php endforeach; ?>
+    </div>
+    <div class="_search_dir">
+        <form class="navbar-form _search_form" action="#">
+            <div class="form-group">
+                <input class="form-control" type="text" placeholder="" value=""/>
             </div>
-            <div class="_search_dir">
-                <form class="navbar-form _search_form" action="#">
-                    <div class="form-group">
-                        <input class="form-control" type="text" placeholder="" value=""/>
-                    </div>
-                    <button class="btn btn-default _search_link" type="submit"> <i class="fa fa-sign-in"> </i>
-                        <span>Поиск в дирректории</span>
-                    </button>
-                </form>
-            </div>
-          <h3>Товары в дирректории</h3>
-        <?php foreach ($categoryProducts as $product): ?>
+            <button class="btn btn-default _search_link" type="submit"><i class="fa fa-sign-in"></i>
+                <span>Поиск в дирректории</span>
+            </button>
+        </form>
+    </div>
+    <h3>Товары дирректори марки " <span class="_registration-success"><?php echo $brand; ?></span> "</h3>
+        <?php foreach ($brandProducts as $product): ?>
             <div class="product_exemple" id="<?php echo $product['code'];  ?>">
                 <a href="/product/<?php echo $product['id']; ?>">
                     <h5> <?php echo $product['name']; ?></h5>
@@ -34,12 +33,14 @@
                     <div class="col-lg-6">
                         <p class="product-status"> В наличии</p>
                         <p>Код:
-                        <span class="code"><?php echo $product['code_prev'];
+                         <span class="code"><?php echo $product['code_prev'];
                                                     echo $product['code'];  ?>
-                            <a href="/brand/0/<?php echo $product['category_id']; ?>/<?php echo $product['brand']; ?>">
-                                <?php echo $product['brand'];  ?>
+                            <span>
+                                <?php echo $product['brand']; ?>
+                            </span>
+                            <a href="/category/<?php echo $product['category_id']; ?>">
+                                <?php echo $product['category_name'];  ?>
                             </a>
-                            <span><?php echo $product['category_name'];  ?></span>
                         </span>
                         </p>
                         <p class="exemple_description"><?php echo $product['description_1'];?> </p>
@@ -95,22 +96,22 @@
                     <div class="exemple-basket_buttons">
                         <div>
                             <div class="product_cart_message ">КОРЗИНА
-                                ( <span class="order_message">
-                                     <?php echo Cart::countItems(); ?>
+                                 ( <span class="order_message">
+                                      <?php echo Cart::countItems(); ?>
                                  </span> )
                             </div>
-                        <a class="btn btn-success add-to-cart" href="#" data-id="<?php echo $product['id']; ?>"     name="1">
+                            <a class="btn btn-success add-to-cart" href="#" data-id="<?php echo $product['id'];?>">
                                 <span>Купить</span>
-                        </a>
+                            </a>
                             <a class="btn btn-success" href="/cart/">
                                 <span>Корзина</span>
                             </a>
                         </div>
                     </div>
-                    <p><a class="btn btn-default" href="/cart/checkout/">Перейти к оформлению </a></p>
+                    <p><a class="btn btn-default" href="/cart/checkout/">Перейти к оформлению </a>
+                    </p>
                 </div>
             </div>
-    <?php endforeach; ?>
-        <!-- Pagination--><!--<//?php echo $pagination->get(); ?>-->
+        <?php endforeach; ?>
 <?php include ROOT.'/views/layouts/right_sitebar.php'; ?>
 <?php include ROOT.'/views/layouts/footer.php'; ?>
