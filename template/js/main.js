@@ -21,4 +21,26 @@ $(function() {
         });
     }
     ex_exchance();
+        /* Hints for the basket buttons of edditing */
+        $('.change_cart').mouseover(function(eventObject) {
+            eventObject.preventDefault();
+                var id = $($(this)).attr('data-id');
+                var hint_id = '#cart-eddit_'+id;
+                    $(hint_id).css('display', 'block');
+            });
+        $('.change_cart').mouseout(function(eventObject) {
+            eventObject.preventDefault();
+                $('#cart-eddit_'+$($(this)).attr('data-id')).css('display', 'none');
+            });
+        /* Hints for the basket buttons of deleting */
+        $('.delite_cart').mouseover(function(eventObject) {
+            eventObject.preventDefault();
+                var id = $($(this)).attr('data-id');
+                var hint_id = '#'+ id;
+                    $(hint_id).css('display', 'block');
+            });
+        $('.delite_cart').mouseout(function(eventObject) {
+            eventObject.preventDefault();
+                $('#'+$($(this)).attr('data-id')).css('display', 'none');
+            });
 });

@@ -73,11 +73,23 @@
                         </div>
                     </div>
                     <div class="_exemple_container">
-                        <div >
-                            <a class="btn btn-default btn-xs change_cart" href="#" data-id="<?php echo $product['id']; ?>">
-                                <i class="fa fa-cog"></i></a>
-                            <a class="btn btn-danger btn-xs" href="/cart/delete/<?php echo $product['id'];?>">
-                                <i class="fa fa-trash-o "></i></a>
+                        <p class="_cart-hint" id="cart-eddit_<?php echo $product['id']; ?>">
+                                Изменить колл-во!
+                        </p>
+                        <p class="_cart-hint" id="cart-delete_<?php echo $product['id']; ?>">
+                                Удалить!
+                        </p>
+                        <div>
+                                <a class="btn btn-default btn-xs change_cart"
+                                        data-id="<?php echo $product['id']; ?>"
+                                        href="#">
+                                <i class="fa fa-cog"></i>
+                                </a>
+                            <a class="btn btn-danger btn-xs delite_cart"
+                                href="/cart/delete/<?php echo $product['id'];?>"
+                                data-id="cart-delete_<?php echo $product['id']; ?>">
+                                <i class="fa fa-trash-o "></i>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -118,10 +130,21 @@
                         </div>
                     </div>
                     <div class="_exemple_container">
-                        <div >
-                            <a class="btn btn-default btn-xs change_cart" href="#" data-id="<?php echo $product['s1_id']; ?>">
+                        <p class="_cart-hint" id="cart-eddit_<?php echo $product['s1_id']; ?>">
+                                Изменить колл-во!
+                        </p>
+                        <p class="_cart-hint" id="cart-delete_<?php echo $product['s1_id']; ?>">
+                                Удалить!
+                        </p>
+
+                        <div>
+                            <a class="btn btn-default btn-xs change_cart"
+                                href="#"
+                                data-id="<?php echo $product['s1_id']; ?>">
                                 <i class="fa fa-cog"></i></a>
-                            <a class="btn btn-danger btn-xs" href="/cart/delete/<?php echo $product['s1_id'];?>">
+                            <a class="btn btn-danger btn-xs delite_cart"
+                                href="/cart/delete/<?php echo $product['s1_id'];?>"
+                                 data-id="cart-delete_<?php echo $product['s1_id']; ?>">
                                 <i class="fa fa-trash-o "></i></a>
                         </div>
                     </div>
@@ -138,15 +161,27 @@
           </div>
           <div class="basket basket_result">
             <div >
-                    <a href="/cart/recount"><button>Пересчитать всё</button></a>
+                <a href="/cart/recount"><button>Пересчитать всё</button></a>
             </div>
             <div >
                 <a href="/cart/clearAll"><button>Очистить</button></a>
             </div>
             <div><a class="btn btn-danger" href="/cart/checkout">ОФОРМИТЬ</a></div>
+            </article>
+
           </div>
     <?php else: ?>
                    <p>Корзина пуста</p>
     <?php endif; ?>
+        <span
+            data-toggle="popover"
+            title="Name of this window"
+            data-content="Text in the window"
+            data-trigger="hover"
+            data-placement="top">
+            Popover
+        </span>
+
+
 <?php include ROOT.'/views/layouts/right_sitebar.php'; ?>
 <?php include ROOT.'/views/layouts/footer.php'; ?>

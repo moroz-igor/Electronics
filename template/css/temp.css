@@ -83,6 +83,21 @@
     float: left;
     height: 100%;
     margin-left: 1%;
+    position: relative;
+}
+._cart-hint{
+    position: absolute;
+    border: solid 1px maroon;
+    border-radius: 2px;
+    color: maroon;
+    background-color: white;
+    font-size: 0.8em;
+    width: 110px;
+    padding: 2%;
+    top: -10px;
+    right: 40px;
+    text-align: center;
+    display: none;
 }
 ._exemple_container div{
     padding-top: 30%;
