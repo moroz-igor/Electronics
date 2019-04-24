@@ -14,8 +14,8 @@ class Product
 
         // Текст запроса к БД
         $sql = 'SELECT * FROM product '
-                . 'WHERE status = "1" ORDER BY id  '
-                . 'LIMIT :count';
+                . 'WHERE status = "1" ORDER BY id  ';
+                //. 'LIMIT :count';
         // Используется подготовленный запрос
         $result = $db->prepare($sql);
         $result->bindParam(':count', $count, PDO::PARAM_INT);

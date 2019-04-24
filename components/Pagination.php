@@ -1,195 +1,102 @@
 <?php
 
-/*
- * Класс Pagination для генерации постраничной навигации
- */
+  	function connectDB() {
+		$connect = @new mysqli("localhost", "root", "","electronics_db");
+		if($connect->connect_errno) exist('Error connecting to database!');
+        $connect->set_charset('utf8');
+		return $connect;
+	}
 
-class Pagination
-{
+  	function closeDB($connect) {
+		$connect->close();
+	}
 
-    /**
-     *
-     * @var Ссылок навигации на страницу
-     *
-     */
-    private $max = 10;
-
-    /**
-     *
-     * @var Ключ для GET, в который пишется номер страницы
-     *
-     */
-    private $index = 'page';
-
-    /**
-     *
-     * @var Текущая страница
-     *
-     */
-    private $current_page;
-
-    /**
-     *
-     * @var Общее количество записей
-     *
-     */
-    private $total;
-
-    /**
-     *
-     * @var Записей на страницу
-     *
-     */
-    private $limit;
-
-    /**
-     * Запуск необходимых данных для навигации
-     * @param type $total <p>Общее количество записей</p>
-     * @param type $currentPage <p>Номер текущей страницы</p>
-     * @param type $limit <p>Количество записей на страницу</p>
-     * @param type $index <p>Ключ для url</p>
-     */
-    public function __construct($total, $currentPage, $limit, $index)
-    {
-        # Устанавливаем общее количество записей
-        $this->total = $total;
-
-        # Устанавливаем количество записей на страницу
-        $this->limit = $limit;
-
-        # Устанавливаем ключ в url
-        $this->index = $index;
-
-        # Устанавливаем количество страниц
-        $this->amount = $this->amount();
-
-        # Устанавливаем номер текущей страницы
-        $this->setCurrentPage($currentPage);
+  function getAllArticles($start, $limit) {
+	$connect = connectDB();
+	$result = $connect->query("SELECT * FROM `product` LIMIT ".$start.", ".$limit);
+	closeDB($connect);
+	return setResultToArray($result);
     }
 
-    /**
-     *  Для вывода ссылок
-     * @return HTML-код со ссылками навигации
-     */
-    public function get()
-    {
-        # Для записи ссылок
-        $links = null;
+   function setResultToArray($result) {
+	$array = array();
+	while ($row = mysqli_fetch_assoc($result)) $array[] = $row;
+	return $array;
+   }
 
-        # Получаем ограничения для цикла
-        $limits = $this->limits();
+	// the overall number of articles in the database
+	function countArticles() {
+		$connect = connectDB();
+		$reslut = $connect->query("SELECT COUNT(`id`) FROM `product`");
+		closeDB($connect);
+		$result = mysqli_fetch_row($reslut);
+		return $result[0];
+	}
 
-        $html = '<ul class="pagination">';
-        # Генерируем ссылки
-        for ($page = $limits[0]; $page <= $limits[1]; $page++) {
-            # Если текущая это текущая страница, ссылки нет и добавляется класс active
-            if ($page == $this->current_page) {
-                $links .= '<li class="active"><a href="#">' . $page . '</a></li>';
-            } else {
-                # Иначе генерируем ссылку
-                $links .= $this->generateHtml($page);
-            }
-        }
+  	function getStart($page, $limit) {
+		return $limit * ($page - 1);
+	}
 
-        # Если ссылки создались
-        if (!is_null($links)) {
-            # Если текущая страница не первая
-            if ($this->current_page > 1)
-            # Создаём ссылку "На первую"
-                $links = $this->generateHtml(1, '&lt;') . $links;
 
-            # Если текущая страница не первая
-            if ($this->current_page < $this->amount)
-            # Создаём ссылку "На последнюю"
-                $links .= $this->generateHtml($this->amount, '&gt;');
-        }
+  	function pagination($page, $limit, $url) {
+        $number_buttons = 8;
+        $articlesNumber =countArticles();
+            ($articlesNumber/$limit < $number_buttons) ?
+                $number_buttons = (floor($articlesNumber/$limit)-1) :
+                                $number_buttons = $number_buttons - 2;
+		$first_page = $page;
+		// общее кол-во строк в БД
+					$count_articles = countArticles();
+		// общее количество стр.
+		$count_pages = ceil($count_articles / $limit);
+		//echo '<br>count_pages: - '.$count_pages.'<br>';
+		if ($page > $count_pages) $page = $count_pages;
+		$prev = $page - 1;
+		$next = $page + 1;
+		if ($prev < 1) $prev = 1;
+		if ($next > $count_pages) $next = $count_pages;
 
-        $html .= $links . '</ul>';
+		$pagination = "";
+		$class_button = "<div class=\"buttons-pagination\">";
+		if ($count_pages > 1) {
 
-        # Возвращаем html
-        return $html;
-    }
+			if ($page != 1){
+				$pagination .= "<a href='".$url."'><div class=\"buttons-pagination\"><i class=\"fa fa-chevron-left\"></i><i class=\"fa fa-chevron-left\"></i></div></a>";
+				$pagination .= "<a href='".$url."?page=".$prev."'><div class=\"buttons-pagination\"><i class=\"fa fa-chevron-left\"></i></div></a>";
+			}
+			if(($first_page + $number_buttons) <= $count_pages)
+			{
+				 $last_button = $first_page + $number_buttons;
+				 $begin = $first_page -1;
+				 if($begin == 0) {
+					$begin = 1; $last_button++;
+				 }
+			}
+			if(($first_page + $number_buttons) > $count_pages)
+			{
+				$last_button = $count_pages;
+				$begin = $count_pages - $number_buttons-1;
+			}
+			for ($i = $begin; $i <= $last_button; $i++) {
+				($i == $page) ?
+							$class_button = "<div class=\"buttons-pagination _pagination-active\">" :
+				 											$class_button = "<div class=\"buttons-pagination\">";
+				$pagination .= "<a href='".$url."?page=".$i."'>" . $class_button .$i. "</div>"."</a>";
+			}
 
-    /**
-     * Для генерации HTML-кода ссылки
-     * @param integer $page - номер страницы
-     *
-     * @return
-     */
-    private function generateHtml($page, $text = null)
-    {
-        # Если текст ссылки не указан
-        if (!$text)
-        # Указываем, что текст - цифра страницы
-            $text = $page;
+			if ($page != $count_pages) {
+				$pagination .= "<a href='".$url."?page=".$next."'><div class=\"buttons-pagination\"><i class=\"fa fa-chevron-right\"></i></div></a>";
+				$pagination .= "<a href='".$url."?page=".$count_pages."'><div class=\"buttons-pagination\"><i class=\"fa fa-chevron-right\"></i><i class=\"fa fa-chevron-right\"></i></div></a>";
+			}
+		}
+		return $pagination;
+	}
 
-        $currentURI = rtrim($_SERVER['REQUEST_URI'], '/') . '/';
-        $currentURI = preg_replace('~/page-[0-9]+~', '', $currentURI);
-        # Формируем HTML код ссылки и возвращаем
-        return
-                '<li><a href="' . $currentURI . $this->index . $page . '">' . $text . '</a></li>';
-    }
 
-    /**
-     *  Для получения, откуда стартовать
-     *
-     * @return массив с началом и концом отсчёта
-     */
-    private function limits()
-    {
-        # Вычисляем ссылки слева (чтобы активная ссылка была посередине)
-        $left = $this->current_page - round($this->max / 2);
 
-        # Вычисляем начало отсчёта
-        $start = $left > 0 ? $left : 1;
 
-        # Если впереди есть как минимум $this->max страниц
-        if ($start + $this->max <= $this->amount) {
-        # Назначаем конец цикла вперёд на $this->max страниц или просто на минимум
-            $end = $start > 1 ? $start + $this->max : $this->max;
-        } else {
-            # Конец - общее количество страниц
-            $end = $this->amount;
 
-            # Начало - минус $this->max от конца
-            $start = $this->amount - $this->max > 0 ? $this->amount - $this->max : 1;
-        }
 
-        # Возвращаем
-        return
-                array($start, $end);
-    }
 
-    /**
-     * Для установки текущей страницы
-     *
-     * @return
-     */
-    private function setCurrentPage($currentPage)
-    {
-        # Получаем номер страницы
-        $this->current_page = $currentPage;
 
-        # Если текущая страница больше нуля
-        if ($this->current_page > 0) {
-            # Если текущая страница меньше общего количества страниц
-            if ($this->current_page > $this->amount)
-            # Устанавливаем страницу на последнюю
-                $this->current_page = $this->amount;
-        } else
-        # Устанавливаем страницу на первую
-            $this->current_page = 1;
-    }
-
-    /**
-     * Для получения общего числа страниц
-     *
-     * @return число страниц
-     */
-    private function amount()
-    {
-        # Делим и возвращаем
-        return ceil($this->total / $this->limit);
-    }
-
-}
+ ?>

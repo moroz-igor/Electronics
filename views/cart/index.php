@@ -173,15 +173,6 @@
     <?php else: ?>
                    <p>Корзина пуста</p>
     <?php endif; ?>
-        <span
-            data-toggle="popover"
-            title="Name of this window"
-            data-content="Text in the window"
-            data-trigger="hover"
-            data-placement="top">
-            Popover
-        </span>
-
 
 <?php include ROOT.'/views/layouts/right_sitebar.php'; ?>
 <?php include ROOT.'/views/layouts/footer.php'; ?>

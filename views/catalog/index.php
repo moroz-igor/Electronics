@@ -1,5 +1,6 @@
 <?php include ROOT.'/views/layouts/header.php'; ?>
 <?php include ROOT.'/views/layouts/left_sitebar.php'; ?>
+<?php require_once(ROOT . '/components/Pagination.php'); ?>
           <h2>Компьютеры и комплектующие </h2>
             <div class="btn-group btn-breadcrumb _categoty_nav">
                 <?php foreach ($categories as $categoryItem):  ?>
@@ -19,7 +20,17 @@
                 </form>
             </div>
             <h3>Товары в директории</h3>
-
+                <?php
+                (isset($_GET["page"])) ?
+                          $page = $_GET["page"] :
+                                $page = $_SERVER['REQUEST_URI'];
+                    if ($page < 1 or $page == "") $page = 1; $limit = 5;
+                                $start = getStart($page, $limit);
+                                    $latestProducts = getAllArticles($start, $limit);
+                 ?>
+                 <div class="_pagination-buttons">
+                    <?php $url = 'index.php'; echo  pagination($page, $limit, $url); ?>
+                </div>
         <?php foreach ($latestProducts as $product): ?>
             <div class="product_exemple" id="<?php echo $product['code'];  ?>">
                 <a href="/product/<?php echo $product['id']; ?>">
@@ -114,5 +125,9 @@
                 </div>
             </div>
         <?php endforeach; ?>
+        <div class="_pagination-buttons">
+           <?php $url = 'index.php'; echo  pagination($page, $limit, $url); ?>
+       </div>
+
 <?php include ROOT.'/views/layouts/right_sitebar.php'; ?>
 <?php include ROOT.'/views/layouts/footer.php'; ?>
