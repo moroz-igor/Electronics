@@ -24,14 +24,14 @@
                 (isset($_GET["page"])) ?
                           $page = $_GET["page"] :
                                 $page = $_SERVER['REQUEST_URI'];
-                    if ($page < 1 or $page == "") $page = 1; $limit = 5;
+                    if ($page < 1 or $page == "") $page = 1; $limit = 5; $numberButons = 5;
                                 $start = getStart($page, $limit);
-                                    $latestProducts = getAllArticles($start, $limit);
+                                    $articles = getAllArticles($start, $limit);
                  ?>
                  <div class="_pagination-buttons">
-                    <?php $url = 'index.php'; echo  pagination($page, $limit, $url); ?>
+                    <?php $url = 'index.php'; echo  pagination($page, $limit, $url, $numberButons); ?>
                 </div>
-        <?php foreach ($latestProducts as $product): ?>
+        <?php foreach ($articles as $product): ?>
             <div class="product_exemple" id="<?php echo $product['code'];  ?>">
                 <a href="/product/<?php echo $product['id']; ?>">
                     <h5> <?php echo $product['name']; ?></h5>
@@ -126,8 +126,7 @@
             </div>
         <?php endforeach; ?>
         <div class="_pagination-buttons">
-           <?php $url = 'index.php'; echo  pagination($page, $limit, $url); ?>
+           <?php $url = 'index.php'; echo  pagination($page, $limit, $url, $numberButtons); ?>
        </div>
-
 <?php include ROOT.'/views/layouts/right_sitebar.php'; ?>
 <?php include ROOT.'/views/layouts/footer.php'; ?>

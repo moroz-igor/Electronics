@@ -14,22 +14,22 @@ class CatalogController
         $categories = array();
         $categories = Category::getCategoriesList();
 
-        $latestProducts = array();
-        $latestProducts = Product::getLatestProducts();
+        //$latestProducts = array();
+        ///$latestProducts = Product::getLatestProducts();
 
         // Подключаем вид
         require_once(ROOT . '/views/catalog/index.php');
         return true;
     }
 
-    public function actionCategory($categoryId, $page = 1)
+    public function actionCategory($categoryId)
     {
         // вывод динамического меню в категории
         $categories = array();
         $categories = Category::getCategoriesList();
 
         $categoryProducts = array();
-        $categoryProducts = Product::getProductsListByCategory($categoryId, $page);
+        $categoryProducts = Product::getProductsListByCategory($categoryId);
 
         //$total = Product::getTotalProductsInCategory($categoryId);
         // Создаем объект Pagination  - постраничная навигация

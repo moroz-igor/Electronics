@@ -6,7 +6,7 @@ class Product
 {
         // Количество отображаемых товаров по умолчанию
     const SHOW_BY_DEFAULT = 10;
-
+    /*
     public static function getLatestProducts($count = self::SHOW_BY_DEFAULT)
         {
         // Соединение с БД
@@ -14,8 +14,9 @@ class Product
 
         // Текст запроса к БД
         $sql = 'SELECT * FROM product '
-                . 'WHERE status = "1" ORDER BY id  ';
-                //. 'LIMIT :count';
+                . 'WHERE status = "1" ORDER BY id  '
+                . 'LIMIT :count';
+
         // Используется подготовленный запрос
         $result = $db->prepare($sql);
         $result->bindParam(':count', $count, PDO::PARAM_INT);
@@ -53,30 +54,18 @@ class Product
             $i++;
         }
         return $productsList;
-    }
-    public static function getProductsListByCategory($categoryId, $page = 1)
+    }*/
+    public static function getProductsListByCategory($categoryId)
         {
-        $page = intval($page);
-
-        $limit = Product::SHOW_BY_DEFAULT;
-        // Смещение (для запроса)
-        $offset = ($page - 1) * self::SHOW_BY_DEFAULT;
-
         // Соединение с БД
         $db = Db::getConnection();
-
         // Текст запроса к БД
-        $sql = 'SELECT * FROM product '
+        $sql = 'SELECT category_id FROM product '
                         . 'WHERE status = 1 AND category_id = :category_id '
-                        . 'ORDER BY id ASC LIMIT :limit OFFSET :offset';
-
-
+                         .'LIMIT 1';
                             // Используется подготовленный запрос
                             $result = $db->prepare($sql);
                             $result->bindParam(':category_id', $categoryId, PDO::PARAM_INT);
-                            $result->bindParam(':limit', $limit, PDO::PARAM_INT);
-                            $result->bindParam(':offset', $offset, PDO::PARAM_INT);
-
         // Выполнение коменды
         $result->execute();
 
@@ -84,26 +73,7 @@ class Product
         $i = 0;
         $products = array();
         while ($row = $result->fetch()) {
-            $products[$i]['id'] = $row['id'];
-            $products[$i]['name'] = $row['name'];
-            $products[$i]['imgbig_1'] = $row['imgbig_1'];
-            $products[$i]['imgbig_2'] = $row['imgbig_2'];
-            $products[$i]['imgbig_3'] = $row['imgbig_3'];
-            $products[$i]['imgbig_4'] = $row['imgbig_4'];
-            $products[$i]['imgbig_5'] = $row['imgbig_5'];
-            $products[$i]['imgmin_1'] = $row['imgmin_1'];
-            $products[$i]['imgmin_2'] = $row['imgmin_2'];
-            $products[$i]['imgmin_3'] = $row['imgmin_3'];
-            $products[$i]['imgmin_4'] = $row['imgmin_4'];
-            $products[$i]['imgmin_5'] = $row['imgmin_5'];
-            $products[$i]['code_prev'] = $row['code_prev'];
-            $products[$i]['code'] = $row['code'];
-            $products[$i]['brand'] = $row['brand'];
             $products[$i]['category_id'] = $row['category_id'];
-            $products[$i]['category_name'] = $row['category_name'];
-            $products[$i]['description_1'] = $row['description_1'];
-            $products[$i]['description_2'] = $row['description_2'];
-            $products[$i]['price'] = $row['price'];
             $i++;
         }
         return $products;
@@ -176,7 +146,7 @@ class Product
          /**
          * Возвращаем количество товаров в указанной категории
          */
-    public static function getTotalProductsInCategory($categoryId)
+    /*public static function getTotalProductsInCategory($categoryId)
         {
               // Соединение с БД
               $db = Db::getConnection();
@@ -194,7 +164,7 @@ class Product
               // Возвращаем значение count - количество
               $row = $result->fetch();
               return $row['count'];
-          }
+          }*/
         /* Описание выода деталей продукта категории Section*/
     public static function getSectionProductById($id)
         {

@@ -1,21 +1,28 @@
 <?php
-
   	function connectDB() {
 		$connect = @new mysqli("localhost", "root", "","electronics_db");
 		if($connect->connect_errno) exist('Error connecting to database!');
         $connect->set_charset('utf8');
 		return $connect;
 	}
-
   	function closeDB($connect) {
 		$connect->close();
 	}
+    function getAllArticles($start, $limit) {
+	    $connect = connectDB();
+	    $result = $connect->query("SELECT * FROM `product` LIMIT ".$start.", ".$limit);
 
-  function getAllArticles($start, $limit) {
-	$connect = connectDB();
-	$result = $connect->query("SELECT * FROM `product` LIMIT ".$start.", ".$limit);
 	closeDB($connect);
 	return setResultToArray($result);
+    }
+  function getAllArticlesInCategory($start, $limit, $category) {
+	    $connect = connectDB();
+        $result = $connect->query("SELECT * FROM `product`
+                                WHERE status=1
+                                AND category_id = " .$category.
+                                " ORDER BY id LIMIT " .$start. ", " .$limit);
+        closeDB($connect);
+    return setResultToArray($result);
     }
 
    function setResultToArray($result) {
@@ -23,7 +30,6 @@
 	while ($row = mysqli_fetch_assoc($result)) $array[] = $row;
 	return $array;
    }
-
 	// the overall number of articles in the database
 	function countArticles() {
 		$connect = connectDB();
@@ -32,14 +38,11 @@
 		$result = mysqli_fetch_row($reslut);
 		return $result[0];
 	}
-
   	function getStart($page, $limit) {
 		return $limit * ($page - 1);
 	}
+  	function pagination($page, $limit, $url, $number_buttons) {
 
-
-  	function pagination($page, $limit, $url) {
-        $number_buttons = 8;
         $articlesNumber =countArticles();
             ($articlesNumber/$limit < $number_buttons) ?
                 $number_buttons = (floor($articlesNumber/$limit)-1) :
@@ -91,12 +94,4 @@
 		}
 		return $pagination;
 	}
-
-
-
-
-
-
-
-
  ?>

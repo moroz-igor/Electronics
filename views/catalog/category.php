@@ -1,5 +1,6 @@
 <?php include ROOT.'/views/layouts/header.php'; ?>
 <?php include ROOT.'/views/layouts/left_sitebar.php'; ?>
+<?php require_once(ROOT . '/components/Pagination.php'); ?>
     <h2>Компьютеры и комплектующие </h2>
     <div class="btn-group btn-breadcrumb _categoty_nav">
     <?php foreach ($categories as $categoryItem):  ?>
@@ -20,7 +21,25 @@
                 </form>
             </div>
           <h3>Товары в дирректории</h3>
-        <?php foreach ($categoryProducts as $product): ?>
+          <?php
+          (isset($_GET["page"])) ?
+                    $page = $_GET["page"] :
+                          $page = $_SERVER['REQUEST_URI'];
+            if ($page < 1 or $page == "") $page = 1; $limit = 2;
+                    $start = getStart($page, $limit);
+                    (isset($categoryProducts[0]['category_id'])) ?
+                        $category = $categoryProducts[0]['category_id']: $category = 0;
+                            $articles = getAllArticlesInCategory($start, $limit, $category);
+                        //echo count($articles).'<br>';
+                            if(count($articles)<1)
+                                echo '<p class="_registration-false">В данном разделе пока нет товаров!</p>';
+                        //echo "<pre>";
+                        //print_r($articles);
+           ?>
+           <div class="_pagination-buttons">
+              <?php $url = $category; echo  pagination($page, $limit, $url, 4); ?>
+          </div>
+        <?php foreach ($articles as $product): ?>
             <div class="product_exemple" id="<?php echo $product['code'];  ?>">
                 <a href="/product/<?php echo $product['id']; ?>">
                     <h5> <?php echo $product['name']; ?></h5>

@@ -7,7 +7,6 @@ return array(
 		'section/([0-9]+)' => 'section/category/$1',  					 // actionCategory in SectionController
 		'section2' => 'section2/section',             					 // actionSection in Section2Controller
 		'category/([0-9]+)' => 'catalog/category/$1', 					 // actionCategory in CatalogController
-		'category/([0-9]+)/page-([0-9]+)' => 'catalog/category/$1/$2',   // actionCategory в CatalogController
 		'brand/([0-9]+)/([0-9]+)/([\w])' => 'catalog/brand/$1/$2/$3',    // actionBrand in CatalogController
 		'brand_s1/([0-9]+)/([0-9]+)/([\w])' => 'section/brand/$1/$2/$3', // actionBrand in SectionController
 

@@ -98,10 +98,9 @@
         <?php foreach ($s1_products as $product): ?>
             <div class="basket">
                 <div class="_basket_title">
-                    <a href="/product/<?php echo $product['s1_id']; ?>">
+                    <a href="/sectionproduct1/<?php echo $product['s1_id']; ?>">
                         <?php echo $product['s1_name'];?>
                     </a>
-
                 </div>
                 <div class="_basket_conteiner">
                     <div class="_exemple_container">
@@ -173,6 +172,5 @@
     <?php else: ?>
                    <p>Корзина пуста</p>
     <?php endif; ?>
-
 <?php include ROOT.'/views/layouts/right_sitebar.php'; ?>
 <?php include ROOT.'/views/layouts/footer.php'; ?>
