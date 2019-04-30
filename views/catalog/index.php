@@ -21,15 +21,17 @@
             </div>
             <h3>Товары в директории</h3>
                 <?php
+                //echo '<br>'.$numberProducts;
                 (isset($_GET["page"])) ?
                           $page = $_GET["page"] :
                                 $page = $_SERVER['REQUEST_URI'];
-                    if ($page < 1 or $page == "") $page = 1; $limit = 5; $numberButons = 5;
+                    if ($page < 1 or $page == "") $page = 1; $limit = 5; $numberButtons = 4;
                                 $start = getStart($page, $limit);
-                                    $articles = getAllArticles($start, $limit);
+                                    $articles = getAllArticles($start, $limit, 'catalog');
                  ?>
-                 <div class="_pagination-buttons">
-                    <?php $url = 'index.php'; echo  pagination($page, $limit, $url, $numberButons); ?>
+                <div class="_pagination-buttons">
+                    <?php $url = 'index.php';
+                        echo  pagination($page, $limit, $url, $numberButtons, $numberProducts); ?>
                 </div>
         <?php foreach ($articles as $product): ?>
             <div class="product_exemple" id="<?php echo $product['code'];  ?>">
@@ -126,7 +128,7 @@
             </div>
         <?php endforeach; ?>
         <div class="_pagination-buttons">
-           <?php $url = 'index.php'; echo  pagination($page, $limit, $url, $numberButtons); ?>
+           <?php $url = 'index.php'; echo  pagination($page, $limit, $url, $numberButtons, $numberProducts); ?>
        </div>
 <?php include ROOT.'/views/layouts/right_sitebar.php'; ?>
 <?php include ROOT.'/views/layouts/footer.php'; ?>

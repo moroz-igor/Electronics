@@ -6,6 +6,30 @@ class Product
 {
         // Количество отображаемых товаров по умолчанию
     const SHOW_BY_DEFAULT = 10;
+    /**
+    * Возвращаем количество товаров в указанной Секции
+    */
+public static function getTotalProductsInCatalog($section)
+   {
+         // Соединение с БД
+         $db = Db::getConnection();
+         // Текст запроса к БД
+         switch($section)
+         {
+            case "catalog" :
+            $sql = 'SELECT count(id) AS count FROM product WHERE status="1" '; break;
+            case "section" :
+            $sql = 'SELECT count(s1_id) AS count FROM s1_product WHERE s1_status="1" '; break;
+         }
+         // Используется подготовленный запрос
+         $result = $db->prepare($sql);
+         // Выполнение коменды
+         $result->execute();
+         // Возвращаем значение count - количество
+         $row = $result->fetch();
+         return $row['count'];
+     }
+
     /*
     public static function getLatestProducts($count = self::SHOW_BY_DEFAULT)
         {
@@ -14,8 +38,8 @@ class Product
 
         // Текст запроса к БД
         $sql = 'SELECT * FROM product '
-                . 'WHERE status = "1" ORDER BY id  '
-                . 'LIMIT :count';
+                . 'WHERE status = "1" ORDER BY id  ';
+                //. 'LIMIT :count';
 
         // Используется подготовленный запрос
         $result = $db->prepare($sql);
@@ -146,14 +170,13 @@ class Product
          /**
          * Возвращаем количество товаров в указанной категории
          */
-    /*public static function getTotalProductsInCategory($categoryId)
+    public static function getTotalProductsInCategory($categoryId)
         {
               // Соединение с БД
               $db = Db::getConnection();
 
               // Текст запроса к БД
-              $sql = 'SELECT count(id) AS count FROM product WHERE status="1" AND category_id = :category_id';
-
+               $sql = 'SELECT count(id) AS count FROM product WHERE status="1" AND category_id = :category_id';
               // Используется подготовленный запрос
               $result = $db->prepare($sql);
               $result->bindParam(':category_id', $categoryId, PDO::PARAM_INT);
@@ -164,7 +187,7 @@ class Product
               // Возвращаем значение count - количество
               $row = $result->fetch();
               return $row['count'];
-          }*/
+          }
         /* Описание выода деталей продукта категории Section*/
     public static function getSectionProductById($id)
         {

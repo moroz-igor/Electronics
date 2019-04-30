@@ -14,8 +14,7 @@ class CatalogController
         $categories = array();
         $categories = Category::getCategoriesList();
 
-        //$latestProducts = array();
-        ///$latestProducts = Product::getLatestProducts();
+        $numberProducts = Product::getTotalProductsInCatalog('catalog');
 
         // Подключаем вид
         require_once(ROOT . '/views/catalog/index.php');
@@ -31,9 +30,7 @@ class CatalogController
         $categoryProducts = array();
         $categoryProducts = Product::getProductsListByCategory($categoryId);
 
-        //$total = Product::getTotalProductsInCategory($categoryId);
-        // Создаем объект Pagination  - постраничная навигация
-        //$pagination = new Pagination($total, $page, Product::SHOW_BY_DEFAULT,'');
+        $total = Product::getTotalProductsInCategory($categoryId);
 
         require_once(ROOT.'/views/catalog/category.php');
         return true;

@@ -25,19 +25,16 @@
           (isset($_GET["page"])) ?
                     $page = $_GET["page"] :
                           $page = $_SERVER['REQUEST_URI'];
-            if ($page < 1 or $page == "") $page = 1; $limit = 2;
+            if ($page < 1 or $page == "") $page = 1; $limit = 3;
                     $start = getStart($page, $limit);
                     (isset($categoryProducts[0]['category_id'])) ?
                         $category = $categoryProducts[0]['category_id']: $category = 0;
-                            $articles = getAllArticlesInCategory($start, $limit, $category);
-                        //echo count($articles).'<br>';
+                            $articles = getAllArticlesInCategory($start, $limit, $category, "catalog");
                             if(count($articles)<1)
                                 echo '<p class="_registration-false">В данном разделе пока нет товаров!</p>';
-                        //echo "<pre>";
-                        //print_r($articles);
            ?>
            <div class="_pagination-buttons">
-              <?php $url = $category; echo  pagination($page, $limit, $url, 4); ?>
+              <?php $url = $category; echo  pagination($page, $limit, $url, 8, $total); ?>
           </div>
         <?php foreach ($articles as $product): ?>
             <div class="product_exemple" id="<?php echo $product['code'];  ?>">
@@ -130,6 +127,5 @@
                 </div>
             </div>
     <?php endforeach; ?>
-        <!-- Pagination--><!--<//?php echo $pagination->get(); ?>-->
 <?php include ROOT.'/views/layouts/right_sitebar.php'; ?>
 <?php include ROOT.'/views/layouts/footer.php'; ?>
