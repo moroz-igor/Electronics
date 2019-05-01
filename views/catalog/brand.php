@@ -1,5 +1,6 @@
 <?php include ROOT.'/views/layouts/header.php'; ?>
 <?php include ROOT.'/views/layouts/left_sitebar.php'; ?>
+<?php require_once(ROOT . '/components/Pagination.php'); ?>
     <h2>Компьютеры </h2>
     <div class="btn-group btn-breadcrumb _categoty_nav">
         <?php foreach ($categories as $categoryItem):  ?>
@@ -18,8 +19,21 @@
             </button>
         </form>
     </div>
-    <h3>Товары дирректори марки " <span class="_registration-success"><?php echo $brand; ?></span> "</h3>
-        <?php foreach ($brandProducts as $product): ?>
+    <h3>Товары дирректори марки " <span class="_registration-success"><?php echo brandGet($brand); ?></span> "</h3>
+        <?php
+        $brand = brandGet($brand);
+        (isset($_GET["page"])) ?
+                $page = $_GET["page"] :
+                        $page = $_SERVER['REQUEST_URI'];
+                        if ($page < 1 or $page == "") $page = 1; $limit = 1; $numberButtons = 2;
+                        $start = getStart($page, $limit);
+                            $articles = getAllArticlesByBrand($start, $limit, $section, $category, $brand);
+        ?>
+        <div class="_pagination-buttons">
+            <?php $url = '';
+            echo  pagination($page, $limit, $url, $numberButtons, $totalBrand); ?>
+        </div>
+        <?php foreach ($articles as $product): ?>
             <div class="product_exemple" id="<?php echo $product['code'];  ?>">
                 <a href="/product/<?php echo $product['id']; ?>">
                     <h5> <?php echo $product['name']; ?></h5>

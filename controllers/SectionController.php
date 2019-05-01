@@ -14,10 +14,6 @@ class SectionController
     {
        $categories = array();
        $categories = Sectioncategory::getCategoriesListSection();
-
-       //$latestProducts = array();
-       //$latestProducts = Section::getLatestProducts();
-
        $numberProducts = Product::getTotalProductsInCatalog('section');
 
        // Подключаем вид
@@ -37,16 +33,13 @@ class SectionController
       require_once(ROOT.'/views/section/category.php');
       return true;
     }
-    public function actionBrand($s1_section, $s1_category_id, $s1_brand)
+    public function actionBrand($section, $category, $brand)
     {
         // вывод динамического меню в категории
         $categories = array();
         $categories = Sectioncategory::getCategoriesListSection();
 
-        $brandProducts = array();
-        $brandProducts = Section::getBrandProductsListBySection($s1_section, $s1_category_id, $s1_brand);
-
-
+        $totalBrand = Product::getTotalProductsInBrand($section, $category, $brand);
         require_once(ROOT . '/views/section/brand_s1.php');
         return true;
     }

@@ -1,14 +1,17 @@
 <?php
-  	function connectDB() {
+  	function connectDB()
+     {
 		$connect = @new mysqli("localhost", "root", "","electronics_db");
 		if($connect->connect_errno) exist('Error connecting to database!');
         $connect->set_charset('utf8');
 		return $connect;
 	}
-  	function closeDB($connect) {
+  	function closeDB($connect)
+    {
 		$connect->close();
 	}
-    function getAllArticles($start, $limit, $section) {
+    function getAllArticles($start, $limit, $section)
+     {
 	    $connect = connectDB();
         switch($section)
         {
@@ -23,7 +26,8 @@
 	closeDB($connect);
 	return setResultToArray($result);
     }
-  function getAllArticlesInCategory($start, $limit, $category, $section) {
+    function getAllArticlesInCategory($start, $limit, $category, $section)
+    {
 	    $connect = connectDB();
         switch($section)
         {
@@ -33,7 +37,6 @@
                 AND category_id = " .$category.
                 " ORDER BY id LIMIT " .$start. ", " .$limit); break;
             case "section" :
-
             $result = $connect->query("SELECT * FROM `s1_product`
                 WHERE s1_status=1
                 AND s1_category_id = " .$category.
@@ -42,21 +45,74 @@
         closeDB($connect);
     return setResultToArray($result);
     }
-   function setResultToArray($result) {
-	$array = array();
-	while ($row = mysqli_fetch_assoc($result)) $array[] = $row;
-	return $array;
-   }
-  	function getStart($page, $limit) {
+    function brandGet($brand)
+    {
+        $brands = array();
+        for ($i=0; $i < strlen($brand); ++$i) {
+            if($brand[$i] == '?')break;
+                $brands[$i] = $brand[$i];
+        }
+        // transformation array to string
+        $brand = implode('',$brands);
+        return $brand;
+    }
+    function getAllArticlesByBrand($start, $limit, $section, $category, $brand){
+        $connect = connectDB();
+        $category = intval($category);
+        $section = intval($section);
+        $brand = brandGet($brand);
+        switch($section)
+        {
+            case 0 :
+            if($category == 0)
+            {
+                $result = $connect->query(" SELECT * FROM `product`
+                    WHERE status=1
+                    AND brand = \"".$brand."\""
+                    . " ORDER BY id LIMIT " .$start. ", " .$limit);
+            }
+            if($category > 0)
+            {
+                $result = $connect->query("SELECT * FROM `product`
+                    WHERE status=1
+                    AND brand = \"".$brand."\""
+                    . " AND category_id = " .$category
+                    . " ORDER BY id LIMIT " .$start. ", " .$limit );
+            }
+            break;
+            case 1 :
+            if($category == 0)
+            {
+                $result = $connect->query(" SELECT * FROM `s1_product`
+                    WHERE s1_status=1
+                    AND s1_brand = \"".$brand."\""
+                    . " ORDER BY s1_id LIMIT " .$start. ", " .$limit);
+            }
+            if($category > 0)
+            {
+                $result = $connect->query("SELECT * FROM `s1_product`
+                    WHERE s1_status=1
+                    AND s1_brand = \"".$brand."\""
+                    . " AND s1_category_id = " .$category
+                    . " ORDER BY s1_id LIMIT " .$start. ", " .$limit );
+            }
+            break;
+        }
+        closeDB($connect);
+    return setResultToArray($result);
+    }
+    function setResultToArray($result)
+    {
+	       $array = array();
+	          while ($row = mysqli_fetch_assoc($result)) $array[] = $row;
+	             return $array;
+    }
+  	function getStart($page, $limit)
+    {
 		return $limit * ($page - 1);
 	}
-  	function pagination($page, $limit, $url, $number_buttons, $number_articles) {
-        //echo '<br>'.$page;
-        //echo '<br>'.$limit;
-        //echo '<br>'.$url;
-        //echo '<br>'.$number_buttons;
-        //echo '<br>'.$number_articles;
-        //echo '<br>';
+  	function pagination($page, $limit, $url, $number_buttons, $number_articles)
+    {
         $number_articles = intval($number_articles);
             if ($number_articles/$limit < $number_buttons && $number_articles/$limit <= 1) {
                 echo '<p>стр 1</p>';
@@ -84,7 +140,11 @@
 		if ($count_pages > 1) {
 
 			if ($page != 1){
+                if($url == '')
+                $pagination .= "<a href='".$url."?page=1'><div class=\"buttons-pagination\"><i class=\"fa fa-chevron-left\"></i><i class=\"fa fa-chevron-left\"></i></div></a>";
+                else
 				$pagination .= "<a href='".$url."'><div class=\"buttons-pagination\"><i class=\"fa fa-chevron-left\"></i><i class=\"fa fa-chevron-left\"></i></div></a>";
+
 				$pagination .= "<a href='".$url."?page=".$prev."'><div class=\"buttons-pagination\"><i class=\"fa fa-chevron-left\"></i></div></a>";
 			}
 			if(($first_page + $number_buttons) <= $count_pages)

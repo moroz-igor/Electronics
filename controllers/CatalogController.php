@@ -41,9 +41,7 @@ class CatalogController
         $categories = array();
         $categories = Category::getCategoriesList();
 
-        $brandProducts = array();
-        $brandProducts = Product::getBrandProductsListBySection($section, $category, $brand);
-
+        $totalBrand = Product::getTotalProductsInBrand($section, $category, $brand);
         require_once(ROOT . '/views/catalog/brand.php');
         return true;
     }
