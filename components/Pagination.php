@@ -22,7 +22,6 @@
             $result = $connect->query("SELECT * FROM `s1_product` LIMIT ".$start.", ".$limit);
             break;
         }
-
 	closeDB($connect);
 	return setResultToArray($result);
     }

@@ -320,5 +320,77 @@ public static function getTotalProductsInCatalog($section)
             $row = $result->fetch();
             return $row['count'];
         }
+        // Поиск товаров по названию в секции
+        public static function getProductsListByName($section)
+        {
+            $pr = '';
+            switch($section)
+            {
+                case 0 : $pr = ''; break;
+                case 1 : $pr = 's1_'; break;
+            }
+            if( ($_GET["button_search"]) && (!empty($_GET["search_words"])) )
+            {
+                $search_words = $_GET["search_words"];
+                    // удаляем символы GET запроса после знака '?'
+                    $section = brandGet($section);
+                $db = Db::getConnection();
+                    // Текст запроса к БД
+                    switch($section)
+                    {
+                    case 0 :
+                        $sql = 'SELECT * FROM `product` WHERE `name` LIKE "%'.$search_words.'%" '
+                                                            .'OR `brand` LIKE "%'.$search_words.'%" '
+                                                            .'LIMIT 50';
+                    break;
+                    case 1 :
+                        $sql = 'SELECT * FROM `s1_product` WHERE `s1_name` LIKE "%'.$search_words.'%" '
+                                                                .'OR `s1_brand` LIKE "%'.$search_words.'%" '
+                                                                .'LIMIT 50';
+                    break;
+                    }
+                    $result = $db->prepare($sql);
+                    $result->bindParam(':search_words', $search_words, PDO::PARAM_INT);
+                    $result->execute();
+                    $i = 0;
+                    $products = array();
+                        while ($row = $result->fetch()) {
+                            $products[$i][$pr.'id'] = $row[$pr.'id'];
+                            $products[$i][$pr.'name'] = $row[$pr.'name'];
+                            $products[$i][$pr.'imgmin_1'] = $row[$pr.'imgmin_1'];
+                            $products[$i][$pr.'category_name'] = $row[$pr.'category_name'];
+                            $products[$i][$pr.'category_id'] = $row[$pr.'category_id'];
+                            $products[$i][$pr.'code_prev'] = $row[$pr.'code_prev'];
+                            $products[$i][$pr.'code'] = $row[$pr.'code'];
+                            $products[$i][$pr.'price'] = $row[$pr.'price'];
+                            $i++;
+                        }
+            if(count($products) == 0)
+                    {
+                    $search_hint = array();
+                    $search_hint[0] = false;
+                    $search_hint[1] = '<p class="_registration-false">Поиск не дал результаов!</p>'
+                        .'<p>Подсказка: </p>'
+                        .'<p>Попробуйте искать по названию товара плюс бренд например " ноутбук HP "</p>'
+                        .'<p>Попробуйте искать по бренду например " INTEL"</p>'
+                        .'<p>Попробуйте поискать в другом разделе, поиск по сайту разбит на
+                            разделы, поэтому нет смысла искать например смартфон в разделе " Компьютеры".
+                            Для этого перейдите в желаемый раздел из главного меню или левого сайтбара и
+                            повторите поисковый запрос.</p>'
+                        .'<p>Если оригинальное название бренда товара на английском языке например "HP"
+                            используйте для ввода названия бренда английскую раскладку клавиатуры </p>'
+                        .'<p>Не используйте в запросе название во множественном числе! </p>'
+                        .'<p>Если ваш запрос состоит из нескольких слов не используйте двойные пробелы между        словами!</p>';
+                        return $search_hint;
+                    }
+            }
+            else{
+                    $search_hint = array();
+                    $search_hint[0] = false;
+                    $search_hint[1] = '<p class="_registration-false">Не задан поисковый запрос!</p>';
+                    return $search_hint;
+            }
+        return $products;
+        }
 }
  ?>

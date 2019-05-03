@@ -11,13 +11,11 @@
                 <?php endforeach; ?>
             </div>
             <div class="_search_dir">
-                <form class="navbar-form _search_form" action="#">
+                <form class="navbar-form _search_form" action="/search/0" method="get">
                     <div class="form-group">
-                        <input class="form-control" type="text" placeholder="" value=""/>
+                        <input class="form-control" type="text" name="search_words"  value=""/>
                     </div>
-                    <button class="btn btn-default _search_link" type="submit"> <i class="fa fa-sign-in"> </i>
-                        <span>Поиск в дирректории</span>
-                    </button>
+                    <input class="btn btn-primary _search_link" type="submit" name="button_search" value="Найти"/ >
                 </form>
             </div>
           <h3>Товары в дирректории</h3>

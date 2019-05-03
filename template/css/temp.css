@@ -227,3 +227,19 @@
     text-align: center;
     margin: 1% auto;
 }
+/* search styles*/
+._search-price{
+    color: darkgreen;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+._search-img{
+    float: left;
+    max-width: 10%;
+    margin-right: 2%;
+
+}
+._search-img img{
+    width: 100%;
+    height: auto;
+}

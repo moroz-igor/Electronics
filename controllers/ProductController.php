@@ -1,9 +1,5 @@
 <?php
-//include_once ROOT . '/models/Category.php';
-//include_once ROOT . '/models/Product.php';
-//include_once ROOT . '/models/Section.php';
-//include_once ROOT . '/models/Sectioncategory.php';
-/**
+/*
  * Контроллер ProductController
  * Товар
  */
@@ -52,6 +48,20 @@ class ProductController
         require_once(ROOT . '/views/product/sectionproduct.php');
         return true;
     }
+    /*
+        Search in the section
+    */
+    public function actionSearch($section)
+    {
+        $categories = array();
+        $categories = Category::getCategoriesList();
+
+        $sectionSearch = array();
+        $sectionSearch = Product::getProductsListByName($section);
+
+        require_once(ROOT . '/views/search/search.php');
+    }
+
 
 
 
