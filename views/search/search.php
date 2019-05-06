@@ -9,7 +9,7 @@
                         case '2': $pr ='s2_'; break;
                             case '3': $pr ='s3_'; break;
                     default: $pr =''; $productLink ='/product/'; $categoryLink='/category/'; break; } ?>
-            <?php if($sectionSearch[0] != false): foreach ($sectionSearch as $product):$i=0; $i++;?>
+            <?php if($sectionSearch[0] != false): foreach ($sectionSearch as $product): $i=0; $i++; ?>
                 <div>
                     <div class="_search-element _search-img">
                         <img src="<?php echo $product[$pr.'imgmin_1'];  ?>" alt="min_1">

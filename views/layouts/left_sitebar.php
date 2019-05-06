@@ -46,7 +46,7 @@
         </nav>
       </div>
     </div>
-    <div class="col-lg-7 col-md-6 col-sm-8  ">
+    <div class="col-lg-7 col-md-9 col-sm-8  ">
       <div id="content-authorization">
         <div class="authorization">
           <div class="row">

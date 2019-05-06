@@ -1,7 +1,14 @@
 <?php include ROOT.'/views/layouts/header.php'; ?>
 <?php include ROOT.'/views/layouts/left_sitebar.php'; ?>
           <h2>Электротехника</h2>
-          <div class="btn-group btn-breadcrumb _categoty_nav"><a class="btn btn-default" href="#">Микроволновые печи</a><a class="btn btn-default" href="#">Стиральные машины</a><a class="btn btn-default" href="#">Холодильники</a><a class="btn btn-default" href="#">Пылесосы</a><a class="btn btn-default" href="#">Блендеры</a><a class="btn btn-default" href="#">Миксеры</a></div>
+          <div class="btn-group btn-breadcrumb _categoty_nav">
+              <?php foreach ($categories as $categoryItem):  ?>
+                  <a class="btn btn-default" href="/section/<?php echo $categoryItem['s1_id']; ?>">
+                      <?php echo $categoryItem['s1_name']; ?>
+                  </a>
+              <?php endforeach; ?>
+          </div>
+
           <div class="_search_dir">
             <form class="navbar-form _search_form" action="#">
               <div class="form-group">

@@ -1,5 +1,5 @@
 </div>
-<div class="col-lg-2 col-md-3 hidden-sm hidden-xs">
+<div class="col-lg-2 hidden-md hidden-sm hidden-xs">
   <div class="basket authorization">
     <p>В Вашей корзине</p>
     <p> <span id="cart-count" class="basket-col"> <?php echo Cart::countItems(); ?></span><span> наименований        </span></p>

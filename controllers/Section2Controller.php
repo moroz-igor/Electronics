@@ -13,6 +13,9 @@ class Section2Controller
    {
        //$categories = array();
        //$categories = Category::getCategoriesList();
+       $categories = array();
+       $categories = Sectioncategory::getCategoriesListSection();
+
 
        //$latestProducts = array();
        //$latestProducts = Product::getLatestProducts();

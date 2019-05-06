@@ -23,7 +23,7 @@
           (isset($_GET["page"])) ?
                     $page = $_GET["page"] :
                           $page = $_SERVER['REQUEST_URI'];
-              if ($page < 1 or $page == "") $page = 1; $limit = 3; $numberButtons = 5;
+              if ($page < 1 or $page == "") $page = 1; $limit = 12; $numberButtons = 5;
                           $start = getStart($page, $limit);
                               $articles = getAllArticles($start, $limit, "section");
            ?>
@@ -31,102 +31,66 @@
               <?php $url = 'section.php';
                   echo  pagination($page, $limit, $url, $numberButtons, $numberProducts); ?>
           </div>
-          <?php foreach ($articles as $product): ?>
-
-              <div class="product_exemple" id="<?php echo $product['s1_code'];  ?>">
-                  <a href="/sectionproduct1/<?php echo $product['s1_id']; ?>">
-                      <h5> <?php echo $product['s1_name']; ?></h5>
-                  </a>
-                  <div class="row product_exemple-block">
-                      <div class="col-lg-6 exemple_main_img">
-                          <div class="exemple-main_img" id="exp_<?php echo $product['s1_code']; ?>">
-                              <img src="<?php echo $product['s1_imgbig_1'];  ?>" alt="big_1"/>
-                          </div>
+          <div class="row row_my">
+              <?php foreach ($articles as $product): ?>
+                  <div class="col-xs-6 col-sm-4 col-md-3 cpl-lg-3 _massonry-element">
+                      <div class="_massonry-element-borber">
+                      <div class="_massonry-title">
+                          <a href="/product/<?php echo $product['s1_id']; ?>">
+                              <h6> <?php echo $product['s1_name']; ?></h6>
+                          </a>
                       </div>
-                      <div class="col-lg-6">
-                          <p class="product-status"> В наличии</p>
+                      <div class="_massonry-price">$<?php echo $product['s1_price'];?> </div>
+
+                          <div class="thumbnai">
+                              <div class="col-lg-6 _masonry_main_img">
+                                  <div class="exemple-main_img" id="exp_<?php echo $product['s1_code']; ?>">
+                                      <img src="<?php echo $product['s1_imgbig_1'];  ?>" alt="big_1"/>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="product_cart_message ">
+                              <a href="/cart/">КОРЗИНА</a>
+                               ( <span class="order_message">
+                                    <?php echo Cart::countItems(); ?>
+                               </span> )
+                          </div>
+                          <div class="_massonry-order">
+                              <?php if (isset($_SESSION['products']) && array_key_exists($product['s1_id'], $_SESSION['products'])): ?>
+                                  <?php echo '<div class="_massonry-ordered"> ЗАКАЗАНО</div>'; ?>
+                                  <?php endif; ?>
+                              <div id="status_<?php echo $product['s1_id']; ?>" class="order_status">
+                                  <div class="_massonry-ordered _massonry-add">ДОБАВЛЕН В КОРЗИНУ</div>
+                              </div>
+                          </div>
                           <p>Код:
                            <span class="code"><?php echo $product['s1_code_prev'];
-                                                      echo $product['s1_id'];  ?>
-
-                            <a href="/brand_s1/1/0/<?php echo $product['s1_brand']; ?>">
-                                <?php echo $product['s1_brand']; ?>
-                            </a>
-
-                              <a href="/section/<?php echo $product['s1_category_id'];  ?>">
+                                                      echo $product['s1_code'];  ?><br>
+                              <a href="/brand/0/0/<?php echo $product['s1_brand']; ?>">
+                                  <?php echo $product['s1_brand']; ?>
+                              </a><br>
+                              <a href="/category/<?php echo $product['s1_category_id']; ?>">
                                   <?php echo $product['s1_category_name'];  ?>
                               </a>
                           </span>
                           </p>
-                          <p class="exemple_description"><?php echo $product['s1_description_1'];?> </p>
-                          <p class="exemple_description"><?php echo $product['s1_description_2'];?> </p>
-                          <span class="exemple_price">$<?php echo $product['s1_price'];?> </span>
-                          <div class="order_container">
-                              <?php if (isset($_SESSION['products']) && array_key_exists($product['s1_id'], $_SESSION['products'])): ?>
-                                      <?php echo '<div class="ordered"> ЗАКАЗАНО</div>'; ?>
-
-                                  <?php endif; ?>
-                              <div id="status_<?php echo $product['s1_id']; ?>" class="order_status">
-                                              <div class="ordered ordered_incart">ДОБАВЛЕН В КОРЗИНУ</div>
+                          <div class="caption">
+                              <div class="exemple-basket_buttons">
+                                  <div>
+                                      <a class="btn btn-success add-to-cart" href="#" data-id="<?php echo $product['s1_id'];?>">
+                                          <span>Купить</span>
+                                      </a>
+                                  </div>
                               </div>
+
                           </div>
                       </div>
                   </div>
-                  <div class="minor_img-block">
-                      <?php if($product['s1_imgbig_1'] && $product['s1_imgmin_1']): ?>
-                      <div class="exemple-minor_img">
-                          <a href="<?php echo $product['s1_imgbig_1'];  ?>">
-                              <img src="<?php echo $product['s1_imgmin_1'];  ?>" alt="min_2"/>
-                          </a>
-                      </div>
-                      <?php endif; ?>
-                      <?php if($product['s1_imgbig_2'] && $product['s1_imgmin_2']): ?>
-                      <div class="exemple-minor_img">
-                          <a href="<?php echo $product['s1_imgbig_2'];  ?>">
-                              <img src="<?php echo $product['s1_imgmin_2'];  ?>" alt="min_3"/>
-                          </a>
-                      </div>
-                      <?php endif; ?>
-                      <?php if($product['s1_imgbig_3'] && $product['s1_imgmin_3']): ?>
-                      <div class="exemple-minor_img">
-                          <a href="<?php echo $product['s1_imgbig_3'];  ?>">
-                              <img src="<?php echo $product['s1_imgmin_3'];  ?>" alt="min_4"/>
-                          </a>
-                      </div>
-                      <?php endif; ?>
-                      <?php if($product['s1_imgbig_4'] && $product['s1_imgmin_4']): ?>
-                      <div class="exemple-minor_img">
-                          <a href="<?php echo $product['s1_imgbig_4'];  ?>">
-                              <img src="<?php echo $product['s1_imgmin_4'];  ?>" alt="min_5"/>
-                          </a>
-                      </div>
-                      <?php endif; ?>
-                      <?php if($product['s1_imgbig_5'] && $product['s1_imgmin_5']): ?>
-                          <div class="exemple-minor_img">
-                              <a href="<?php echo $product['s1_imgbig_5'];  ?>">
-                                  <img src="<?php echo $product['s1_imgmin_5'];  ?>" alt="min_5"/>
-                              </a>
-                          </div>
-                      <?php endif; ?>
-                      <div class="exemple-basket_buttons">
-                        <div>
-                            <div class="product_cart_message">КОРЗИНА
-                                ( <span class="order_message">
-                                      <?php echo Cart::countItems(); ?>
-                                 </span> )
-                            </div>
-                        <a class="btn btn-success add-to-cart" href="#" data-id="<?php echo $product['s1_id']; ?>">
-                            <span>Купить</span>
-                        </a>
-                              <a class="btn btn-success" href="/cart/">
-                                  <span>Корзина</span>
-                              </a>
-                          </div>
-                      </div>
-                      <p><a class="btn btn-default" href="/cart/checkout/">Перейти к оформлению </a></p>
-                  </div>
-              </div>
-         <?php endforeach; ?>
+              <?php endforeach; ?>
+          </div>
+
+
+
          <div class="_pagination-buttons">
              <?php $url = 'section.php';
                  echo  pagination($page, $limit, $url, $numberButtons, $numberProducts); ?>
