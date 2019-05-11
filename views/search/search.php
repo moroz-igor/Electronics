@@ -8,14 +8,14 @@
                     case '1': $pr ='s1_'; $productLink ='/sectionproduct1/'; $categoryLink='/section/'; break;
                         case '2': $pr ='s2_'; break;
                             case '3': $pr ='s3_'; break;
-                    default: $pr =''; $productLink ='/product/'; $categoryLink='/category/'; break; } ?>
-            <?php if($sectionSearch[0] != false): foreach ($sectionSearch as $product): $i=0; $i++; ?>
+                    default: $pr =''; $productLink ='/product/'; $categoryLink='/category/'; break; } $i=1;?>
+            <?php if($sectionSearch[0] != false): foreach ($sectionSearch as $product):  ?>
                 <div>
                     <div class="_search-element _search-img">
                         <img src="<?php echo $product[$pr.'imgmin_1'];  ?>" alt="min_1">
                     </div>
                     <div class="_search-element">
-                        <p> <?php echo $i; ?> )
+                        <p> <?php echo $i++; ?> )
                             <a href="<?php echo $productLink;  echo $product[$pr.'id']; ?>">
                                 <?php echo $product[$pr.'name']; ?>
                             </a><br> Категория:
@@ -27,8 +27,8 @@
                             <span> ID: <?php echo $product[$pr.'id']; ?></span>
                         </p>
                     </div>
-                </div>
+                </div><br>
             <?php endforeach; else:?>
-                    <?php echo $sectionSearch[1]; endif; ?>
+                <?php echo $sectionSearch[1]; endif; ?>
 <?php include ROOT.'/views/layouts/right_sitebar.php'; ?>
 <?php include ROOT.'/views/layouts/footer.php'; ?>

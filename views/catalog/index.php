@@ -36,8 +36,6 @@
                     <?php foreach ($articles as $product): ?>
                         <div class="col-xs-6 col-sm-4 col-md-3 cpl-lg-3 _massonry-element">
                             <div class="_massonry-element-borber">
-
-
                             <div class="_massonry-title">
                                 <a href="/product/<?php echo $product['id']; ?>">
                                     <h6> <?php echo $product['name']; ?></h6>

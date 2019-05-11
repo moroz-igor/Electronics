@@ -1,0 +1,22 @@
+._admin-form-container{
+    background-color: #F4F4F4;
+    padding: 2%;
+    height: 700px;
+}
+._admin-form-title{
+    font-style: italic;
+    margin-bottom: 1%;
+}
+._admin-form{
+   width: 95%;
+   height: 2em;
+}
+._admin-btn{
+    background-color: #F4F4F4;
+    padding: 2%;
+    margin-top: 2%;
+    text-align: right;
+}
+._admin-btn input{
+    margin-top: 2%;
+}

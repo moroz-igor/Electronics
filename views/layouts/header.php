@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="/template/svg/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="/template/css/main.css" type="text/css"/>
     <link rel="stylesheet" href="/template/css/temp.css" type="text/css"/>
+    <link rel="stylesheet" href="/template/css/admin.css" type="text/css"/>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries-->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   </head>

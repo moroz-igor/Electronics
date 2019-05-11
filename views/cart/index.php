@@ -39,6 +39,8 @@
                 </div>
             </div>
         </div>
+
+
         <?php foreach ($products as $product): ?>
             <div class="basket">
                 <div class="_basket_title">

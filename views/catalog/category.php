@@ -40,12 +40,12 @@
                     <h5> <?php echo $product['name']; ?></h5>
                 </a>
                 <div class="row product_exemple-block">
-                    <div class="col-lg-6 exemple_main_img">
+                    <div class="col-lg-6   exemple_main_img">
                         <div class="exemple-main_img" id="exp_<?php echo $product['code']; ?>">
                             <img src="<?php echo $product['imgbig_1'];  ?>" alt="big_1"/>
                         </div>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-6 ">
                         <p class="product-status"> В наличии</p>
                         <p>Код:
                         <span class="code"><?php echo $product['code_prev'];
