@@ -11,7 +11,7 @@ class Product
     * Возвращаем количество товаров в указанной Секции
     */
     public static function getLatestProducts($count = self::SHOW_BY_DEFAULT)
-    {
+        {
         $db = Db::getConnection();
 
         $sql = 'SELECT * FROM product '
@@ -55,8 +55,8 @@ class Product
         }
         return $productsList;
     }
-public static function getTotalProductsInCatalog($section)
-   {
+    public static function getTotalProductsInCatalog($section)
+        {
          // Соединение с БД
          $db = Db::getConnection();
          // Текст запроса к БД
@@ -75,7 +75,6 @@ public static function getTotalProductsInCatalog($section)
          $row = $result->fetch();
          return $row['count'];
      }
-
     public static function getProductsListByCategory($categoryId)
         {
         // Соединение с БД
@@ -122,6 +121,17 @@ public static function getTotalProductsInCatalog($section)
                 $result = $db->query('SELECT * FROM details WHERE id_product=' . $id);
                 $result->setFetchMode(PDO::FETCH_ASSOC);
 
+                return $result->fetch();
+            }
+        }
+    public static function getProductByIdFromTable($id, $idName, $table)
+        {
+            $id = intval($id);
+            if ($id)
+            {
+                $db = Db::getConnection();
+                $result = $db->query('SELECT * FROM '.$table.' WHERE '.$idName.' = ' . $id);
+                $result->setFetchMode(PDO::FETCH_ASSOC);
                 return $result->fetch();
             }
         }
@@ -224,10 +234,8 @@ public static function getTotalProductsInCatalog($section)
 
                       return $result->fetch();
                   }
-              }
-
-
-    /*  Метод получения товаров Секции Базы Данных "Section(Section1) префикс[s1_]" */
+        }
+        //  Метод получения товаров Секции Базы Данных "Section(Section1) префикс[s1_]"
     public static function getProdustsByIdsSectionOne($idsArray)
         {
           // Соединение с БД
@@ -258,9 +266,9 @@ public static function getTotalProductsInCatalog($section)
           }
           return $s1_products;
 
-      }
+    }
         // Колличестово товаров сортированных по категории "Brand"
-        public static function getTotalProductsInBrand($section, $category, $brand)
+    public static function getTotalProductsInBrand($section, $category, $brand)
         {
             // Соединение с БД
             $db = Db::getConnection();
@@ -313,7 +321,7 @@ public static function getTotalProductsInCatalog($section)
             return $row['count'];
         }
         // Поиск товаров по названию в секции
-        public static function getProductsListByName($section)
+    public static function getProductsListByName($section)
         {
             $pr = '';
             switch($section)
@@ -383,13 +391,10 @@ public static function getTotalProductsInCatalog($section)
                     return $search_hint;
             }
         return $products;
-        }
-
-        /*
-         Получение списка продуктов для ппанели админимтратора
-         Возвращает список товаров
-         */
-        public static function getProductsList()
+    }
+        // Получение списка продуктов для ппанели админимтратора
+        // Возвращает список товаров
+    public static function getProductsList()
         {
             // Соединение с БД
             $db = Db::getConnection();
@@ -411,7 +416,7 @@ public static function getTotalProductsInCatalog($section)
         * Удаляет товар с указанным id
         */
     public static function deleteProductById($id)
-    {
+        {
             // Соединение с БД
         $db = Db::getConnection();
 
@@ -422,14 +427,24 @@ public static function getTotalProductsInCatalog($section)
         $result = $db->prepare($sql);
         $result->bindParam(':id', $id, PDO::PARAM_INT);
         return $result->execute();
-    }
+        }
+    public static function deleteProductByIdFromTable($id, $id_name, $table)
+        {
+            $db = Db::getConnection();
+
+                // Текст запроса к БД
+            $sql =  'DELETE FROM '.$table.' WHERE '.$id_name.' = :id';
+
+                // Получение и возврат результатов. Используется подготовленный запрос
+            $result = $db->prepare($sql);
+            $result->bindParam(':id', $id, PDO::PARAM_INT);
+            return $result->execute();
 
 
-    /*
-    * Редактирует товар с заданным id
-    */
+        }
+        // Редактирует товар с заданным id
     public static function updateProductById($id, $options)
-    {
+        {
         // Соединение с БД
         $db = Db::getConnection();
 
@@ -448,7 +463,17 @@ public static function getTotalProductsInCatalog($section)
                 description_2 = :description_2,
                 is_new = :is_new,
                 is_recommended = :is_recommended,
-                status = :status
+                status = :status,
+                imgbig_1 = :imgbig_1,
+                imgbig_2 = :imgbig_2,
+                imgbig_3 = :imgbig_3,
+                imgbig_4 = :imgbig_4,
+                imgbig_5 = :imgbig_5,
+                imgmin_1 = :imgmin_1,
+                imgmin_2 = :imgmin_2,
+                imgmin_3 = :imgmin_3,
+                imgmin_4 = :imgmin_4,
+                imgmin_5 = :imgmin_5
                 WHERE id = :id";
 
                 // Получение и возврат результатов. Используется подготовленный запрос
@@ -467,24 +492,134 @@ public static function getTotalProductsInCatalog($section)
                 $result->bindParam(':is_new', $options['is_new'], PDO::PARAM_INT);
                 $result->bindParam(':is_recommended', $options['is_recommended'], PDO::PARAM_INT);
                 $result->bindParam(':status', $options['status'], PDO::PARAM_INT);
+                $result->bindParam(':imgbig_1', $options['imgbig_1'], PDO::PARAM_STR);
+                $result->bindParam(':imgbig_2', $options['imgbig_2'], PDO::PARAM_STR);
+                $result->bindParam(':imgbig_3', $options['imgbig_3'], PDO::PARAM_STR);
+                $result->bindParam(':imgbig_4', $options['imgbig_4'], PDO::PARAM_STR);
+                $result->bindParam(':imgbig_5', $options['imgbig_5'], PDO::PARAM_STR);
+                $result->bindParam(':imgmin_1', $options['imgmin_1'], PDO::PARAM_STR);
+                $result->bindParam(':imgmin_2', $options['imgmin_2'], PDO::PARAM_STR);
+                $result->bindParam(':imgmin_3', $options['imgmin_3'], PDO::PARAM_STR);
+                $result->bindParam(':imgmin_4', $options['imgmin_4'], PDO::PARAM_STR);
+                $result->bindParam(':imgmin_5', $options['imgmin_5'], PDO::PARAM_STR);
                 return $result->execute();
+        }
+    public static function updateDetailsContentById($content_id, $options)
+        {
+            $db = Db::getConnection();
+            $sql = "UPDATE details_content
+                SET
+                    main_des = :main_des,
+                    des_1 = :des_1,
+                    des_2 = :des_2,
+                    des_3 = :des_3,
+                    des_4 = :des_4,
+                    des_5 = :des_5,
+                    img_1 = :img_1,
+                    img_2 = :img_2,
+                    img_3 = :img_3,
+                    img_4 = :img_4,
+                    img_5 = :img_5
+                    WHERE content_id = :content_id";
+                    $result = $db->prepare($sql);
+                    $result->bindParam(':content_id', $content_id, PDO::PARAM_INT);
+                    $result->bindParam(':main_des', $options['main_des'], PDO::PARAM_STR);
+                    $result->bindParam(':des_1', $options['des_1'], PDO::PARAM_STR);
+                    $result->bindParam(':des_2', $options['des_2'], PDO::PARAM_STR);
+                    $result->bindParam(':des_3', $options['des_3'], PDO::PARAM_STR);
+                    $result->bindParam(':des_4', $options['des_4'], PDO::PARAM_STR);
+                    $result->bindParam(':des_5', $options['des_5'], PDO::PARAM_STR);
+                    $result->bindParam(':img_1', $options['img_1'], PDO::PARAM_STR);
+                    $result->bindParam(':img_2', $options['img_2'], PDO::PARAM_STR);
+                    $result->bindParam(':img_3', $options['img_3'], PDO::PARAM_STR);
+                    $result->bindParam(':img_4', $options['img_4'], PDO::PARAM_STR);
+                    $result->bindParam(':img_5', $options['img_5'], PDO::PARAM_STR);
+                    return $result->execute();
+        }
+    public static function updateProductDetails($id, $options){
+        $db = Db::getConnection();
+        $sql = "UPDATE details
+            SET
+                param_1 = :param_1,
+                param_2 = :param_2,
+                param_3 = :param_3,
+                param_4 = :param_4,
+                param_5 = :param_5,
+                param_6 = :param_6,
+                param_7 = :param_7,
+                param_8 = :param_8,
+                param_9 = :param_9,
+                param_10 = :param_10,
+                value_1 = :value_1,
+                value_2 = :value_2,
+                value_3 = :value_3,
+                value_4 = :value_4,
+                value_5 = :value_5,
+                value_6 = :value_6,
+                value_7 = :value_7,
+                value_8 = :value_8,
+                value_9 = :value_9,
+                value_10= :value_10
+                WHERE id_product = :id_product";
+
+                $result = $db->prepare($sql);
+                $result->bindParam(':id_product', $id, PDO::PARAM_INT);
+                $result->bindParam(':param_1', $options['param_1'], PDO::PARAM_STR);
+                $result->bindParam(':param_2', $options['param_2'], PDO::PARAM_STR);
+                $result->bindParam(':param_3', $options['param_3'], PDO::PARAM_STR);
+                $result->bindParam(':param_4', $options['param_4'], PDO::PARAM_STR);
+                $result->bindParam(':param_5', $options['param_5'], PDO::PARAM_STR);
+                $result->bindParam(':param_6', $options['param_6'], PDO::PARAM_STR);
+                $result->bindParam(':param_7', $options['param_7'], PDO::PARAM_STR);
+                $result->bindParam(':param_8', $options['param_8'], PDO::PARAM_STR);
+                $result->bindParam(':param_9', $options['param_9'], PDO::PARAM_STR);
+                $result->bindParam(':param_10', $options['param_10'], PDO::PARAM_STR);
+                $result->bindParam(':value_1', $options['value_1'], PDO::PARAM_STR);
+                $result->bindParam(':value_2', $options['value_2'], PDO::PARAM_STR);
+                $result->bindParam(':value_3', $options['value_3'], PDO::PARAM_STR);
+                $result->bindParam(':value_4', $options['value_4'], PDO::PARAM_STR);
+                $result->bindParam(':value_5', $options['value_5'], PDO::PARAM_STR);
+                $result->bindParam(':value_6', $options['value_6'], PDO::PARAM_STR);
+                $result->bindParam(':value_7', $options['value_7'], PDO::PARAM_STR);
+                $result->bindParam(':value_8', $options['value_8'], PDO::PARAM_STR);
+                $result->bindParam(':value_9', $options['value_9'], PDO::PARAM_STR);
+                $result->bindParam(':value_10', $options['value_10'], PDO::PARAM_STR);
+                return $result->execute();
+
     }
-    /*
-    * Добавляет новый товар
-    */
     public static function createProduct($options)
-    {
+        {
         // Соединение с БД
         $db = Db::getConnection();
-
         // Текст запроса к БД
         $sql = 'INSERT INTO product '
                 . '(name, category_name, code, code_prev, price, category_id, brand, availability,'
-                . 'description_1, description_2, is_new, is_recommended, status)'
+                . 'description_1, description_2, is_new, is_recommended, status,
+                      imgbig_1,
+                      imgbig_2,
+                      imgbig_3,
+                      imgbig_4,
+                      imgbig_5,
+                      imgmin_1,
+                      imgmin_2,
+                      imgmin_3,
+                      imgmin_4,
+                      imgmin_5
+                      )'
                 . 'VALUES '
                 . '(:name, :category_name, :code, :code_prev, :price, :category_id, :brand, :availability,'
-                . ':description_1, :description_2, :is_new, :is_recommended, :status)';
-
+                . ':description_1, :description_2, :is_new, :is_recommended, :status,
+                        :imgbig_1,
+                        :imgbig_2,
+                        :imgbig_3,
+                        :imgbig_4,
+                        :imgbig_5,
+                        :imgmin_1,
+                        :imgmin_2,
+                        :imgmin_3,
+                        :imgmin_4,
+                        :imgmin_5
+                        )';
                 // Получение и возврат результатов. Используется подготовленный запрос
                 $result = $db->prepare($sql);
                 $result->bindParam(':name', $options['name'], PDO::PARAM_STR);
@@ -500,78 +635,166 @@ public static function getTotalProductsInCatalog($section)
                 $result->bindParam(':is_new', $options['is_new'], PDO::PARAM_INT);
                 $result->bindParam(':is_recommended', $options['is_recommended'], PDO::PARAM_INT);
                 $result->bindParam(':status', $options['status'], PDO::PARAM_INT);
+                $result->bindParam(':imgbig_1', $options['imgbig_1'], PDO::PARAM_STR);
+                $result->bindParam(':imgbig_2', $options['imgbig_2'], PDO::PARAM_STR);
+                $result->bindParam(':imgbig_3', $options['imgbig_3'], PDO::PARAM_STR);
+                $result->bindParam(':imgbig_4', $options['imgbig_4'], PDO::PARAM_STR);
+                $result->bindParam(':imgbig_5', $options['imgbig_5'], PDO::PARAM_STR);
+                $result->bindParam(':imgmin_1', $options['imgmin_1'], PDO::PARAM_STR);
+                $result->bindParam(':imgmin_2', $options['imgmin_2'], PDO::PARAM_STR);
+                $result->bindParam(':imgmin_3', $options['imgmin_3'], PDO::PARAM_STR);
+                $result->bindParam(':imgmin_4', $options['imgmin_4'], PDO::PARAM_STR);
+                $result->bindParam(':imgmin_5', $options['imgmin_5'], PDO::PARAM_STR);
                 if ($result->execute()) {
                     // Если запрос выполенен успешно, возвращаем id добавленной записи
                     return $db->lastInsertId();
                 }
-    // Иначе возвращаем 0
-    return 0;
+            // Иначе возвращаем 0
+            return 0;
+        }
+    public static function createProductDetails($options)
+        {
+        // Соединение с БД
+        $db = Db::getConnection();
+        // Текст запроса к БД
+        $sql = 'INSERT INTO details '
+                . '(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8, param_9, param_10,
+                    value_1, value_2, value_3, value_4, value_5, value_6, value_7, value_8, value_9, value_10)'
+                . 'VALUES '
+                . '( :param_1, :param_2, :param_3, :param_4, :param_5, :param_6, :param_7, :param_8, :param_9, :param_10,
+                    :value_1, :value_2, :value_3, :value_4, :value_5, :value_6, :value_7, :value_8, :value_9, :value_10)';
+                // Получение и возврат результатов. Используется подготовленный запрос
+                $result = $db->prepare($sql);
+                $result->bindParam(':param_1', $options['param_1'], PDO::PARAM_STR);
+                $result->bindParam(':param_2', $options['param_2'], PDO::PARAM_STR);
+                $result->bindParam(':param_3', $options['param_3'], PDO::PARAM_STR);
+                $result->bindParam(':param_4', $options['param_4'], PDO::PARAM_STR);
+                $result->bindParam(':param_5', $options['param_5'], PDO::PARAM_STR);
+                $result->bindParam(':param_6', $options['param_6'], PDO::PARAM_STR);
+                $result->bindParam(':param_7', $options['param_7'], PDO::PARAM_STR);
+                $result->bindParam(':param_8', $options['param_8'], PDO::PARAM_STR);
+                $result->bindParam(':param_9', $options['param_9'], PDO::PARAM_STR);
+                $result->bindParam(':param_10', $options['param_10'], PDO::PARAM_STR);
+                $result->bindParam(':value_1', $options['value_1'], PDO::PARAM_STR);
+                $result->bindParam(':value_2', $options['value_2'], PDO::PARAM_STR);
+                $result->bindParam(':value_3', $options['value_3'], PDO::PARAM_STR);
+                $result->bindParam(':value_4', $options['value_4'], PDO::PARAM_STR);
+                $result->bindParam(':value_5', $options['value_5'], PDO::PARAM_STR);
+                $result->bindParam(':value_6', $options['value_6'], PDO::PARAM_STR);
+                $result->bindParam(':value_7', $options['value_7'], PDO::PARAM_STR);
+                $result->bindParam(':value_8', $options['value_8'], PDO::PARAM_STR);
+                $result->bindParam(':value_9', $options['value_9'], PDO::PARAM_STR);
+                $result->bindParam(':value_10', $options['value_10'], PDO::PARAM_STR);
+
+                if ($result->execute()) {
+                    // Если запрос выполенен успешно, возвращаем id добавленной записи
+                    return $db->lastInsertId();
+                }
+                // Иначе возвращаем 0
+                return 0;
+        }
+        // Создает подробное описание товара
+    public static function createProductDetailsDescriptions($options)
+            {
+                // Соединение с БД
+                $db = Db::getConnection();
+                // Текст запроса к БД
+                $sql = 'INSERT INTO details_content '
+                        . '(main_des, des_1, des_2, des_3, des_4, des_5, img_1, img_2, img_3, img_4, img_5
+                             )'
+                        . 'VALUES '
+                        . '(:main_des, :des_1, :des_2, :des_3, :des_4, :des_5, :img_1, :img_2, :img_3, :img_4, :img_5
+                            )';
+                        // Получение и возврат результатов. Используется подготовленный запрос
+                        $result = $db->prepare($sql);
+                        $result->bindParam(':main_des', $options['main_des'], PDO::PARAM_STR);
+                        $result->bindParam(':des_1', $options['des_1'], PDO::PARAM_STR);
+                        $result->bindParam(':des_2', $options['des_2'], PDO::PARAM_STR);
+                        $result->bindParam(':des_3', $options['des_3'], PDO::PARAM_STR);
+                        $result->bindParam(':des_4', $options['des_4'], PDO::PARAM_STR);
+                        $result->bindParam(':des_5', $options['des_5'], PDO::PARAM_STR);
+                        $result->bindParam(':img_1', $options['img_1'], PDO::PARAM_STR);
+                        $result->bindParam(':img_2', $options['img_2'], PDO::PARAM_STR);
+                        $result->bindParam(':img_3', $options['img_3'], PDO::PARAM_STR);
+                        $result->bindParam(':img_4', $options['img_4'], PDO::PARAM_STR);
+                        $result->bindParam(':img_5', $options['img_5'], PDO::PARAM_STR);
+                        if ($result->execute()) {
+                            // Если запрос выполенен успешно, возвращаем id добавленной записи
+                            return $db->lastInsertId();
+                        }
+                    // Иначе возвращаем 0
+                    return 0;
+        }
+
+        // Возвращает список товаров с указанными индентификторами
+    public static function getProdustsByIds($idsArray)
+        {
+            // Соединение с БД
+            $db = Db::getConnection();
+
+            // Превращаем массив в строку для формирования условия в запросе
+            $idsString = implode(',', $idsArray);
+            //echo $idsString;
+
+            // Текст запроса к БД
+            $sql = "SELECT * FROM product WHERE status='1' AND id IN ($idsString)";
+
+            $result = $db->query($sql);
+
+            // Указываем, что хотим получить данные в виде массива
+            $result->setFetchMode(PDO::FETCH_ASSOC);
+
+            // Получение и возврат результатов первой секции
+            $i = 0;
+            $products = array();
+            while ($row = $result->fetch()) {
+                $products[$i]['id'] = $row['id'];
+                $products[$i]['imgbig_1'] = $row['imgbig_1'];
+                $products[$i]['code'] = $row['code'];
+                $products[$i]['code_prev'] = $row['code_prev'];
+                $products[$i]['name'] = $row['name'];
+                $products[$i]['price'] = $row['price'];
+                $i++;
+            }
+            return $products;
+        }
+        // Возвращает путь к изображению
+    public static function getImage($id, $name)
+        {
+            // Название изображения-пустышки
+            $noImage = 'no-image.jpg';
+
+            // Путь к папке с товарами
+            $path = '/upload/images/products/'.$id.'_product/';
+
+            // Путь к изображению товара
+            $pathToProductImage = $path . $id . $name. '.jpg';
+
+            if (file_exists($_SERVER['DOCUMENT_ROOT'].$pathToProductImage)) {
+                // Если изображение для товара существует
+                // Возвращаем путь изображения товара
+                return $pathToProductImage;
+            }
+
+            // Возвращаем путь изображения-пустышки
+            //return $path . $noImage;
+            return NULL;
+        }
+
+    public static function lastProductId($table, $id){
+        // Соединение с БД
+        $db = Db::getConnection();
+        $sql = "SELECT $id FROM $table ORDER BY $id DESC LIMIT 1";
+
+        $result = $db->prepare($sql);
+        $result->bindParam(':'.$id, $id, PDO::FETCH_ASSOC);
+
+        // Выполнение коменды
+        $result->execute();
+        // Возвращаем значение id - последний в таблице
+        $row = $result->fetch();
+        return $row[$id];
     }
-    /**
- * Возвращает список товаров с указанными индентификторами
- * @param array $idsArray <p>Массив с идентификаторами</p>
- * @return array <p>Массив со списком товаров</p>
- */
-public static function getProdustsByIds($idsArray)
-{
-    // Соединение с БД
-    $db = Db::getConnection();
-
-    // Превращаем массив в строку для формирования условия в запросе
-    $idsString = implode(',', $idsArray);
-        //echo $idsString;
-
-    // Текст запроса к БД
-    $sql = "SELECT * FROM product WHERE status='1' AND id IN ($idsString)";
-
-    $result = $db->query($sql);
-
-    // Указываем, что хотим получить данные в виде массива
-    $result->setFetchMode(PDO::FETCH_ASSOC);
-
-    // Получение и возврат результатов
-    $i = 0;
-    $products = array();
-    while ($row = $result->fetch()) {
-        $products[$i]['id'] = $row['id'];
-        $products[$i]['imgbig_1'] = $row['imgbig_1'];
-        $products[$i]['code'] = $row['code'];
-        $products[$i]['code_prev'] = $row['code_prev'];
-        $products[$i]['name'] = $row['name'];
-        $products[$i]['price'] = $row['price'];
-        $i++;
-    }
-    return $products;
-}
-/**
- * Возвращает путь к изображению
- * @param integer $id
- * @return string <p>Путь к изображению</p>
- */
-public static function getImage($id, $name)
-{
-    // Название изображения-пустышки
-    $noImage = 'no-image.jpg';
-
-    // Путь к папке с товарами
-    $path = '/upload/images/products/';
-
-    // Путь к изображению товара
-    $pathToProductImage = $path . $id . $name. '.jpg';
-
-    if (file_exists($_SERVER['DOCUMENT_ROOT'].$pathToProductImage)) {
-        // Если изображение для товара существует
-        // Возвращаем путь изображения товара
-        return $pathToProductImage;
-    }
-
-    // Возвращаем путь изображения-пустышки
-    return $path . $noImage;
-}
-
-
-
-
 
 }
  ?>

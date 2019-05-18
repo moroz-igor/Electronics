@@ -17,6 +17,7 @@ class AdminCategoryController extends AdminBase
 
         // Получаем список категорий
         $categoriesList = Category::getCategoriesListAdmin();
+            $categorySection = Sectioncategory::getCategoriesListAdminSection();
 
         // Подключаем вид
         require_once(ROOT . '/views/admin_category/index.php');
@@ -32,7 +33,7 @@ class AdminCategoryController extends AdminBase
         self::checkAdmin();
 
         // Обработка формы
-        if (isset($_POST['submit'])) {
+        if (isset($_POST['submit_1'])) {
             // Если форма отправлена
             // Получаем данные из формы
             $name = $_POST['name'];
@@ -57,6 +58,31 @@ class AdminCategoryController extends AdminBase
                 header("Location: /admin/category");
             }
         }
+        if (isset($_POST['submit_2'])) {
+            // Если форма отправлена
+            // Получаем данные из формы
+            $name = $_POST['name'];
+            $sortOrder = $_POST['sort_order'];
+            $status = $_POST['status'];
+
+            // Флаг ошибок в форме
+            $errors = false;
+
+            // При необходимости можно валидировать значения нужным образом
+            if (!isset($name) || empty($name)) {
+                $errors[] = 'Заполните поля';
+            }
+
+
+            if ($errors == false) {
+                // Если ошибок нет
+                // Добавляем новую категорию
+                Sectioncategory::createCategorySection($name, $sortOrder, $status);
+
+                // Перенаправляем пользователя на страницу управлениями категориями
+                header("Location: /admin/category");
+            }
+        }
 
         require_once(ROOT . '/views/admin_category/create.php');
         return true;
@@ -72,6 +98,7 @@ class AdminCategoryController extends AdminBase
 
         // Получаем данные о конкретной категории
         $category = Category::getCategoryById($id);
+        $categorySection = Sectioncategory::getCategoryByIdSection($id);
 
         // Обработка формы
         if (isset($_POST['submit'])) {
@@ -83,6 +110,19 @@ class AdminCategoryController extends AdminBase
 
             // Сохраняем изменения
             Category::updateCategoryById($id, $name, $sortOrder, $status);
+
+            // Перенаправляем пользователя на страницу управлениями категориями
+            header("Location: /admin/category");
+        }
+        if (isset($_POST['submit_2'])) {
+            // Если форма отправлена
+            // Получаем данные из формы
+            $name = $_POST['name'];
+            $sortOrder = $_POST['sort_order'];
+            $status = $_POST['status'];
+
+            // Сохраняем изменения
+            Sectioncategory::updateCategoryByIdSection($id, $name, $sortOrder, $status);
 
             // Перенаправляем пользователя на страницу управлениями категориями
             header("Location: /admin/category");
@@ -106,6 +146,14 @@ class AdminCategoryController extends AdminBase
             // Если форма отправлена
             // Удаляем категорию
             Category::deleteCategoryById($id);
+
+            // Перенаправляем пользователя на страницу управлениями товарами
+            header("Location: /admin/category");
+        }
+        if (isset($_POST['submit_2'])) {
+            // Если форма отправлена
+            // Удаляем категорию
+            Sectioncategory::deleteCategoryByIdSection($id);
 
             // Перенаправляем пользователя на страницу управлениями товарами
             header("Location: /admin/category");

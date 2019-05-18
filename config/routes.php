@@ -30,7 +30,9 @@ return array(
 		'contacts' => 'site/contact',
 		// Управление товарами:
 	    'admin/product/create' => 'adminProduct/create',
+	    'admin/product/createSection' => 'adminProduct/createSection',
 	    'admin/product/update/([0-9]+)' => 'adminProduct/update/$1',
+	    'admin/product/updateSection/([0-9]+)' => 'adminProduct/updateSection/$1',
 	    'admin/product/delete/([0-9]+)' => 'adminProduct/delete/$1',
 	    'admin/product' => 'adminProduct/index',
 	    // Управление категориями:

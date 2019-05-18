@@ -69,12 +69,20 @@
                         <td><?php echo $product['id']; ?></td>
                         <td><?php echo $product['code']; ?></td>
                         <td><?php echo $product['name']; ?></td>
-                        <td>$<?php echo $product['price']; ?></td>
+                        <td><?php echo $product['price']; ?></td>
                         <td><?php echo $productsQuantity[$product['id']]; ?></td>
                     </tr>
                 <?php endforeach; ?>
+                <?php foreach ($s1_products as $product): ?>
+                    <tr>
+                        <td><?php echo $product['s1_id']; ?></td>
+                        <td><?php echo $product['s1_code']; ?></td>
+                        <td><?php echo $product['s1_name']; ?></td>
+                        <td><?php echo $product['s1_price']; ?></td>
+                        <td><?php echo $productsQuantity[$product['s1_id']]; ?></td>
+                    </tr>
+                <?php endforeach; ?>
             </table>
-
             <a href="/admin/order/" class="btn btn-default back"><i class="fa fa-arrow-left"></i> Назад</a>
         </div>
 

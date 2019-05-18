@@ -1,15 +1,25 @@
 ._admin-form-container{
     background-color: #F4F4F4;
     padding: 2%;
-    height: 700px;
 }
 ._admin-form-title{
     font-style: italic;
     margin-bottom: 1%;
 }
+._admin-product-name{
+    font-size: 14px;
+    font-style: italic;
+    color: #337AB7;
+
+}
+._admin-id{
+    color: green;
+}
 ._admin-form{
    width: 95%;
    height: 2em;
+   font-style: italic;
+   color: blue;
 }
 ._admin-btn{
     background-color: #F4F4F4;
@@ -19,4 +29,45 @@
 }
 ._admin-btn input{
     margin-top: 2%;
+}
+._admin-bigimg-container{
+    display : flex;
+    justify-content : center;
+    font-style: italic;
+
+}
+._addmin-bigimg-element{
+
+}
+._admin-bigimg{
+    height: 80%;
+    margin: 5px;
+}
+._admin-bigimg img{
+
+}
+._admin-bigimg-element input{
+    font-size: 12px;
+}
+._img-form{
+    font-style: italic;
+    color: green;
+    font-size: 12px;
+}
+._admin-category-add{
+    background-color: #F5F5F5;
+    border-radius: 5px;
+    padding: 1%;
+}
+._admin-warning{
+    background-color: #F5F5F5;
+    border: solid 1px maroon;
+    border-radius: 5px;
+    padding: 2%;
+    margin: 2%;
+    font-style: italic;
+    color: maroon;
+}
+._admin-footer{
+    margin-top: 50%;
 }
