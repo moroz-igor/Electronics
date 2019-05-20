@@ -3,44 +3,46 @@
     <div class="col-lg-3 col-md-3 col-sm-4 hidden-xs ">
       <div class="left-sitebar">
         <nav>
-          <p><a href="/catalog/">Компьютеры</a></p>
+          <p><a href="/catalog/1/">Компьютеры - 1</a></p>
           <ul>
             <?php   $categoriesSitebarCatalog = array();
-                    $categoriesSitebarCatalog = Category::getCategoriesList();
+                    $categoriesSitebarCatalog = Category::getCategoriesList(1);
                 foreach ($categoriesSitebarCatalog as $categoryItem):  ?>
                     <li>
-                        <a  href="/category/<?php echo $categoryItem['id']; ?>"><?php echo $categoryItem['name']; ?></a>
+                    <a  href="/category/1/<?php echo $categoryItem['id']; ?>"><?php echo $categoryItem['name']; ?></a>
                     </li>
             <?php endforeach; ?>
           </ul>
-          <p><a href="/section1/">Комп.комплектующие</a></p>
+          <p><a href="/catalog/2/">Компьютеры - 2</a></p>
+          <ul>
+              <?php   $categoriesSitebarCatalog = array();
+                      $categoriesSitebarCatalog = Category::getCategoriesList(2);
+                  foreach ($categoriesSitebarCatalog as $categoryItem):  ?>
+                      <li>
+                         <a  href="/category/2/<?php echo $categoryItem['id']; ?>"><?php echo $categoryItem['name']; ?></a>
+                      </li>
+              <?php endforeach; ?>
+          </ul>
+
+          <p><a href="/sectionPage/1/">Комп.комплектующие - 1</a></p>
           <ul>
             <?php   $categoriesSitebarSection = array();
-                    $categoriesSitebarSection = Sectioncategory::getCategoriesListSection();
-                foreach ($categoriesSitebarSection as $categoryItem):  ?>
+                    $categoriesSitebarSection = Sectioncategory::getCategoriesListSection(1);
+            foreach ($categoriesSitebarSection as $categoryItem):  ?>
                 <li>
-                    <a href="/section/<?php echo $categoryItem['s1_id']; ?>"><?php echo $categoryItem['s1_name']; ?></a>
+                    <a href="/section/1/<?php echo $categoryItem['s1_id']; ?>"><?php echo $categoryItem['s1_name']; ?></a>
                 </li>
             <?php endforeach; ?>
-          </ul>
-          <p><a href="/">Section-3</a></p>
+         </ul>
+          <p><a href="/sectionPage/2/">Комп.комплектующие - 2</a></p>
           <ul>
-            <li><a href="#">S-3_category-1</a></li>
-            <li><a href="#">S-3_category-2</a></li>
-            <li><a href="#">S-3_category-3</a></li>
-            <li><a href="#">S-3_category-4</a></li>
-            <li><a href="#">S-3_category-5</a></li>
-            <li><a href="#">S-3_category-6</a></li>
-          </ul>
-          <p><a href="/">Section-4</a></p>
-          <ul>
-            <li><a href="#">S-4_category-1</a></li>
-            <li><a href="#">S-4_category-2</a></li>
-            <li><a href="#">S-4_category-3</a></li>
-            <li><a href="#">S-4_category-4</a></li>
-            <li><a href="#">S-4_category-5</a></li>
-            <li><a href="#">S-4_category-6</a></li>
-            <li><a href="#">S-4_category-7</a></li>
+            <?php   $categoriesSitebarSection = array();
+                    $categoriesSitebarSection = Sectioncategory::getCategoriesListSection(2);
+                foreach ($categoriesSitebarSection as $categoryItem):  ?>
+                <li>
+                    <a href="/section/2/<?php echo $categoryItem['s1_id']; ?>"><?php echo $categoryItem['s1_name']; ?></a>
+                </li>
+            <?php endforeach; ?>
           </ul>
         </nav>
       </div>

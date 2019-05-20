@@ -9,8 +9,8 @@ class ProductController
 
     public function actionView($productId)
     {
-        $categories = array();
-        $categories = Category::getCategoriesList();
+        //$categories = array();
+        //$categories = Category::getCategoriesList($pageNumber);
 
         $product = Product::getProductById($productId);
 
@@ -53,8 +53,8 @@ class ProductController
     */
     public function actionSearch($section)
     {
-        $categories = array();
-        $categories = Category::getCategoriesList();
+        //$categories = array();
+        //$categories = Category::getCategoriesList();
 
         $sectionSearch = array();
         $sectionSearch = Product::getProductsListByName($section);

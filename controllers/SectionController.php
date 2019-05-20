@@ -10,20 +10,20 @@ class SectionController
    /**
     * Action для страницы "Каталог товаров"
     */
-   public function actionSection()
+   public function actionSection($pageNumber)
     {
        $categories = array();
-       $categories = Sectioncategory::getCategoriesListSection();
+       $categories = Sectioncategory::getCategoriesListSection($pageNumber);
        $numberProducts = Product::getTotalProductsInCatalog('section');
 
        // Подключаем вид
        require_once(ROOT . '/views/section/section.php');
        return true;
     }
-    public function actionCategory($categoryId)
+    public function actionCategory($pageNumber, $categoryId)
     {
       $categories = array();
-      $categories = Sectioncategory::getCategoriesListSection();
+      $categories = Sectioncategory::getCategoriesListSection($pageNumber);
 
       $categoryProducts = array();
       $categoryProducts = Section::getProductsListByCategory($categoryId);

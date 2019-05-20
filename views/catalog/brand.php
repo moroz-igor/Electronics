@@ -23,7 +23,7 @@
         (isset($_GET["page"])) ?
                 $page = $_GET["page"] :
                         $page = $_SERVER['REQUEST_URI'];
-                        if ($page < 1 or $page == "") $page = 1; $limit = 1; $numberButtons = 2;
+                        if ($page < 1 or $page == "") $page = 1; $limit = 15; $numberButtons = 4;
                         $start = getStart($page, $limit);
                             $articles = getAllArticlesByBrand($start, $limit, $section, $category, $brand);
         ?>

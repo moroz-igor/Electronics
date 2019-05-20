@@ -1,13 +1,5 @@
 <?php include ROOT.'/views/layouts/header.php'; ?>
 <?php include ROOT.'/views/layouts/left_sitebar.php'; ?>
-    <div class="btn-group btn-breadcrumb _categoty_nav">
-        <?php foreach ($categories as $categoryItem):  ?>
-            <a class="btn btn-default" href="/section/<?php echo $categoryItem['s1_id']; ?>">
-                <?php echo $categoryItem['s1_name']; ?>
-            </a>
-        <?php endforeach; ?>
-
-    </div>
           <h2><?php echo $product['s1_name']; ?></h2>
           <section class="detail_main">
             <h3>A description of the product example</h3>

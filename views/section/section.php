@@ -3,12 +3,13 @@
 <?php require_once(ROOT . '/components/Pagination.php'); ?>
 
           <h2>Комплектующие к компьютерам</h2>
+          <h2><?php echo $pageNumber.'<br>'; ?> </h2>
           <div class="btn-group btn-breadcrumb _categoty_nav">
-              <?php foreach ($categories as $categoryItem):  ?>
-                  <a class="btn btn-default" href="/section/<?php echo $categoryItem['s1_id']; ?>">
-                      <?php echo $categoryItem['s1_name']; ?>
-                  </a>
-              <?php endforeach; ?>
+            <?php foreach ($categories as $categoryItem):  ?>
+                <a class="btn btn-default" href="/section/<?php echo $pageNumber; ?>/<?php echo $categoryItem['s1_id']; ?>">
+                    <?php echo $categoryItem['s1_name']; ?>
+                 </a>
+            <?php endforeach; ?>
           </div>
           <div class="_search_dir">
               <form class="navbar-form _search_form" action="/search/1" method="get">
@@ -25,7 +26,7 @@
                           $page = $_SERVER['REQUEST_URI'];
               if ($page < 1 or $page == "") $page = 1; $limit = 12; $numberButtons = 5;
                           $start = getStart($page, $limit);
-                              $articles = getAllArticles($start, $limit, "section");
+                              $articles = getAllArticles($start, $limit, "section", $pageNumber);
            ?>
           <div class="_pagination-buttons">
               <?php $url = 'section.php';

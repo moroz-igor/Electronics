@@ -2,12 +2,12 @@
 <?php include ROOT.'/views/layouts/left_sitebar.php'; ?>
 <?php require_once(ROOT . '/components/Pagination.php'); ?>
           <h2>Компьютеры и комплектующие </h2>
-          <h2><?php echo $page.'<br>'; ?> </h2>
+          <h2><?php echo $pageNumber.'<br>'; ?> </h2>
             <div class="btn-group btn-breadcrumb _categoty_nav">
                 <?php foreach ($categories as $categoryItem):  ?>
-                    <a class="btn btn-default" href="/category/<?php echo $categoryItem['id']; ?>">
-                        <?php echo $categoryItem['name']; ?>
-                    </a>
+                <a class="btn btn-default" href="/category/<?php echo $pageNumber; ?>/<?php echo $categoryItem['id']; ?>">
+                    <?php echo $categoryItem['name']; ?>
+                </a>
                 <?php endforeach; ?>
             </div>
             <div class="_search_dir">
@@ -26,7 +26,7 @@
                                 $page = $_SERVER['REQUEST_URI'];
                     if ($page < 1 or $page == "") $page = 1; $limit = 15; $numberButtons = 4;
                                 $start = getStart($page, $limit);
-                                    $articles = getAllArticles($start, $limit, 'catalog');
+                                    $articles = getAllArticles($start, $limit, 'catalog', $pageNumber);
                  ?>
                 <div class="_pagination-buttons ">
                     <?php $url = 'index.php';

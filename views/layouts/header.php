@@ -44,10 +44,10 @@
                 <div class="row">
                     <div class="btn-group btn-breadcrumb">
                         <a class="btn btn-primary" href="/"><i class="fa fa-home"></i></a>
-                        <a class="btn btn-primary" href="/catalog/1/">Компьютеры</a>
-                        <a class="btn btn-primary" href="/section1/">Комплектующие к пк</a>
-                        <a class="btn btn-primary" href="/catalog/2/">Catalog-2</a>
-                        <a class="btn btn-primary" href="#">Section-4</a>
+                        <a class="btn btn-primary" href="/catalog/1/">Компьютеры-1</a>
+                        <a class="btn btn-primary" href="/catalog/2/">Компьютеры-2</a>
+                        <a class="btn btn-primary" href="/sectionPage/1/">Комплектующие к пк - 1</a>
+                        <a class="btn btn-primary" href="/sectionPage/2/">Комплектующие к пк - 2</a>
                         <a class="btn btn-primary" href="/contacts/">Контакты</a>
                     <?php if(User::isGuest()): ?>
                         <a class="btn btn-success" href="/user/register/">Регистрация </a>

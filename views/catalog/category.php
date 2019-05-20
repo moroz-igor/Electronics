@@ -2,10 +2,11 @@
 <?php include ROOT.'/views/layouts/left_sitebar.php'; ?>
 <?php require_once(ROOT . '/components/Pagination.php'); ?>
     <h2>Компьютеры и комплектующие </h2>
+    <h2><?php echo $pageNumber.'<br>'; ?> </h2>
     <div class="btn-group btn-breadcrumb _categoty_nav">
     <?php foreach ($categories as $categoryItem):  ?>
             <a class="btn btn-default <?php if($categoryId == $categoryItem['id']) echo 'active' ?>"
-                                                href="/category/<?php echo $categoryItem['id']; ?>">
+                        href="/category/<?php echo $pageNumber; ?>/<?php echo $categoryItem['id']; ?>">
                         <?php echo $categoryItem['name']; ?>
                     </a>
                 <?php endforeach; ?>

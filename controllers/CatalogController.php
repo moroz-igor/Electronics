@@ -8,11 +8,11 @@ class CatalogController
     /**
      * Action для страницы "Каталог товаров"
      */
-    public function actionIndex($page)
+    public function actionIndex($pageNumber)
     {
         // вывод динамического меню в целой секции
         $categories = array();
-        $categories = Category::getCategoriesList();
+        $categories = Category::getCategoriesList($pageNumber);
 
         $numberProducts = Product::getTotalProductsInCatalog('catalog');
 
@@ -21,11 +21,11 @@ class CatalogController
         return true;
     }
 
-    public function actionCategory($categoryId)
+    public function actionCategory($pageNumber, $categoryId)
     {
         // вывод динамического меню в категории
         $categories = array();
-        $categories = Category::getCategoriesList();
+        $categories = Category::getCategoriesList($pageNumber);
 
         $categoryProducts = array();
         $categoryProducts = Product::getProductsListByCategory($categoryId);
@@ -38,8 +38,8 @@ class CatalogController
     public function actionBrand($section, $category, $brand)
     {
         // вывод динамического меню в категории
-        $categories = array();
-        $categories = Category::getCategoriesList();
+        //$categories = array();
+        //$categories = Category::getCategoriesList();
 
         $totalBrand = Product::getTotalProductsInBrand($section, $category, $brand);
         require_once(ROOT . '/views/catalog/brand.php');

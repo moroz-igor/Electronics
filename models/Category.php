@@ -5,13 +5,14 @@ class Category
  * Возвращает массив категорий для списка на сайте
  * @return array <p>Массив с категориями</p>
  */
-public static function getCategoriesList()
+public static function getCategoriesList($pageNumber)
 {
     // Соединение с БД
     $db = Db::getConnection();
 
     // Запрос к БД
-    $result = $db->query('SELECT id, name FROM category WHERE status = "1" ORDER BY sort_order, name ASC');
+    $result = $db->query('SELECT id, name FROM category WHERE status = "1" AND page = '
+    .$pageNumber.' ORDER BY sort_order, name ASC');
 
     // Получение и возврат результатов
     $i = 0;

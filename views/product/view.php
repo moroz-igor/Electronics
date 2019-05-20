@@ -1,13 +1,6 @@
 <?php include ROOT.'/views/layouts/header.php'; ?>
 <?php include ROOT.'/views/layouts/left_sitebar.php'; ?>
-    <div class="btn-group btn-breadcrumb _categoty_nav">
-    <?php foreach ($categories as $categoryItem):  ?>
-    <a class="btn btn-default <?php if($categoryId == $categoryItem['id']) echo 'active' ?>"
-                                        href="/category/<?php echo $categoryItem['id']; ?>">
-                <?php echo $categoryItem['name']; ?>
-            </a>
-        <?php endforeach; ?>
-    </div>
+
           <h2><?php echo $product['name']; ?></h2>
           <section class="detail_main">
             <h3>Подробное описание</h3>

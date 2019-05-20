@@ -10,16 +10,23 @@
     {
 		$connect->close();
 	}
-    function getAllArticles($start, $limit, $section)
+    function getAllArticles($start, $limit, $section, $page)
      {
 	    $connect = connectDB();
         switch($section)
         {
             case "catalog":
-            $result = $connect->query("SELECT * FROM `product` LIMIT ".$start.", ".$limit);
+            $result = $connect->query("SELECT * FROM `product`
+                        WHERE page= " .$page.
+                        " AND status=1
+                         LIMIT ".$start.", ".$limit);
             break;
             case "section":
-            $result = $connect->query("SELECT * FROM `s1_product` LIMIT ".$start.", ".$limit);
+            $result = $connect->query("SELECT * FROM `s1_product`
+                        WHERE s1_page= " .$page.
+                        " AND s1_status=1
+                        LIMIT ".$start.", ".$limit);
+
             break;
         }
 	closeDB($connect);

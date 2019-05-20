@@ -339,13 +339,13 @@ class Product
                     switch($section)
                     {
                     case 0 :
-                        $sql = 'SELECT * FROM `product` WHERE `name` LIKE "%'.$search_words.'%" '
-                                                            .'OR `brand` LIKE "%'.$search_words.'%" '
+                        $sql = 'SELECT * FROM `product` WHERE `name` LIKE "%'.$search_words.'%" AND status=1 '
+                                                            .'OR `brand` LIKE "%'.$search_words.'%" AND status=1 '
                                                             .'LIMIT 50';
                     break;
                     case 1 :
-                        $sql = 'SELECT * FROM `s1_product` WHERE `s1_name` LIKE "%'.$search_words.'%" '
-                                                                .'OR `s1_brand` LIKE "%'.$search_words.'%" '
+                        $sql = 'SELECT * FROM `s1_product` WHERE `s1_name` LIKE "%'.$search_words.'%" AND s1_status=1 '
+                                                                .'OR `s1_brand` LIKE "%'.$search_words.'%" AND s1_status=1 '
                                                                 .'LIMIT 50';
                     break;
                     }
