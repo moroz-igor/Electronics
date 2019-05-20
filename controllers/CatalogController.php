@@ -8,7 +8,7 @@ class CatalogController
     /**
      * Action для страницы "Каталог товаров"
      */
-    public function actionIndex()
+    public function actionIndex($page)
     {
         // вывод динамического меню в целой секции
         $categories = array();

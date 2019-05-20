@@ -13,9 +13,6 @@
             <?php $last = Product::lastProductId('product', 'id'); ?>
             <h4>Редактировать товар #<?php echo $id; ?></h4>
             <br/>
-            <?php for ($i= 1; $i <= 5; $i++) { ?>
-                <?php echo Product::getImage($product['s1_id'], '_imgbig_'.$i).'<br>'; ?>
-            <?php } ?>
         <form action="#" method="post" enctype="multipart/form-data">
             <div class="_admin-bigimg-container">
                 <?php for ($i= 1; $i <= 5; $i++) { ?>
@@ -52,7 +49,6 @@
                 <br>
                 <br>
                 <br>
-
                 <div class="row">
                     <div class="_admin-form-container col-lg-6 col-md-6 col-sm-6">
 
@@ -108,6 +104,14 @@
                         </select>
                         <br/><br/>
                         <br/><br/>
+                        <h4>PATH GENERATOR OF IMAGES</h4>
+                        <?php for ($i= 1; $i <= 5; $i++) { ?>
+                            <?php echo $i.') ' . '/upload/images/products/'.$id.'_product/'.$id.'_imgbig_'.$i.'.jpg<br>'; ?>
+                        <?php } ?><br>
+                        <?php for ($i= 1; $i <= 5; $i++) { ?>
+                            <?php echo $i.') ' . '/upload/images/products/'.$id.'_product/'.$id.'_imgmin_'.$i.'.jpg<br>'; ?>
+                        <?php } ?>
+
                     </div>
                     <div class="_admin-form-container col-lg-6 col-md-6 col-sm-6">
                         <p class="_admin-form-title">Артикул [s1_code]</p>
@@ -125,8 +129,6 @@
                         <?php for ($i= 1; $i <= 5; $i++) { ?>
                             <p class="_admin-form-title">
                                 Путь к изображению [s1_imgbig_<?php echo $i; ?>]
-                                <span class="_img-form">
-                                    <?php echo '/upload/images/products/'.$id.'_imgbig_'.$i.'.jpg' ?></span>
                                 </p>
                                 <input class="_admin-form" type="text" name="imgbig_<?php echo $i; ?>" placeholder=""
                                      value="<?php echo Product::getImage($product['s1_id'], '_imgbig_'.$i); ?>">
@@ -135,8 +137,6 @@
                         <?php for ($i= 1; $i <= 5; $i++) { ?>
                             <p class="_admin-form-title">
                                 Путь к изображению [s1_imgmin_<?php echo $i; ?>]
-                                <span class="_img-form">
-                                    <?php echo '/upload/images/products/'.$id.'_imgmin_'.$i.'.jpg' ?></span>
                                 </p>
                                 <input class="_admin-form" type="text" name="imgmin_<?php echo $i; ?>" placeholder=""
                                      value="<?php echo Product::getImage($product['s1_id'], '_imgmin_'.$i); ?>">
@@ -146,7 +146,7 @@
                     <div class="_admin-btn">
                         <input class="btn btn-success" type="submit" name="submit" class="btn btn-default" value="Сохранить изменения">
                     </div>
-                </div>
+                </div><br>
         </form>
         <form action="#" method="post" >
             <div>
@@ -286,8 +286,8 @@
                 <textarea class="_admin-form" name="main_des"><?php echo $details['s1_main_des'];  ?></textarea><br>
             </div>
                 <div>
-                <div class="_admin-form-container col-lg-6 col-md-6 col-sm-6">
-                    <p class="_admin-form-title">DESCRIPTIONS </p>
+                <div class="_admin-form-container col-lg-6 col-md-6 col-sm-6"><br>
+                    <br><p class="_admin-form-title">DESCRIPTIONS </p>
                     <p class="_admin-form-title">description_1 [s1_des_1]</p>
                         <textarea class="_admin-form" name="des_1"><?php echo $details['s1_des_1'];  ?></textarea><br>
                     <p class="_admin-form-title">description_2 [s1_des_2]</p>
@@ -301,29 +301,30 @@
                 </div>
                 <div class="_admin-form-container col-lg-6 col-md-6 col-sm-6"><br>
                     <p class="_admin-form-title">PROJECT PATH </p>
-                    <h5>Автоматический генератор путей</h5>
-                    <?php for ($i= 1; $i <= 5; $i++) { ?>
-                        <?php echo '/upload/images/products/'.$id'_product/'.$id.'_description_1.jpg' ?>
-                    <?php } ?>
 
                     <p class="_admin-form-title">Путь к изображению [s1_description_1]
-                        <span class="_img-form"><?php echo '/upload/images/products/'.$id.'_description_1.jpg' ?></span>
+                        <span class="_img-form">
+                            <br><?php echo '/upload/images/products/'.$id.'_product/'.$id.'_description_1.jpg' ?></span>
                     </p>
                     <input class="_admin-form" type="text" value="<?php echo $details['s1_img_1'];  ?>"  name="img_1"><br>
                     <p class="_admin-form-title">Путь к изображению [s1_description_2]
-                        <span class="_img-form"><?php echo '/upload/images/products/'.$id.'_description_2.jpg' ?></span>
+                        <span class="_img-form">
+                            <br><?php echo '/upload/images/products/'.$id.'_product/'.$id.'_description_2.jpg' ?></span>
                     </p>
                     <input class="_admin-form" type="text" value="<?php echo $details['s1_img_2'];  ?>"  name="img_2"><br>
                     <p class="_admin-form-title">Путь к изображению [s1_description_3]
-                        <span class="_img-form"><?php echo '/upload/images/products/'.$id.'_description_3.jpg' ?></span>
+                        <span class="_img-form">
+                            <br><?php echo '/upload/images/products/'.$id.'_product/'.$id.'_description_3.jpg' ?></span>
                     </p>
                     <input class="_admin-form" type="text" value="<?php echo $details['s1_img_3'];  ?>"  name="img_3"><br>
                     <p class="_admin-form-title">Путь к изображению [s1_description_4]
-                        <span class="_img-form"><?php echo '/upload/images/products/'.$id.'_description_4.jpg' ?></span>
+                        <span class="_img-form">
+                            <br><?php echo '/upload/images/products/'.$id.'_product/'.$id.'_description_4.jpg' ?></span>
                     </p>
                     <input class="_admin-form" type="text" value="<?php echo $details['s1_img_4'];  ?>"  name="img_4"><br>
                     <p class="_admin-form-title">Путь к изображению [s1_description_5]
-                        <span class="_img-form"><?php echo '/upload/images/products/'.$id.'_description_5.jpg' ?></span>
+                        <span class="_img-form">
+                            <br><?php echo '/upload/images/products/'.$id.'_product/'.$id.'_description_5.jpg' ?></span>
                     </p>
                     <input class="_admin-form" type="text" value="<?php echo $details['s1_img_5'];  ?>"  name="img_5">
                 </div>

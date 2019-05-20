@@ -44,9 +44,9 @@
                 <div class="row">
                     <div class="btn-group btn-breadcrumb">
                         <a class="btn btn-primary" href="/"><i class="fa fa-home"></i></a>
-                        <a class="btn btn-primary" href="/catalog/">Компьютеры</a>
+                        <a class="btn btn-primary" href="/catalog/1/">Компьютеры</a>
                         <a class="btn btn-primary" href="/section1/">Комплектующие к пк</a>
-                        <a class="btn btn-primary" href="/section2/">Section-3</a>
+                        <a class="btn btn-primary" href="/catalog/2/">Catalog-2</a>
                         <a class="btn btn-primary" href="#">Section-4</a>
                         <a class="btn btn-primary" href="/contacts/">Контакты</a>
                     <?php if(User::isGuest()): ?>

@@ -5,8 +5,6 @@
  */
 class AdminProductController extends AdminBase
 {
-       //$lastId = lastProductId();
-
     /**
      * Action для страницы "Управление товарами"
      */
@@ -21,8 +19,7 @@ class AdminProductController extends AdminBase
         require_once(ROOT . '/views/admin_product/index.php');
         return true;
     }
-
-     //Action для страницы "Добавить товар"
+    //Action для страницы "Добавить товар"
     public function actionCreate()
         {
         // Проверка доступа
@@ -68,33 +65,12 @@ class AdminProductController extends AdminBase
                 // Добавляем новый товар
                 $id = Product::createProduct($options);
 
-                // Если запись добавлена
+                // Если запись добавлена загружаем изображения
                 if ($id) {
-                    function umgUploder($name, $idProduct){
-                        // Проверим, загружалось ли через форму изображение
-                        if (is_uploaded_file($_FILES[$name]["tmp_name"])) {
-                            // проверяем существование дирректории
-                            $directory = is_dir(ROOT."/upload/images/products/{$idProduct}_product");
-                            // если дирректория не существует
-                            if(!$directory)
-                            // Создаем директорию для изображений отдельного продукта
-                                mkdir(ROOT."/upload/images/products/{$idProduct}_product");
-                            // Если загружалось и есть директория переместим его в нужную папке, дадим новое имя
-                            move_uploaded_file($_FILES[$name]["tmp_name"],
-                              $_SERVER['DOCUMENT_ROOT'] . "/upload/images/products/{$idProduct}_product/{$idProduct}{$name}.jpg");
-                        }
-
+                    for ($i=1; $i <=5 ; $i++) {
+                        self::umgUploder('_imgbig_'.$i, $id);
+                            self::umgUploder('_imgmin_'.$i, $id);
                     }
-                    umgUploder('_imgbig_1', $id);
-                    umgUploder('_imgbig_2', $id);
-                    umgUploder('_imgbig_3', $id);
-                    umgUploder('_imgbig_4', $id);
-                    umgUploder('_imgbig_5', $id);
-                    umgUploder('_imgmin_1', $id);
-                    umgUploder('_imgmin_2', $id);
-                    umgUploder('_imgmin_3', $id);
-                    umgUploder('_imgmin_4', $id);
-                    umgUploder('_imgmin_5', $id);
                 }
                 // Перенаправляем пользователя на страницу управлениями товарами
                 //header("Location: /admin/product");
@@ -141,30 +117,13 @@ class AdminProductController extends AdminBase
                 $id = Product::createProductDetailsDescriptions($options);
                 // Если запись добавлена
                 if ($id) {
-                    function umgUploder($name, $idProduct){
-                        // Проверим, загружалось ли через форму изображение
-                        if (is_uploaded_file($_FILES[$name]["tmp_name"])) {
-                            // проверяем существование дирректории
-                            $directory = is_dir(ROOT."/upload/images/products/{$idProduct}_product");
-                            // если дирректория не существует
-                            if(!$directory)
-                            // Создаем директорию для изображений отдельного продукта
-                                mkdir(ROOT."/upload/images/products/{$idProduct}_product");
-                            // Если загружалось и есть директория переместим его в нужную папке, дадим новое имя
-                            move_uploaded_file($_FILES[$name]["tmp_name"],
-                              $_SERVER['DOCUMENT_ROOT'] . "/upload/images/products/{$idProduct}_product/{$idProduct}{$name}.jpg");
-                        }
+                    for ($i = 1; $i <= 5  ; $i++) {
+                        self::umgUploder('_description_'.$i, $id);
                     }
-                    umgUploder('_description_1', $id);
-                    umgUploder('_description_2', $id);
-                    umgUploder('_description_3', $id);
-                    umgUploder('_description_4', $id);
-                    umgUploder('_description_5', $id);
                 }
 
             header("Location: /admin/product");
         }
-
         // Подключаем вид
         require_once(ROOT . '/views/admin_product/create.php');
         return true;
@@ -175,7 +134,6 @@ class AdminProductController extends AdminBase
         self::checkAdmin();
         // Получаем список категорий для выпадающего списка
         $categoriesList = Sectioncategory::getCategoriesListAdminSection();
-
         // Обработка формы
         if (isset($_POST['submit'])) {
             // Если форма отправлена
@@ -216,24 +174,16 @@ class AdminProductController extends AdminBase
 
                 // Если запись добавлена
                 if ($id) {
-                    function umgUploder($name, $idProduct){
-                        // Проверим, загружалось ли через форму изображение
-                        if (is_uploaded_file($_FILES[$name]["tmp_name"])) {
-                            // Если загружалось, переместим его в нужную папке, дадим новое имя
-                            move_uploaded_file($_FILES[$name]["tmp_name"], $_SERVER['DOCUMENT_ROOT'] . "/upload/images/products/{$idProduct}{$name}.jpg");
-                        }
-
-                    }
-                    umgUploder('_imgbig_1', $id);
-                    umgUploder('_imgbig_2', $id);
-                    umgUploder('_imgbig_3', $id);
-                    umgUploder('_imgbig_4', $id);
-                    umgUploder('_imgbig_5', $id);
-                    umgUploder('_imgmin_1', $id);
-                    umgUploder('_imgmin_2', $id);
-                    umgUploder('_imgmin_3', $id);
-                    umgUploder('_imgmin_4', $id);
-                    umgUploder('_imgmin_5', $id);
+                    self::umgUploder('_imgbig_1', $id);
+                    self::umgUploder('_imgbig_2', $id);
+                    self::umgUploder('_imgbig_3', $id);
+                    self::umgUploder('_imgbig_4', $id);
+                    self::umgUploder('_imgbig_5', $id);
+                    self::umgUploder('_imgmin_1', $id);
+                    self::umgUploder('_imgmin_2', $id);
+                    self::umgUploder('_imgmin_3', $id);
+                    self::umgUploder('_imgmin_4', $id);
+                    self::umgUploder('_imgmin_5', $id);
                 }
                 // Перенаправляем пользователя на страницу управлениями товарами
                 //header("Location: /admin/product");
@@ -280,32 +230,18 @@ class AdminProductController extends AdminBase
                 $id = Section::createProductDetailsDescriptionsSection($options);
                 // Если запись добавлена
                 if ($id) {
-                    function umgUploder($name, $idProduct){
-                        // Проверим, загружалось ли через форму изображение
-                        if (is_uploaded_file($_FILES[$name]["tmp_name"])) {
-                            // Если загружалось, переместим его в нужную папке, дадим новое имя
-                            move_uploaded_file($_FILES[$name]["tmp_name"], $_SERVER['DOCUMENT_ROOT'] . "/upload/images/products/{$idProduct}{$name}.jpg");
-                        }
-
-                    }
-                    umgUploder('_description_1', $id);
-                    umgUploder('_description_2', $id);
-                    umgUploder('_description_3', $id);
-                    umgUploder('_description_4', $id);
-                    umgUploder('_description_5', $id);
+                    self::umgUploder('_description_1', $id);
+                    self::umgUploder('_description_2', $id);
+                    self::umgUploder('_description_3', $id);
+                    self::umgUploder('_description_4', $id);
+                    self::umgUploder('_description_5', $id);
                 }
-
             //header("Location: /admin/product");
         }
-
-        // Подключаем вид
         require_once(ROOT . '/views/admin_product/createSection.php');
         return true;
     }
-
-
      // Action для страницы "Редактировать товар"
-
     public function actionUpdate($id)
         {
         // Проверка доступа
@@ -314,26 +250,6 @@ class AdminProductController extends AdminBase
         $categoriesList = Category::getCategoriesListAdmin();
         // Получаем данные о конкретном заказе
         $product = Product::getProductById($id);
-            function umgUpdater($name, $idProduct){
-                // Проверим, загружалось ли через форму изображение
-                if (is_uploaded_file($_FILES[$name]["tmp_name"])) {
-                    // проверяем существование дирректории
-                    $directory = is_dir(ROOT."/upload/images/products/{$idProduct}_product");
-                    // если дирректория не существует
-                    if(!$directory)
-                    // Создаем директорию для изображений отдельного продукта
-                        mkdir(ROOT."/upload/images/products/{$idProduct}_product");
-                    //указываем путь редактируемого изображения переменной
-                    $filename = ROOT."/upload/images/products/{$idProduct}_product/{$idProduct}{$name}.jpg";
-                    // если изображение существует
-                    if (file_exists($filename))
-                    // удаляем его
-                    unlink(ROOT."/upload/images/products/{$idProduct}_product/{$idProduct}{$name}.jpg");
-                    // переместим его в нужную папку, и даем новое название
-                    move_uploaded_file($_FILES[$name]["tmp_name"],
-                        $_SERVER['DOCUMENT_ROOT'] . "/upload/images/products/{$idProduct}_product/{$idProduct}{$name}.jpg");
-                }
-            }
         // Обработка формы
         if (isset($_POST['submit'])) {
             // Если форма отправлена
@@ -363,16 +279,16 @@ class AdminProductController extends AdminBase
             $options['imgmin_5'] = $_POST['imgmin_5'];
             // Сохраняем изменения
             if (Product::updateProductById($id, $options)) {
-                umgUpdater('_imgbig_1', $id);
-                umgUpdater('_imgbig_2', $id);
-                umgUpdater('_imgbig_3', $id);
-                umgUpdater('_imgbig_4', $id);
-                umgUpdater('_imgbig_5', $id);
-                umgUpdater('_imgmin_1', $id);
-                umgUpdater('_imgmin_2', $id);
-                umgUpdater('_imgmin_3', $id);
-                umgUpdater('_imgmin_4', $id);
-                umgUpdater('_imgmin_5', $id);
+                self::umgUpdater('_imgbig_1', $id);
+                self::umgUpdater('_imgbig_2', $id);
+                self::umgUpdater('_imgbig_3', $id);
+                self::umgUpdater('_imgbig_4', $id);
+                self::umgUpdater('_imgbig_5', $id);
+                self::umgUpdater('_imgmin_1', $id);
+                self::umgUpdater('_imgmin_2', $id);
+                self::umgUpdater('_imgmin_3', $id);
+                self::umgUpdater('_imgmin_4', $id);
+                self::umgUpdater('_imgmin_5', $id);
             }
             // Перенаправляем пользователя на страницу управлениями товарами
             header("Location: /admin/product");
@@ -419,11 +335,11 @@ class AdminProductController extends AdminBase
             $options['img_5'] = $_POST['img_5'];
             // Сохраняем изменения
             if (Product::updateDetailsContentById($id, $options)) {
-                umgUpdater('_description_1', $id);
-                umgUpdater('_description_2', $id);
-                umgUpdater('_description_3', $id);
-                umgUpdater('_description_4', $id);
-                umgUpdater('_description_5', $id);
+                self::umgUpdater('_description_1', $id);
+                self::umgUpdater('_description_2', $id);
+                self::umgUpdater('_description_3', $id);
+                self::umgUpdater('_description_4', $id);
+                self::umgUpdater('_description_5', $id);
             }
             header("Location: /admin/product");
         }
@@ -439,19 +355,6 @@ class AdminProductController extends AdminBase
         $categoriesList = Sectioncategory::getCategoriesListAdminSection();
         // Получаем данные о конкретном заказе
         $product = Product::getSectionProductById($id);
-            function umgUpdater($name, $idProduct){
-                // Проверим, загружалось ли через форму изображение
-                if (is_uploaded_file($_FILES[$name]["tmp_name"])) {
-                    //указываем путь редактируемого изображения переменной
-                    $filename = ROOT."/upload/images/products/{$idProduct}{$name}.jpg";
-                    // если изображение существует
-                    if (file_exists($filename))
-                    // удаляем его
-                    unlink(ROOT."/upload/images/products/{$idProduct}{$name}.jpg");
-                    // переместим его в нужную папку, оставляя старое имя
-                    move_uploaded_file($_FILES[$name]["tmp_name"], $_SERVER['DOCUMENT_ROOT'] . "/upload/images/products/{$idProduct}{$name}.jpg");
-                }
-            }
         // Обработка формы
         if (isset($_POST['submit'])) {
             // Если форма отправлена
@@ -481,19 +384,19 @@ class AdminProductController extends AdminBase
             $options['imgmin_5'] = $_POST['imgmin_5'];
             // Сохраняем изменения
             if (Section::updateProductByIdSection($id, $options)) {
-                umgUpdater('_imgbig_1', $id);
-                umgUpdater('_imgbig_2', $id);
-                umgUpdater('_imgbig_3', $id);
-                umgUpdater('_imgbig_4', $id);
-                umgUpdater('_imgbig_5', $id);
-                umgUpdater('_imgmin_1', $id);
-                umgUpdater('_imgmin_2', $id);
-                umgUpdater('_imgmin_3', $id);
-                umgUpdater('_imgmin_4', $id);
-                umgUpdater('_imgmin_5', $id);
+                self::umgUpdater('_imgbig_1', $id);
+                self::umgUpdater('_imgbig_2', $id);
+                self::umgUpdater('_imgbig_3', $id);
+                self::umgUpdater('_imgbig_4', $id);
+                self::umgUpdater('_imgbig_5', $id);
+                self::umgUpdater('_imgmin_1', $id);
+                self::umgUpdater('_imgmin_2', $id);
+                self::umgUpdater('_imgmin_3', $id);
+                self::umgUpdater('_imgmin_4', $id);
+                self::umgUpdater('_imgmin_5', $id);
             }
             // Перенаправляем пользователя на страницу управлениями товарами
-            //header("Location: /admin/product");
+            header("Location: /admin/product");
         }
         $parameter = Product::getProductByIdFromTable($id,'s1_id_product','s1_details');
         if (isset($_POST['feature'])) {
@@ -519,7 +422,7 @@ class AdminProductController extends AdminBase
             $options['value_9'] = $_POST['value_9'];
             $options['value_10'] = $_POST['value_10'];
                 Section::updateProductDetailsSection($id, $options);
-                //header("Location: /admin/product");
+                header("Location: /admin/product");
         }
         $details = Product::getProductByIdFromTable($id,'s1_content_id','s1_details_content');
         if (isset($_POST['descriptions'])) {
@@ -537,11 +440,11 @@ class AdminProductController extends AdminBase
             $options['img_5'] = $_POST['img_5'];
             // Сохраняем изменения
             if (Section::updateDetailsContentByIdSection($id, $options)) {
-                umgUpdater('_description_1', $id);
-                umgUpdater('_description_2', $id);
-                umgUpdater('_description_3', $id);
-                umgUpdater('_description_4', $id);
-                umgUpdater('_description_5', $id);
+                self::umgUpdater('_description_1', $id);
+                self::umgUpdater('_description_2', $id);
+                self::umgUpdater('_description_3', $id);
+                self::umgUpdater('_description_4', $id);
+                self::umgUpdater('_description_5', $id);
             }
             header("Location: /admin/product");
         }
@@ -565,6 +468,9 @@ class AdminProductController extends AdminBase
                 Product::deleteProductByIdFromTable($id, 'id_product', 'details' );
                     // Удаляем подробное описание товара с соответствующим id
                     Product::deleteProductByIdFromTable($id, 'content_id', 'details_content' );
+                        // Удаляем директорию изображений товара
+                        self::imgRemover($id);
+
             // Перенаправляем пользователя на страницу управлениями товарами
             header("Location: /admin/product");
         }
@@ -576,6 +482,9 @@ class AdminProductController extends AdminBase
                 Product::deleteProductByIdFromTable($id, 's1_id_product', 's1_details' );
                     // Удаляем подробное описание товара с соответствующим id
                     Product::deleteProductByIdFromTable($id, 's1_content_id', 's1_details_content' );
+                        // Удаляем директорию изображений товара
+                        self::imgRemover($id);
+
             // Перенаправляем пользователя на страницу управлениями товарами
             header("Location: /admin/product");
         }

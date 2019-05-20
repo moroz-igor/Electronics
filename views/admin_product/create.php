@@ -53,58 +53,24 @@
                         <input class="_admin-form" type="text" value=""  name="code_prev">
                         <br/>
                         <h4>PROJECT PATH</h4>
-                        <p class="_admin-form-title">Путь к изображению [imgbig_1]
-                            <span class="_img-form"><?php echo '/upload/images/products/'.$last.'_imgbig_1.jpg' ?></span>
-                        </p>
-                        <input class="_admin-form" type="text" value=""  name="imgbig_1">
-                        <br/>
-                        <p class="_admin-form-title">Путь к изображению [imgbig_2]
-                            <span class="_img-form"><?php echo '/upload/images/products/'.$last.'_imgbig_2.jpg' ?></span>
-                        </p>
-                        <input class="_admin-form" type="text" value=""  name="imgbig_2">
-                        <br/>
-                        <p class="_admin-form-title">Путь к изображению [imgbig_3]
-                            <span class="_img-form"><?php echo '/upload/images/products/'.$last.'_imgbig_3.jpg' ?></span>
-                        </p>
-                        <input class="_admin-form" type="text" value=""  name="imgbig_3">
-                        <br/>
-                        <p class="_admin-form-title">Путь к изображению [imgbig_4]
-                            <span class="_img-form"><?php echo '/upload/images/products/'.$last.'_imgbig_4.jpg' ?></span>
-                        </p>
-                        <input class="_admin-form" type="text" value=""  name="imgbig_4">
-                        <br/>
-                        <p class="_admin-form-title">Путь к изображению [imgbig_5]
-                            <span class="_img-form"><?php echo '/upload/images/products/'.$last.'_imgbig_5.jpg' ?></span>
-                        </p>
-                        <input class="_admin-form" type="text" value=""  name="imgbig_5">
-                        <br/>
-
-                        <p class="_admin-form-title">Путь к изображению [imgmin_1]
-                            <span class="_img-form"><?php echo '/upload/images/products/'.$last.'_imgmin_1.jpg' ?></span>
-                        </p>
-                        <input class="_admin-form" type="text" value=""  name="imgmin_1">
-                        <br/>
-                        <p class="_admin-form-title">Путь к изображению [imgmin_2]
-                            <span class="_img-form"><?php echo '/upload/images/products/'.$last.'_imgmin_2.jpg' ?></span>
-                        </p>
-                        <input class="_admin-form" type="text" value=""  name="imgmin_2">
-                        <br/>
-                        <p class="_admin-form-title">Путь к изображению [imgmin_3]
-                            <span class="_img-form"><?php echo '/upload/images/products/'.$last.'_imgmin_3.jpg' ?></span>
-                        </p>
-                        <input class="_admin-form" type="text" value=""  name="imgmin_3">
-                        <br/>
-                        <p class="_admin-form-title">Путь к изображению [imgmin_4]
-                            <span class="_img-form"><?php echo '/upload/images/products/'.$last.'_imgmin_4.jpg' ?></span>
-                        </p>
-                        <input class="_admin-form" type="text" value=""  name="imgmin_4">
-                        <br/>
-                        <p class="_admin-form-title">Путь к изображению [imgmin_5]
-                            <span class="_img-form"><?php echo '/upload/images/products/'.$last.'_imgmin_5.jpg' ?></span>
-                        </p>
-                        <input class="_admin-form" type="text" value=""  name="imgmin_5">
-                        <br/>
-
+                        <?php for ($i= 1; $i <= 5; $i++) { ?>
+                            <p class="_admin-form-title">Путь к изображению [imgbig_<?php echo $i; ?>]
+                                <span class="_img-form"><br>
+                                    <?php echo '/upload/images/products/'.$last.'_product/'.$last.'_imgbig_'.$i.'.jpg'; ?>
+                                </span>
+                            </p>
+                            <input class="_admin-form" type="text" value=""  name="imgbig_<?php echo $i; ?>">
+                            <br/>
+                        <?php } ?>
+                        <?php for ($i= 1; $i <= 5; $i++) { ?>
+                            <p class="_admin-form-title">Путь к изображению [imgmin_<?php echo $i; ?>]
+                                <span class="_img-form"><br>
+                                    <?php echo '/upload/images/products/'.$last.'_product/'.$last.'_imgmin_'.$i.'.jpg'; ?>
+                                </span>
+                            </p>
+                            <input class="_admin-form" type="text" value=""  name="imgmin_<?php echo $i; ?>">
+                            <br/>
+                        <?php } ?>
                         <p class="_admin-form-title">Наличие на складе</p>
                         <select name="availability">
                             <option value="1" selected="selected">Да</option>
@@ -173,23 +139,14 @@
                         <input class="_admin-form" type="file" name="_imgmin_4" placeholder="" value="">
                         <p class="_admin-form-title">Изображение товара [imgmin_5]</p>
                         <input class="_admin-form" type="file" name="_imgmin_5" placeholder="" value="">
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
+                        <?php for ($i= 1; $i <= 15; $i++) { echo '<br>'; }?>
                     </div>
                 </div>
                 <div class="_admin-btn">
                     <input class="btn btn-success"  type="submit" name="submit" class="btn btn-default"
                         value="Выполнить запрос">
-                </div>
-    </form>
+                </div><br>
+    </form><br>
     <form action="#" method="post" >
             <div>
                 <?php $lastDetails = Product::lastProductId('details', 'id_product'); ?>
@@ -197,55 +154,21 @@
                     <span class="_admin-id"> [ id: <?php echo ++$lastDetails; ?></span> ]
                     будут добавлены в базу данных!
                 </h4>
-
-                <?php if($lastDetails != $last){
-                        echo '<div class="_registration-false">Внимание! Нарушена коррелляция таблиц!</div>';
-                        echo '<div class="_registration-false">Востановите соответствие индентификторов!</div>';}
+            <?php if($lastDetails != $last){
+                echo '<div class="_registration-false">Внимание! Нарушена коррелляция таблиц!</div>';
+                    echo '<div class="_registration-false">Востановите соответствие индентификторов!</div>';}
                         else echo '<div class="_registration-success">Корреляция таблиц в норме!</div>'; ?>
-                <div class="_admin-form-container col-lg-6">
-                    <p class="_admin-form-title">[parameter_1]</p>
-                        <input class="_admin-form" type="text" name="param_1" placeholder="" value=""><br>
-                    <p class="_admin-form-title">[parameter_2]</p>
-                        <input class="_admin-form" type="text" name="param_2" placeholder="" value=""><br>
-                    <p class="_admin-form-title">[parameter_3]</p>
-                        <input class="_admin-form" type="text" name="param_3" placeholder="" value=""><br>
-                    <p class="_admin-form-title">[parameter_4]</p>
-                        <input class="_admin-form" type="text" name="param_4" placeholder="" value=""><br>
-                    <p class="_admin-form-title">[parameter_5]</p>
-                        <input class="_admin-form" type="text" name="param_5" placeholder="" value=""><br>
-                    <p class="_admin-form-title">[parameter_6]</p>
-                        <input class="_admin-form" type="text" name="param_6" placeholder="" value=""><br>
-                    <p class="_admin-form-title">[parameter_7]</p>
-                        <input class="_admin-form" type="text" name="param_7" placeholder="" value=""><br>
-                    <p class="_admin-form-title">[parameter_8]</p>
-                        <input class="_admin-form" type="text" name="param_8" placeholder="" value=""><br>
-                    <p class="_admin-form-title">[parameter_9]</p>
-                        <input class="_admin-form" type="text" name="param_9" placeholder="" value=""><br>
-                    <p class="_admin-form-title">[parameter_10]</p>
-                        <input class="_admin-form" type="text" name="param_10" placeholder="" value=""><br>
-
+            <div class="_admin-form-container col-lg-6">
+                <?php for ($i= 1; $i <= 10; $i++) { ?>
+                    <p class="_admin-form-title">[parameter_<?php echo $i; ?>]</p>
+                    <input class="_admin-form" type="text" name="param_<?php echo $i; ?>" placeholder="" value=""><br>
+                <?php } ?>
             </div>
             <div class="_admin-form-container col-lg-6">
-                <p class="_admin-form-title">[value_1]</p>
-                    <input class="_admin-form" type="text" name="value_1" placeholder="" value=""><br>
-                <p class="_admin-form-title">[value_2]</p>
-                    <input class="_admin-form" type="text" name="value_2" placeholder="" value=""><br>
-                <p class="_admin-form-title">[value_3]</p>
-                    <input class="_admin-form" type="text" name="value_3" placeholder="" value=""><br>
-                <p class="_admin-form-title">[value_4]</p>
-                    <input class="_admin-form" type="text" name="value_4" placeholder="" value=""><br>
-                <p class="_admin-form-title">[value_5]</p>
-                    <input class="_admin-form" type="text" name="value_5" placeholder="" value=""><br>
-                <p class="_admin-form-title">[value_6]</p>
-                    <input class="_admin-form" type="text" name="value_6" placeholder="" value=""><br>
-                <p class="_admin-form-title">[value_7]</p>
-                    <input class="_admin-form" type="text" name="value_7" placeholder="" value=""><br>
-                <p class="_admin-form-title">[value_8]</p>
-                    <input class="_admin-form" type="text" name="value_8" placeholder="" value=""><br>
-                <p class="_admin-form-title">[value_9]</p>
-                    <input class="_admin-form" type="text" name="value_9" placeholder="" value=""><br>
-                <p class="_admin-form-title">[value_10]</p>
-                    <input class="_admin-form" type="text" name="value_10" placeholder="" value=""><br>
+                <?php for ($i= 1; $i <= 10; $i++) { ?>
+                    <p class="_admin-form-title">[value_<?php echo $i; ?>]</p>
+                        <input class="_admin-form" type="text" name="value_<?php echo $i; ?>" placeholder="" value=""><br>
+                <?php } ?>
             </div>
         <div class="_admin-btn">
             <input class="btn btn-success"  type="submit" name="feature" class="btn btn-default"
@@ -266,19 +189,19 @@
         <div class="_admin-form-container">
             <h4>Загрузчик изображений подробного описания</h4>
             <div class="_admin-form-container col-lg-4">
-                <p class="_admin-form-title">Изображение товара [img_1]</p>
+                <p class="_admin-form-title">Изображение товара [description_1]</p>
                 <input class="_admin-form" type="file" name="_description_1" placeholder="" value="">
-                <p class="_admin-form-title">Изображение товара [img_2]</p>
+                <p class="_admin-form-title">Изображение товара [description_2]</p>
                 <input class="_admin-form" type="file" name="_description_2" placeholder="" value="">
             </div>
             <div class="_admin-form-container col-lg-4">
-                <p class="_admin-form-title">Изображение товара [img_3]</p>
+                <p class="_admin-form-title">Изображение товара [description_3]</p>
                 <input class="_admin-form" type="file" name="_description_3" placeholder="" value="">
-                <p class="_admin-form-title">Изображение товара [img_4]</p>
+                <p class="_admin-form-title">Изображение товара [description_4]</p>
                 <input class="_admin-form" type="file" name="_description_4" placeholder="" value="">
             </div>
             <div class="_admin-form-container col-lg-4">
-                <p class="_admin-form-title">Изображение товара [img_5]</p>
+                <p class="_admin-form-title">Изображение товара [description_5]</p>
                 <input class="_admin-form" type="file" name="_description_5" placeholder="" value="">
             </div>
             <div class="_admin-form-container col-lg-4"><br></div>
@@ -289,41 +212,22 @@
             <textarea class="_admin-form" name="main_des"></textarea><br>
         </div>
             <div>
-            <div class="_admin-form-container col-lg-6">
-                <p class="_admin-form-title">MAIN DESCRIPTION </p>
-                <p class="_admin-form-title">description_1 [des_1]</p>
-                    <textarea class="_admin-form" name="des_1"></textarea><br>
-                <p class="_admin-form-title">description_2 [des_2]</p>
-                    <textarea class="_admin-form" name="des_2"></textarea><br>
-                <p class="_admin-form-title">description_3 [des_3]</p>
-                    <textarea class="_admin-form" name="des_3"></textarea><br>
-                <p class="_admin-form-title">description_4 [des_4]</p>
-                    <textarea class="_admin-form" name="des_4"></textarea><br>
-                <p class="_admin-form-title">description_5 [des_5]</p>
-                    <textarea class="_admin-form" name="des_5"></textarea><br>
+            <div class="_admin-form-container col-lg-6 col-md-6 col-sm-6"><br>
+                <br><p class="_admin-form-title">DESCRIPTIONS </p>
+                <?php for ($i= 1; $i <= 5; $i++) { ?>
+                    <p class="_admin-form-title">description_<?php echo $i; ?> [des_<?php echo $i; ?>]</p>
+                        <textarea class="_admin-form" name="des_<?php echo $i; ?>"></textarea><br>
+                <?php } ?>
             </div>
-            <div class="_admin-form-container col-lg-6"><br>
+            <div class="_admin-form-container col-lg-6 col-md-6 col-sm-6"><br>
                 <p class="_admin-form-title">PROJECT PATH </p>
-                <p class="_admin-form-title">Путь к изображению [img_1]
-                    <span class="_img-form"><?php echo '/upload/images/products/'.$last.'_description_1.jpg' ?></span>
-                </p>
-                <input class="_admin-form" type="text" value=""  name="img_1"><br>
-                <p class="_admin-form-title">Путь к изображению [img_2]
-                    <span class="_img-form"><?php echo '/upload/images/products/'.$last.'_description_2.jpg' ?></span>
-                </p>
-                <input class="_admin-form" type="text" value=""  name="img_2"><br>
-                <p class="_admin-form-title">Путь к изображению [img_3]
-                    <span class="_img-form"><?php echo '/upload/images/products/'.$last.'_description_3.jpg' ?></span>
-                </p>
-                <input class="_admin-form" type="text" value=""  name="img_3"><br>
-                <p class="_admin-form-title">Путь к изображению [img_4]
-                    <span class="_img-form"><?php echo '/upload/images/products/'.$last.'_description_4.jpg' ?></span>
-                </p>
-                <input class="_admin-form" type="text" value=""  name="img_4"><br>
-                <p class="_admin-form-title">Путь к изображению [img_5]
-                    <span class="_img-form"><?php echo '/upload/images/products/'.$last.'_description_5.jpg' ?></span>
-                </p>
-                <input class="_admin-form" type="text" value=""  name="img_5">
+                <?php for ($i= 1; $i <= 5; $i++) { ?>
+                    <p class="_admin-form-title">Путь к изображению [description_<?php echo $i; ?>]
+                        <span class="_img-form">
+                            <?php echo '/upload/images/products/'.$last.'_product/'.$last.'_description_'.$i.'.jpg' ?></span>
+                    </p>
+                    <input class="_admin-form" type="text" value=""  name="img_<?php echo $i; ?>"><br>
+                <?php } ?>
             </div>
         <div class="_admin-btn">
             <input class="btn btn-success"  type="submit" name="descriptions" class="btn btn-default"

@@ -5,24 +5,23 @@
         <nav>
           <p><a href="/catalog/">Компьютеры</a></p>
           <ul>
-              <li><a href="/category/1">Ноутбуки</a></li>
-              <li><a href="/category/2">Мониторы</a></li>
-              <li><a href="/category/3">Клавиатуры</a></li>
-              <li><a href="/category/4">Мыши</a></li>
-              <li><a href="/category/5">Акустика</a></li>
-              <li><a href="/category/6">Корпуса</a></li>
-              <li><a href="/category/7">Блоки питания</a></li>
-              <li><a href="/category/8">Устройства БП</a></li>
-
+            <?php   $categoriesSitebarCatalog = array();
+                    $categoriesSitebarCatalog = Category::getCategoriesList();
+                foreach ($categoriesSitebarCatalog as $categoryItem):  ?>
+                    <li>
+                        <a  href="/category/<?php echo $categoryItem['id']; ?>"><?php echo $categoryItem['name']; ?></a>
+                    </li>
+            <?php endforeach; ?>
           </ul>
           <p><a href="/section1/">Комп.комплектующие</a></p>
           <ul>
-            <li><a href="/section/1">Материнские платы</a></li>
-            <li><a href="/section/2">Оперативная память</a></li>
-            <li><a href="/section/3">Винчестеры</a></li>
-            <li><a href="/section/4">Процессоры</a></li>
-            <li><a href="/section/5">Видеокарты</a></li>
-            <li><a href="/section/6">Звуковые карты</a></li>
+            <?php   $categoriesSitebarSection = array();
+                    $categoriesSitebarSection = Sectioncategory::getCategoriesListSection();
+                foreach ($categoriesSitebarSection as $categoryItem):  ?>
+                <li>
+                    <a href="/section/<?php echo $categoryItem['s1_id']; ?>"><?php echo $categoryItem['s1_name']; ?></a>
+                </li>
+            <?php endforeach; ?>
           </ul>
           <p><a href="/">Section-3</a></p>
           <ul>

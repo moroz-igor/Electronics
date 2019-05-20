@@ -1,13 +1,13 @@
 <?php
 return array(
-		'product/([0-9]+)' => 'product/view/$1',                        // actionView in ProductController
-		'search/([0-9]+)' => 'product/search/$1', 					    // actionSearch in ProductController
-		'sectionproduct1/([0-9]+)' => 'product/sectionproduct/$1',      //actionSectionproduct in ProductController
-		'catalog' => 'catalog/index',
+		'product/([0-9]+)' => 'product/view/$1',                         // actionView in ProductController
+		'search/([0-9]+)' => 'product/search/$1', 					     // actionSearch in ProductController
+		'sectionproduct1/([0-9]+)' => 'product/sectionproduct/$1',       //actionSectionproduct in ProductController
+		//'catalog/([0-9]+)' => 'catalog/index/$1',                      // actionCatalog in CatalogController
+		'catalog/([0-9]+)' => 'catalog/index/$1',           		     // actionCatalog in CatalogController
 		'category/([0-9]+)' => 'catalog/category/$1', 					 // actionCategory in CatalogController
 		'section1' => 'section/section',              					 // actionSection in SectionController
 		'section/([0-9]+)' => 'section/category/$1',  					 // actionCategory in SectionController
-		'section2' => 'section2/section',             					 // actionSection in Section2Controller
 		'brand/([0-9]+)/([0-9]+)/([\w])' => 'catalog/brand/$1/$2/$3',    // actionBrand in CatalogController
 		'brand_s1/([0-9]+)/([0-9]+)/([\w])' => 'section/brand/$1/$2/$3', // actionBrand in SectionController
 
