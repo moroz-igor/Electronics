@@ -1,7 +1,7 @@
 <?php
   	function connectDB()
      {
-		$connect = @new mysqli("localhost", "root", "","electronics_db");
+		$connect = @new mysqli("mardok00.mysql.tools", "mardok00_shop", "34LCxg^7f!","mardok00_shop");
 		if($connect->connect_errno) exist('Error connecting to database!');
         $connect->set_charset('utf8');
 		return $connect;

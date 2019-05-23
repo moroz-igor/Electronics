@@ -1,9 +1,7 @@
 <?php include ROOT.'/views/layouts/header.php'; ?>
 <?php include ROOT.'/views/layouts/left_sitebar.php'; ?>
 <?php require_once(ROOT . '/components/Pagination.php'); ?>
-
           <h2>Комплектующие к компьютерам</h2>
-          <h2><?php echo $pageNumber.'<br>'; ?> </h2>
           <div class="btn-group btn-breadcrumb _categoty_nav">
             <?php foreach ($categories as $categoryItem):  ?>
                 <a class="btn btn-default" href="/section/<?php echo $pageNumber; ?>/<?php echo $categoryItem['s1_id']; ?>">
@@ -67,10 +65,10 @@
                           <p>Код:
                            <span class="code"><?php echo $product['s1_code_prev'];
                                                       echo $product['s1_code'];  ?><br>
-                              <a href="/brand/0/0/<?php echo $product['s1_brand']; ?>">
+                              <a href="/brand_s1/<?php echo $pageNumber; ?>/1/0/<?php echo $product['s1_brand']; ?>">
                                   <?php echo $product['s1_brand']; ?>
                               </a><br>
-                              <a href="/category/<?php echo $product['s1_category_id']; ?>">
+                              <a href="/section/<?php echo $pageNumber; ?>/<?php echo $product['s1_category_id']; ?>">
                                   <?php echo $product['s1_category_name'];  ?>
                               </a>
                           </span>
@@ -89,9 +87,6 @@
                   </div>
               <?php endforeach; ?>
           </div>
-
-
-
          <div class="_pagination-buttons">
              <?php $url = 'section.php';
                  echo  pagination($page, $limit, $url, $numberButtons, $numberProducts); ?>

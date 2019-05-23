@@ -33,11 +33,11 @@ class SectionController
       require_once(ROOT.'/views/section/category.php');
       return true;
     }
-    public function actionBrand($section, $category, $brand)
+    public function actionBrand($pageNumber, $section, $category, $brand)
     {
         // вывод динамического меню в категории
         $categories = array();
-        $categories = Sectioncategory::getCategoriesListSection();
+        $categories = Sectioncategory::getCategoriesListSection($pageNumber);
 
         $totalBrand = Product::getTotalProductsInBrand($section, $category, $brand);
         require_once(ROOT . '/views/section/brand_s1.php');

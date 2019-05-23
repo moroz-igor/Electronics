@@ -2,7 +2,6 @@
 <?php include ROOT.'/views/layouts/left_sitebar.php'; ?>
 <?php require_once(ROOT . '/components/Pagination.php'); ?>
     <h2>Компьютеры и комплектующие </h2>
-    <h2><?php echo $pageNumber.'<br>'; ?> </h2>
     <div class="btn-group btn-breadcrumb _categoty_nav">
     <?php foreach ($categories as $categoryItem):  ?>
             <a class="btn btn-default <?php if($categoryId == $categoryItem['id']) echo 'active' ?>"
@@ -51,7 +50,7 @@
                         <p>Код:
                         <span class="code"><?php echo $product['code_prev'];
                                                     echo $product['code'];  ?>
-                            <a href="/brand/0/<?php echo $product['category_id']; ?>/<?php echo $product['brand']; ?>">
+                            <a href="/brand/<?php echo $pageNumber; ?>/0/<?php echo $product['category_id']; ?>/<?php echo $product['brand']; ?>">
                                 <?php echo $product['brand'];  ?>
                             </a>
                             <span><?php echo $product['category_name'];  ?></span>

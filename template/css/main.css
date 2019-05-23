@@ -330,12 +330,13 @@ footer {
   padding: 5px; }
   footer div {
     color: white;
-    margin-bottom: 5px; }
+    margin-bottom: 5px;}
     footer div p {
       font-style: italic;
-      font-size: 12px; }
+      font-size: 14px;
+      text-align: center;}
     footer div a {
-      color: white; }
+      color: white;}
 
 ._footer_menu {
   text-align: center; }

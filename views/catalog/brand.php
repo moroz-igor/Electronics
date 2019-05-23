@@ -1,10 +1,11 @@
 <?php include ROOT.'/views/layouts/header.php'; ?>
 <?php include ROOT.'/views/layouts/left_sitebar.php'; ?>
 <?php require_once(ROOT . '/components/Pagination.php'); ?>
-    <h2>Компьютеры </h2>
+    <h3>Выборка товаров производителя: </h3>
+    <h2>" <?php echo brandGet($brand); ?> "</h2>
     <div class="btn-group btn-breadcrumb _categoty_nav">
         <?php foreach ($categories as $categoryItem):  ?>
-            <a class="btn btn-default" href="/category/<?php echo $categoryItem['id']; ?>">
+            <a class="btn btn-default" href="/category/<?php echo $pageNumber; ?>/<?php echo $categoryItem['id']; ?>">
                 <?php echo $categoryItem['name']; ?>
             </a>
         <?php endforeach; ?>
@@ -50,7 +51,7 @@
                             <span>
                                 <?php echo $product['brand']; ?>
                             </span>
-                            <a href="/category/<?php echo $product['category_id']; ?>">
+                            <a href="/category/<?php echo $pageNumber; ?>/<?php echo $product['category_id']; ?>">
                                 <?php echo $product['category_name'];  ?>
                             </a>
                         </span>
@@ -59,10 +60,9 @@
                         <p class="exemple_description"><?php echo $product['description_2'];?> </p>
                         <span class="exemple_price">$<?php echo $product['price'];?> </span>
                         <div class="order_container">
-                            <?php if (isset($_SESSION['products']) && array_key_exists($product['id'], $_SESSION['products'])): ?>
+                            <?php if (isset($_SESSION['products']) && array_key_exists($product['id'],   $_SESSION['products'])): ?>
                                     <?php echo '<div class="ordered"> ЗАКАЗАНО</div>'; ?>
-
-                                <?php endif; ?>
+                            <?php endif; ?>
                             <div id="status_<?php echo $product['id']; ?>" class="order_status">
                                             <div class="ordered ordered_incart">ДОБАВЛЕН В КОРЗИНУ</div>
                             </div>

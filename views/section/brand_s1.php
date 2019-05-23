@@ -1,10 +1,10 @@
 <?php include ROOT.'/views/layouts/header.php'; ?>
 <?php include ROOT.'/views/layouts/left_sitebar.php'; ?>
 <?php require_once(ROOT . '/components/Pagination.php'); ?>
-<h2>Комплектующие к компьютерам</h2>
+<h3>Выборка товаров производителя: </h3>
     <div class="btn-group btn-breadcrumb _categoty_nav">
         <?php foreach ($categories as $categoryItem):  ?>
-            <a class="btn btn-default" href="/section/<?php echo $categoryItem['s1_id']; ?>">
+            <a class="btn btn-default" href="/section/<?php echo $pageNumber; ?>/<?php echo $categoryItem['s1_id']; ?>">
                 <?php echo $categoryItem['s1_name']; ?>
             </a>
         <?php endforeach; ?>
@@ -17,7 +17,7 @@
             <input class="btn btn-primary _search_link" type="submit" name="button_search" value="Найти"/ >
         </form>
     </div>
-    <h3>Товары в дирректории</h3>
+    <h3>Товары дирректори марки " <span class="_registration-success"><?php echo brandGet($brand); ?></span> "</h3>
         <?php
         $brand = brandGet($brand);
         (isset($_GET["page"])) ?
@@ -50,7 +50,7 @@
                         <span>
                             <?php echo $product['s1_brand']; ?>
                         </span>
-                        <a href="/section/<?php echo $product['s1_category_id'];  ?>">
+                        <a href="/section/<?php echo $pageNumber; ?>/<?php echo $product['s1_category_id'];  ?>">
                             <?php echo $product['s1_category_name'];  ?>
                         </a>
                     </span>

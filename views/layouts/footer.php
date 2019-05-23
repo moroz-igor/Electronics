@@ -3,27 +3,38 @@
         <div class="row">
             <div class="col-lg-4 col-md-4 col-sm-4 hidden-xs ">
                 <ul>
-                    <li><a href="#">link_1</a></li>
+                    <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i> INSTAGRAM</a></li>
                 </ul>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4 hidden-xs ">
-                <p>Lorem ipsum dolor sit amet. Sint et molestiae non recusandae enim ipsam. Maxime placeat,     facere   possimus, omnis dolor sit. Placeat, facere possimus, omnis iste natus error sit    voluptatem sequi    nesciunt. Obcaecati cupiditate non numquam eius modi tempora incidunt, ut   perspiciatis unde</p>
+                <p>+38(067) 555-55-55</p>
+                <p>+38(098) 555-55-55</p>
+                <p>+38(063) 555-55-55</p>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4 hidden-xs ">
                 <ul>
-                    <li><a href="#">link_1</a></li>
+                    <li><a href="#"><i class="fa  fa-facebook-square" aria-hidden="true"></i> FACEBOOK</a></li>
                 </ul>
             </div>
             <div class="container">
                 <div class="row">
                     <div class="_footer_menu">
                         <div class="btn-group btn-breadcrumb">
-                            <a class="btn btn-default" href="/"> <i class="fa fa-home"></i></a>
-                            <a class="btn btn-default" href="/catalog/">Компьютеры</a>
-                            <a class="btn btn-default" href="/section1/">Компьютерные комплектующие</a>
-                            <a class="btn btn-default" href="#">Section-3</a>
-                            <a class="btn btn-default" href="#">Section-4</a>
-                            <a class="btn btn-default" href="#">Карта сайта</a>
+                            <a class="btn btn-primary" href="/"> <i class="fa fa-home"></i></a>
+                            <!-- DYNAMIC PAGES -->
+                            <!-- Pages of the first section -->
+                            <?php $CatalogPages = NavigationBase::getNavigationPageCatalog(); ?>
+                            <?php foreach ($CatalogPages as $page):  ?>
+                                <a class="btn btn-primary" href="/catalog/<?php echo $page['page']; ?>/">
+                                    <?php echo $page['page_name']; ?></a>
+                            <?php endforeach; ?>
+                            <!-- Pages of the second section -->
+                            <?php $SectionPages = NavigationBase::getNavigationPageSection(); ?>
+                            <?php foreach ($SectionPages as $page):  ?>
+                                <a class="btn btn-primary" href="/sectionPage/<?php echo $page['page']; ?>/">
+                                    <?php echo $page['page_name']; ?></a>
+                            <?php endforeach; ?>
+                            <a class="btn btn-primary" href="#">Карта сайта</a>
                         </div>
                     </div>
                 </div>
