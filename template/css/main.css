@@ -401,7 +401,7 @@ footer {
     .exemple-main_img {
       max-width: 60%; } }
   @media only screen and (max-width: 420px) {
-    .exemple-main_img {
+    .exemple-main-product {
       max-width: 90%; } }
   .exemple-main_img img {
     width: 100%;

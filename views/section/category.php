@@ -41,7 +41,7 @@
                   </a>
                   <div class="row product_exemple-block">
                       <div class="col-lg-6 exemple_main_img">
-                          <div class="exemple-main_img" id="exp_<?php echo $product['s1_code']; ?>">
+                          <div class="exemple-main_img exemple-main-product" id="exp_<?php echo $product['s1_code']; ?>">
                               <img src="<?php echo $product['s1_imgbig_1'];  ?>" alt="big_1"/>
                           </div>
                       </div>
@@ -50,7 +50,6 @@
                           <p>Код:
                            <span class="code"><?php echo $product['s1_code_prev'];
                                                       echo $product['s1_id'];  ?>
-
             <a href="/brand_s1/<?php echo $pageNumber; ?>/1/<?php echo $product['s1_category_id']; ?>/<?php echo $product['s1_brand']; ?>">
                                     <?php echo $product['s1_brand'];  ?>
                                 </a>

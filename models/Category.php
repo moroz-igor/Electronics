@@ -171,20 +171,21 @@ public static function getSectionCategoriesList()
      * @param integer $status <p>Статус <i>(включено "1", выключено "0")</i></p>
      * @return boolean <p>Результат добавления записи в таблицу</p>
      */
-    public static function createCategory($name, $sortOrder, $status)
+    public static function createCategory($name, $sortOrder, $status, $page)
     {
         // Соединение с БД
         $db = Db::getConnection();
 
         // Текст запроса к БД
-        $sql = 'INSERT INTO category (name, sort_order, status) '
-                . 'VALUES (:name, :sort_order, :status)';
+        $sql = 'INSERT INTO category (name, sort_order, status, page) '
+                . 'VALUES (:name, :sort_order, :status, :page)';
 
         // Получение и возврат результатов. Используется подготовленный запрос
         $result = $db->prepare($sql);
         $result->bindParam(':name', $name, PDO::PARAM_STR);
         $result->bindParam(':sort_order', $sortOrder, PDO::PARAM_INT);
         $result->bindParam(':status', $status, PDO::PARAM_INT);
+        $result->bindParam(':page', $page, PDO::PARAM_INT);
         return $result->execute();
     }
 

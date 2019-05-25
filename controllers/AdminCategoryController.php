@@ -31,6 +31,8 @@ class AdminCategoryController extends AdminBase
     {
         // Проверка доступа
         self::checkAdmin();
+            $catalogPages = Navigation::getCatalogPages();
+            $sectionPages = Navigation::getSectionPages();
 
         // Обработка формы
         if (isset($_POST['submit_1'])) {
@@ -39,10 +41,10 @@ class AdminCategoryController extends AdminBase
             $name = $_POST['name'];
             $sortOrder = $_POST['sort_order'];
             $status = $_POST['status'];
+            $page = $_POST['page'];
 
             // Флаг ошибок в форме
             $errors = false;
-
             // При необходимости можно валидировать значения нужным образом
             if (!isset($name) || empty($name)) {
                 $errors[] = 'Заполните поля';
@@ -52,7 +54,7 @@ class AdminCategoryController extends AdminBase
             if ($errors == false) {
                 // Если ошибок нет
                 // Добавляем новую категорию
-                Category::createCategory($name, $sortOrder, $status);
+                Category::createCategory($name, $sortOrder, $status, $page);
 
                 // Перенаправляем пользователя на страницу управлениями категориями
                 header("Location: /admin/category");
@@ -64,6 +66,7 @@ class AdminCategoryController extends AdminBase
             $name = $_POST['name'];
             $sortOrder = $_POST['sort_order'];
             $status = $_POST['status'];
+            $page = $_POST['page'];
 
             // Флаг ошибок в форме
             $errors = false;
@@ -77,7 +80,7 @@ class AdminCategoryController extends AdminBase
             if ($errors == false) {
                 // Если ошибок нет
                 // Добавляем новую категорию
-                Sectioncategory::createCategorySection($name, $sortOrder, $status);
+                Sectioncategory::createCategorySection($name, $sortOrder, $status, $page);
 
                 // Перенаправляем пользователя на страницу управлениями категориями
                 header("Location: /admin/category");

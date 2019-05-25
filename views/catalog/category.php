@@ -41,7 +41,7 @@
                 </a>
                 <div class="row product_exemple-block">
                     <div class="col-lg-6   exemple_main_img">
-                        <div class="exemple-main_img" id="exp_<?php echo $product['code']; ?>">
+                        <div class="exemple-main_img exemple-main-product" id="exp_<?php echo $product['code']; ?>">
                             <img src="<?php echo $product['imgbig_1'];  ?>" alt="big_1"/>
                         </div>
                     </div>

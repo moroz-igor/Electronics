@@ -41,20 +41,21 @@ public static function getCategoriesListAdminSection()
     return $categorySection;
 }
 /*Добавляем новую категорию*/
-public static function createCategorySection($name, $sortOrder, $status)
+public static function createCategorySection($name, $sortOrder, $status, $page)
 {
     // Соединение с БД
     $db = Db::getConnection();
 
     // Текст запроса к БД
-    $sql = 'INSERT INTO s1_category (s1_name, s1_sort_order, s1_status) '
-            . 'VALUES (:s1_name, :s1_sort_order, :s1_status)';
+    $sql = 'INSERT INTO s1_category (s1_name, s1_sort_order, s1_status, s1_page) '
+            . 'VALUES (:s1_name, :s1_sort_order, :s1_status, :s1_page)';
 
     // Получение и возврат результатов. Используется подготовленный запрос
     $result = $db->prepare($sql);
     $result->bindParam(':s1_name', $name, PDO::PARAM_STR);
     $result->bindParam(':s1_sort_order', $sortOrder, PDO::PARAM_INT);
     $result->bindParam(':s1_status', $status, PDO::PARAM_INT);
+    $result->bindParam(':s1_page', $page, PDO::PARAM_INT);
     return $result->execute();
 }
 /* Удаляем категорию из второй секции */

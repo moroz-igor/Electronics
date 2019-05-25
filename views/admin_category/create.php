@@ -34,7 +34,19 @@
                             <option value="1" selected="selected">Отображается</option>
                             <option value="0">Скрыта</option>
                         </select>
+                        <br>
+                        <p>Страница</p>
+                        <select  name="page">
+                            <?php if (is_array($catalogPages)): ?>
+                                <?php foreach ($catalogPages as $pages): ?>
+                                    <option value="<?php echo $pages['page']; ?>">
+                                        <?php echo $pages['page_name']; ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                        </select>
                         <br><br>
+
 
                         <input type="submit" name="submit_1" class="btn btn-default" value="Сохранить">
                     </form>
@@ -54,6 +66,17 @@
                         <select name="status">
                             <option value="1" selected="selected">Отображается</option>
                             <option value="0">Скрыта</option>
+                        </select>
+                        <br>
+                        <p>Страница</p>
+                        <select  name="page">
+                            <?php if (is_array($sectionPages)): ?>
+                                <?php foreach ($sectionPages as $pages): ?>
+                                    <option value="<?php echo $pages['page']; ?>">
+                                        <?php echo $pages['page_name']; ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
                         </select>
                         <br><br>
                         <input type="submit" name="submit_2" class="btn btn-default" value="Сохранить">
