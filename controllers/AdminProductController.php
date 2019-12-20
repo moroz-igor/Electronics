@@ -26,6 +26,7 @@ class AdminProductController extends AdminBase
         self::checkAdmin();
         // Получаем список категорий для выпадающего списка
         $categoriesList = Category::getCategoriesListAdmin();
+            $catalogPages = Navigation::getCatalogPages();
 
         // Обработка формы
         if (isset($_POST['submit'])) {

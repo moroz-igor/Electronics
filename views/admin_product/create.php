@@ -140,6 +140,18 @@
                         <p class="_admin-form-title">Изображение товара [imgmin_5]</p>
                         <input class="_admin-form" type="file" name="_imgmin_5" placeholder="" value="">
                         <?php for ($i= 1; $i <= 15; $i++) { echo '<br>'; }?>
+
+                            <p>Страница</p>
+                            <select  name="page">
+                                <?php if (is_array($catalogPages)): ?>
+                                    <?php foreach ($catalogPages as $pages): ?>
+                                        <option value="<?php echo $pages['page']; ?>">
+                                            <?php echo $pages['page_name']; ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
+                            </select>
+
                     </div>
                 </div>
                 <div class="_admin-btn">

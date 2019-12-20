@@ -437,7 +437,7 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id`, `name`, `last_name`, `email`, `password`, `phone`, `region`, `area`, `town`, `delivery`, `post_number`, `post_adress`, `role`) VALUES
 (1, 'Марина', 'Мороз', 'marina@gmail.com', 'marina123', '067 000 00 00', 'Винницкая', 'Калиновка', 'Калиновка', 'Новая почта', '2', 'Незалежності 54', ''),
 (2, 'Марина', '', 'marina_moroz19@icloud.com', 'ptitsa1995', '', '', '', '', '', '', '', ''),
-(3, 'Игорь', 'Мороз', 'kusatel@gmail.com', 'vfhbyf123', '+380671502706', 'Винницкая', '', '', 'Новая Почта', '', '', 'admin'),
+(3, 'Игорь', 'Мороз', 'kusatel@gmail.com', 'marina123', '+380671502706', 'Винницкая', '', '', 'Новая Почта', '', '', 'admin'),
 (4, 'Александр', '', 'sacha@gmail.com', '123456789', '', '', '', '', '', '', '', ''),
 (5, 'Галина Миколаївна', '', 'morgalinakosh@gmail.com', 'марина123', '', '', '', '', '', '', '', ''),
 (6, 'Brova', '', 'brova@gmail.com', '123456789', '', '', '', '', '', '', '', '');

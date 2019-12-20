@@ -67,7 +67,7 @@ public static function deleteCategoryByIdSection($id)
     $result->bindParam(':s1_id', $id, PDO::PARAM_INT);
     return $result->execute();
 }
-public static function updateCategoryByIdSection($id, $name, $sortOrder, $status)
+public static function updateCategoryByIdSection($id, $name, $sortOrder, $status, $page)
 {
     // Соединение с БД
     $db = Db::getConnection();
@@ -77,7 +77,8 @@ public static function updateCategoryByIdSection($id, $name, $sortOrder, $status
         SET
             s1_name = :s1_name,
             s1_sort_order = :s1_sort_order,
-            s1_status = :s1_status
+            s1_status = :s1_status,
+            s1_page = :s1_page
         WHERE s1_id = :s1_id";
 
     // Получение и возврат результатов. Используется подготовленный запрос
@@ -86,6 +87,7 @@ public static function updateCategoryByIdSection($id, $name, $sortOrder, $status
     $result->bindParam(':s1_name', $name, PDO::PARAM_STR);
     $result->bindParam(':s1_sort_order', $sortOrder, PDO::PARAM_INT);
     $result->bindParam(':s1_status', $status, PDO::PARAM_INT);
+    $result->bindParam(':s1_page', $page, PDO::PARAM_INT);
     return $result->execute();
 }
 public static function getCategoryByIdSection($id)

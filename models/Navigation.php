@@ -62,6 +62,20 @@ class Navigation{
         }
     return $mainContent;
     }
+    public static function getPageName($section, $page)
+    {
+            $db = Db::getConnection();
+            $result = $db->query('SELECT page_name FROM navigation '
+                                 .'WHERE section = "'.$section.'"'.
+                                  ' AND page = "'.$page.'"');
+            //$result = $db->prepare($sql);
+            // Выполнение коменды
+            $result->execute();
+            // Возвращаем значение count - количество
+            $row = $result->fetch();
+            return $row['page_name'];
+    }
+
 
 }
  ?>

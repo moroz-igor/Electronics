@@ -99,6 +99,10 @@ class AdminCategoryController extends AdminBase
         // Проверка доступа
         self::checkAdmin();
 
+        $catalogPages = Navigation::getCatalogPages();
+        $sectionPages = Navigation::getSectionPages();
+
+
         // Получаем данные о конкретной категории
         $category = Category::getCategoryById($id);
         $categorySection = Sectioncategory::getCategoryByIdSection($id);
@@ -110,9 +114,11 @@ class AdminCategoryController extends AdminBase
             $name = $_POST['name'];
             $sortOrder = $_POST['sort_order'];
             $status = $_POST['status'];
+            $page = $_POST['page'];
+
 
             // Сохраняем изменения
-            Category::updateCategoryById($id, $name, $sortOrder, $status);
+            Category::updateCategoryById($id, $name, $sortOrder, $status, $page);
 
             // Перенаправляем пользователя на страницу управлениями категориями
             header("Location: /admin/category");
@@ -123,9 +129,11 @@ class AdminCategoryController extends AdminBase
             $name = $_POST['name'];
             $sortOrder = $_POST['sort_order'];
             $status = $_POST['status'];
+            $page = $_POST['page'];
+
 
             // Сохраняем изменения
-            Sectioncategory::updateCategoryByIdSection($id, $name, $sortOrder, $status);
+            Sectioncategory::updateCategoryByIdSection($id, $name, $sortOrder, $status, $page);
 
             // Перенаправляем пользователя на страницу управлениями категориями
             header("Location: /admin/category");

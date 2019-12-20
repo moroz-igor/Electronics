@@ -30,7 +30,23 @@
                             <option value="0" <?php if ($category['status'] == 0) echo ' selected="selected"'; ?>>Скрыта</option>
                         </select>
                         <br><br>
-                        <input type="submit" name="submit" class="btn btn-default" value="Сохранить">
+                        <p>Категория отображается на странице:</p>
+                        <?php $page_name = Navigation::getPageName('0', $category['page']); ?>
+                        <h4><?php echo $page_name; ?></h4>
+                        <select  name="page">
+                            <?php if (is_array($catalogPages)): ?>
+                                <?php foreach ($catalogPages as $pages): ?>
+                                    <?php echo $pages['page'].'<br>'; ?>
+                    <option value="<?php echo $pages['page']; ?>"
+                                <?php if ( $pages['page'] == $category['page']) echo ' selected="selected"';  ?> >
+                        <?php echo $pages['page_name']; ?>
+                    </option>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                        </select>
+                        <br><br>
+
+                        <input type="submit" name="submit" class="btn btn-default" value="Отредактировать">
                     </form>
                 </div>
             </div>
@@ -49,7 +65,22 @@
                         <option value="0" <?php if ($categorySection['s1_status'] == 0) echo ' selected="selected"'; ?>>Скрыта<option>
                     </select>
                     <br><br>
-                    <input type="submit" name="submit_2" class="btn btn-default" value="Сохранить">
+                    <p>Категория отображается на странице:</p>
+                    <?php $page_name = Navigation::getPageName('1', $categorySection['s1_page']); ?>
+                    <h4><?php echo $page_name; ?></h4>
+                    <select  name="page">
+                        <?php if (is_array($sectionPages)): ?>
+                            <?php foreach ($sectionPages as $pages): ?>
+                                <?php echo $pages['page'].'<br>'; ?>
+                <option value="<?php echo $pages['page']; ?>"
+                            <?php if ( $pages['page'] == $categorySection['s1_page']) echo ' selected="selected"';  ?> >
+                    <?php echo $pages['page_name']; ?>
+                </option>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                    </select>
+                    <br><br>
+                    <input type="submit" name="submit_2" class="btn btn-default" value="Отредактировать">
                 </form>
             </div>
         </div>
